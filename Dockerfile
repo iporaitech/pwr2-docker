@@ -27,6 +27,9 @@ RUN adduser --ingroup staff --disabled-password --gecos "" app
 ENV APP_HOME=/home/app/webapp
 WORKDIR $APP_HOME
 
-# Other ENV vars
+# Install Node.js
+ENV NODE_VERSION_MAJOR 6
+RUN curl -sL https://deb.nodesource.com/setup_$NODE_VERSION_MAJOR.x | bash - && apt-get install -y nodejs
+
 
 MAINTAINER Iporaitech <hisa@iporaitech.com>
