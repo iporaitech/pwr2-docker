@@ -1,0 +1,24 @@
+web:
+  image: pwr2:latest
+  command: /sbin/my_init --enable-insecure-key #enable insecure key for dev
+  # volumes:
+  #   - .:/home/app/webapp
+  links:
+    - db
+  ports:
+    - "4000:4000"
+    - "2224:22"
+  environment:
+    MIX_ENV: dev
+  volumes_from:
+    - mix_deps
+
+db:
+  image: postgres:9.4.4
+  ports:
+    - "55434:5432"
+
+mix_deps:
+  image: pwr2:latest
+  volumes:
+    - /home/app/mix_deps
