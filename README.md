@@ -4,7 +4,7 @@ Docker image based on Ubuntu setup with Phoenix+Webpack+Redux+React, with some s
 
 ## About the technology stack
 
-Following a brief description of major components of this technology stack. For more details take a look into the Dockerfile.
+Following a brief description of major components of this technology stack. For more details take a look into the [Dockerfile](https://github.com/iporaitech/pwr2-docker/blob/master/Dockerfile).
 
 ### Baseimage-docker
 
@@ -26,10 +26,21 @@ The programming framework
 ### React
 ### Redux
 
-## Get the image from Docker Hub
+## Usage
+
+### Get the image from Docker Hub
 > TODO
 
-## Build Instructions
+### Build Instructions
 > TODO
 
-## TODO: Add sections expected in Open Source projects
+## Contributing
+About the process of accepting changes.
+
+## Credits
+* [Hisa Ishibashi](https://github.com/hisapy)
+* [Edipo Da Silva](https://github.com/edipox)
+* [Tania Paiva](https://github.com/taniadaniela)
+
+## License
+This project is licensed under [MIT](https://github.com/iporaitech/pwr2-docker/blob/master/LICENSE).
