@@ -69,7 +69,6 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 # Enable SSH (Authorized keys must be copied in each specific project/environment)
 RUN rm -f /etc/service/sshd/down
 RUN /etc/my_init.d/00_regen_ssh_host_keys.sh
-COPY authorized_keys /tmp/authorized_keys
-RUN cat /tmp/authorized_keys >> /root/.ssh/authorized_keys && rm -f /tmp/authorized_keys
+
 
 MAINTAINER Iporaitech
