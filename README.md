@@ -2,6 +2,11 @@
 
 Docker image based on Ubuntu setup with Phoenix+Webpack+Redux+React, with some sugar and conventions to build web applications.
 
+**TODO:** Improve the following explanation
+_Because we're not using volumes due to their extremely low performance we had to copy the project files to include them later in the images with the following command_ :
+
+`rsync -rav -e "ssh -p2224 -i insecure_key" --exclude "_build" --exclude "deps" root@localhost:/home/app/webapp/* .`
+
 ## About the technology stack
 
 Following a brief description of major components of this technology stack. For more details take a look into the [Dockerfile](https://github.com/iporaitech/pwr2-docker/blob/master/Dockerfile).
