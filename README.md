@@ -2,10 +2,19 @@
 
 Docker image based on Ubuntu setup with Phoenix+Webpack+Redux+React, with some sugar and conventions to build web applications.
 
-**TODO:** Improve the following explanation
-_Because we're not using volumes due to their extremely low performance we had to copy the project files to include them later in the images with the following command_ :
+## Usage
 
-`rsync -rav -e "ssh -p2224 -i insecure_key" --exclude "_build" --exclude "deps" root@localhost:/home/app/webapp/* .`
+`docker pull iporaitech/pwr2:v0.0.1`
+
+or
+
+build you own image from this one by starting your **Dockerfile** with:
+
+```shell
+FROM iporaitech/pwr2:latest
+```
+
+Notice that master always refer to *latest* and tags/releases in github are the equivalent in the dockerhub repository.
 
 ## About the technology stack
 
@@ -31,13 +40,13 @@ The programming framework
 ### React
 ### Redux
 
-## Usage
+### How the base Phoenix project was generated
 
-### Get the image from Docker Hub
-> TODO
+**TODO:** Improve the following explanation
+_Because we're not using volumes due to their extremely low performance we had to copy the project files to include them later in the images with the following command_ :
 
-### Build Instructions
-> TODO
+`rsync -rav -e "ssh -p2224 -i insecure_key" --exclude "_build" --exclude "deps" root@localhost:/home/app/webapp/* .`
+
 
 ## Contributing
 About the process of accepting changes.
