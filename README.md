@@ -4,7 +4,7 @@ Docker image based on Ubuntu setup with Phoenix+Webpack+Redux+React, with some s
 
 ## Usage Instructions
 
-Clone this repo to your local and start your own Docker image from these. You might want to watch this repo so you don't miss upgrades or releases you might to apply to your own projects.
+Clone this repo to your local and start your own Docker image from these files. You might want to watch this repo so you don't miss upgrades or releases you might to apply to your own projects.
 
 **Notice:** Tags/Releases in GitHub are the equivalent to tags in DockerHub repository, master is the **latest** image in DockerHub.
 
@@ -59,9 +59,13 @@ _Because we're not using volumes due to their extremely low performance we had t
 
 
 ## Contributing
-About the process of accepting changes.
+
+We follow **[git flow](http://nvie.com/posts/a-successful-git-branching-model/)** so make your pull requests to the corresponding branch based on if its a **feature**, **hotfix** or **release** issues.
+
+In case of any doubts just ask before.
 
 ## Credits
+
 * [Hisa Ishibashi](https://github.com/hisapy)
 * [Edipo Da Silva](https://github.com/edipox)
 * [Tania Paiva](https://github.com/taniadaniela)
