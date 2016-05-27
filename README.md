@@ -1,8 +1,16 @@
 # phoenix-webpack-react-redux (pwr2)
 
-Docker image based on Ubuntu setup with Phoenix+Webpack+Redux+React, with some sugar and conventions to build web applications.
+Docker image based on Ubuntu setup with Phoenix+Webpack+Redux+React, with some sugar and conventions to develop and build web applications.
 
-## Usage
+## Usage Instructions
+
+Clone this repo to your local and start your own Docker image from these. You might want to watch this repo so you don't miss upgrades or releases you might to apply to your own projects.
+
+**Notice:** Tags/Releases in GitHub are the equivalent to tags in DockerHub repository, master is the **latest** image in DockerHub.
+
+### Use from DockerHub (TODO)
+
+_In the future we might add a mechanism so we can use this project from DockerHub by_
 
 `docker pull iporaitech/pwr2:v0.0.1`
 
@@ -14,7 +22,9 @@ build you own image from this one by starting your **Dockerfile** with:
 FROM iporaitech/pwr2:latest
 ```
 
-Notice that master always refer to *latest* and tags/releases in github are the equivalent in the dockerhub repository.
+_The mechanism would have to generate the base files at container creation time._
+
+###
 
 ## About the technology stack
 
