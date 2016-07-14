@@ -3,3 +3,6 @@
 /deps
 erl_crash.dump
 *.ez
+
+# Atom's RemoteSync plugin config file
+.remote-sync.json
