@@ -4,7 +4,7 @@ FROM phusion/baseimage:0.9.19
 ENV HOME=/root \
   TERM=xterm-color \
   NODE_VERSION_MAJOR=6 \
-  PHOENIX_VERSION=1.1.4
+  PHOENIX_VERSION=1.2.0
 
 # Elixir requires UTF-8
 RUN locale-gen en_US.UTF-8

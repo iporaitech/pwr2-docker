@@ -2,7 +2,7 @@ defmodule Webapp.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "rooms:*", Webapp.RoomChannel
+  # channel "room:*", Webapp.RoomChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
