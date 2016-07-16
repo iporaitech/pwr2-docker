@@ -1,4 +1,4 @@
-FROM phusion/baseimage:0.9.18
+FROM phusion/baseimage:0.9.19
 
 # Set basic ENV vars
 ENV HOME=/root \
@@ -18,7 +18,7 @@ WORKDIR $HOME
 CMD ["/sbin/my_init"]
 
 # Install packages needed later
-RUN apt-get update && apt-get install -y wget git inotify-tools
+RUN apt-get update && apt-get install -y wget git inotify-tools postgresql-client
 
 # Download and install Erlang and Elixir
 RUN wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb \
