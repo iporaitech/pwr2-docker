@@ -77,7 +77,7 @@ We try to use [Semantic Versioning](http://semver.org) and **Scrum** in our soft
 
 A milestone can be either a **Release** or a **Hotfix**. A **Release** must increment the MINOR version number and usually corresponds to the work (issues) done in 1 sprint. A **Hotfix** must increment the PATCH version number and usually contains **Bug** fixes. Name milestones prefixing with the work **Release** or **Hotfix** accordingly.
 
-The title of a an issue that is expected to be treated as a **Feature** must be prefixed with "FEATURE: " - i.e., FEATURE: Login with Facebook; and its specification/request is expected to be written in **[Gherkin](https://github.com/cucumber/cucumber/wiki/Gherkin)** and be described using the template:
+The title of a an issue that is expected to be treated as a **Feature** must be prefixed with **FEATURE:**, i.e., **FEATURE: Login with Facebook**; and its specification/request is expected to be written in **[Gherkin](https://github.com/cucumber/cucumber/wiki/Gherkin)** and be described using the template:
 
 ```gherkin
   As a <type of user>,
@@ -87,7 +87,7 @@ The title of a an issue that is expected to be treated as a **Feature** must be 
 
 A **Task** is something that is not complex enough to be defined as a **Feature**. For example, changing a text, fixing a typo, or other _relatively minor tasks_.
 
-The title of a an issue that is expected to be treated as a **BUG** must be prefixed with "BUG: " - i.e., BUG: Wrong new notifications count.
+The title of a an issue that is expected to be treated as a **BUG** must be prefixed with **BUG:**, i.e., **BUG: Wrong new notifications count**.
 
 Submit your pull requests to the corresponding branch according to the branching model mentioned at the beginning of this section.
 
