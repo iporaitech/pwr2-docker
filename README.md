@@ -44,7 +44,7 @@ _We use Phoenix as our backend programming framework_
 **Current**: [Phoenix V1.2.0](http://www.phoenixframework.org/v1.2.0)
 
 ### Absinthe
-@wip
+
 
 ### Node
 

@@ -38,5 +38,5 @@ config :webapp, Webapp.Repo,
   username: "postgres",
   password: "postgres",
   database: "webapp_dev",
-  hostname: "localhost",
+  hostname: "db",
   pool_size: 10
