@@ -45,6 +45,14 @@ _We use Phoenix as our backend programming framework_
 
 ### Absinthe
 
+GraphQL implementation for Elixir, specifically using the packages [Absinthe.Relay](https://github.com/absinthe-graphql/absinthe_relay) and [Absinthe.Plug](https://github.com/absinthe-graphql/absinthe_plug).
+
+**Current versions**:
+
+  >{:absinthe_relay, ["~> 0.9.4"](https://github.com/absinthe-graphql/absinthe_relay/tree/v0.9.4)},
+  >{:absinthe_plug, "~> 1.1.3"},
+
+_Note that these packages are under active development_
 
 ### Node
 
