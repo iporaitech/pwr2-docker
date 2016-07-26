@@ -13,6 +13,9 @@ defmodule Webapp.Router do
     plug :accepts, ["json"]
   end
 
+  forward "/api", Absinthe.Plug.GraphiQL,
+    schema: Webapp.Web.Schema
+
   scope "/", Webapp do
     pipe_through :browser # Use the default browser stack
 
