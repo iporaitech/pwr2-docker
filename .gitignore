@@ -3,3 +3,9 @@
 /deps
 erl_crash.dump
 *.ez
+
+# Atom's RemoteSync plugin config file
+.remote-sync.json
+
+# We have example files for docker-compose.yml so let's ignore it
+docker-compose.yml
