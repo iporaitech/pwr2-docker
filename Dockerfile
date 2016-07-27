@@ -1,10 +1,10 @@
-FROM phusion/baseimage:0.9.18
+FROM phusion/baseimage:0.9.19
 
 # Set basic ENV vars
 ENV HOME=/root \
   TERM=xterm-color \
   NODE_VERSION_MAJOR=6 \
-  PHOENIX_VERSION=1.1.4
+  PHOENIX_VERSION=1.2.0
 
 # Elixir requires UTF-8
 RUN locale-gen en_US.UTF-8
@@ -18,7 +18,7 @@ WORKDIR $HOME
 CMD ["/sbin/my_init"]
 
 # Install packages needed later
-RUN apt-get update && apt-get install -y wget git inotify-tools
+RUN apt-get update && apt-get install -y wget git inotify-tools postgresql-client
 
 # Download and install Erlang and Elixir
 RUN wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb \
