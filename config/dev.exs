@@ -14,7 +14,7 @@ config :webapp, Webapp.Endpoint,
   watchers: [
     npm: [
       "start",
-      cd: Path.expand("../ui", __DIR__)
+      cd: Path.expand("../", __DIR__)
     ]
   ]
 
