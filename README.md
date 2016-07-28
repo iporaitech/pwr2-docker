@@ -56,6 +56,17 @@ _Note that these packages are under active development_
 
 ### Node
 
+**NPM NOTICE**: In the container **node_modules/** directory is placed in **/home/app/node_modules/** because if in /home/app/webapp in this directory is mounted (see docker-compose.yml) for development, then the modules would dissappear because they don't exists localhost.
+
+Considering the above NOTICE, to install a new npm module inside the container
+
+```bash
+$ cd /home/app
+$ cp webapp/package.json . # if not already there
+$ npm install --save && cp package.json webapp/ # If package is meant to be installed as dependency
+$ npm install --save-dev && cp package.json webapp/ # If package is meant to be installed as devDependency
+```
+
 
 ### Webpack
 
