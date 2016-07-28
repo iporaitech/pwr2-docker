@@ -1,0 +1,3 @@
+#!/bin/bash
+
+su -m - app ;export HOME=/home/app ;source /home/app/.bashrc
