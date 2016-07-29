@@ -12,13 +12,15 @@ module.exports = {
   plugins: [
     new webpack.optimize.CommonsChunkPlugin('commons.chunk.js')
   ],
-  loaders: [{
-    loader: 'babel',
-    test: /\.jsx?$/,
-    exclude: /node_modules/,
-    query: {
-      plugins: ['transform-runtime'],
-      presets: ['es2015', 'stage-0', 'react']
-    }
-  }]
+  module: {
+    loaders: [{
+      loader: 'babel',
+      test: /\.jsx?$/,
+      exclude: /node_modules/,
+      query: {
+        plugins: ['transform-runtime'],
+        presets: ['react', 'es2015', 'stage-0']
+      }
+    }]
+  }
 };
