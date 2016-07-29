@@ -39,8 +39,7 @@ defmodule Webapp.Mixfile do
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
      {:absinthe_relay, "~> 0.9.4"},
-     {:absinthe_plug, "~> 1.1.3"},
-     {:poison, "~> 2.1.0"}
+     {:absinthe_plug, "~> 1.1.3"}
    ]
   end
 
