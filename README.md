@@ -84,9 +84,17 @@ $ npm install --save-dev && cp package.json webapp/ # If package is meant to be 
 See also the [Dockerfile](https://github.com/iporaitech/pwr2-docker/blob/master/Dockerfile).
 
 
-## Base Phoenix project
+## Base Phoenix+Webpack project
+
+Check mix.exs and mix.lock to know Elixir dependencies and package.json to know about Javascript dependencies.
 
 ### How it was created
+
+Inside the container in `APP_HOME` directory with command `mix phoenix.new --no-brunch`.
+
+Later on, we've added Webpack and its Babel stuff; loader, presets, polyfill and runtime.
+
+Take a look at **config/dev.exs** to see how we've configured a watcher for `npm start`, this is how you get live reloading when editing files.
 
 ### Using
 
