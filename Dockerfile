@@ -46,7 +46,7 @@ RUN mkdir $APP_MIX_DEPS_DIR
 RUN cd $APP_HOME && ln -s $APP_MIX_DEPS_DIR deps
 COPY mix.exs mix.lock $APP_HOME/
 RUN chown -R app:staff /home/app && chmod -R g+s /home/app
-RUN setuser app mix deps.get --force
+RUN setuser app mix do deps.get --force, deps.compile
 
 # Install package.json to build the Front end.
 # Set PATH so we can install node_modules outside of sources (mounted) dir and to allow npm find the bin(s) to execute npm commands later.
