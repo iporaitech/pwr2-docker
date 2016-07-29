@@ -70,7 +70,4 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 RUN rm -f /etc/service/sshd/down
 RUN /etc/my_init.d/00_regen_ssh_host_keys.sh
 
-# Make switch-to-app executable
-RUN mv switch-to-app /usr/local/sbin/ && chmod +x /usr/local/sbin/switch-to-app
-
 MAINTAINER Iporaitech

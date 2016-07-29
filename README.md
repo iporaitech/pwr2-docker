@@ -12,7 +12,7 @@ Clone this repo to your local and start your own Docker image from these files. 
 
 Most of the code is copied to **APP_HOME=/home/app/webapp**, owned by **app** user.
 
-If you want to go into the container to execute Elixir/Phoenix commands and other stuff you can use `docker exec -it pwr2docker_web_1 bash` and once inside the container execute `switch-to-app` to become the **app** user.
+If you want to go into the container to execute Elixir/Phoenix commands and other stuff you can use `docker exec -it pwr2docker_web_1 bash` and once inside the container execute `su app` to become the **app** user.
 
 You might experience some errors if trying to execute Elixir commands as root inside the container.
 
