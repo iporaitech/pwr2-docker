@@ -8,6 +8,14 @@ Clone this repo to your local and start your own Docker image from these files. 
 
 **Notice:** Tags/Releases in GitHub are the equivalent to tags in DockerHub repository, master is the **latest** image in DockerHub.
 
+### app user
+
+Most of the code is copied to **APP_HOME=/home/app/webapp**, owned by **app** user.
+
+If you want to go into the container to execute Elixir/Phoenix commands and other stuff you can use `docker exec -it pwr2docker_web_1 bash` and once inside the container execute `switch-to-app` to become the **app** user.
+
+You might experience some errors if trying to execute Elixir commands as root inside the container.
+
 ## About the technology stack
 
 Following a brief description of major components of this technology stack.

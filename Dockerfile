@@ -50,12 +50,12 @@ RUN setuser app mix deps.get --force
 
 # Install package.json to build the Front end.
 # Set PATH so we can install node_modules outside of sources (mounted) dir and to allow npm find the bin(s) to execute npm commands later.
-# RUN mkdir $APP_HOME/frontend
-# COPY frontend/package.json $APP_HOME/frontend/
-# ENV PATH="/home/app/node_modules/.bin:$PATH"
-# RUN mkdir /home/app/node_modules \
-#  && ln -s /home/app/node_modules $APP_HOME/frontend/node_modules
-# RUN cd $APP_HOME/frontend && npm install && npm prune
+
+COPY package.json $APP_HOME/
+ENV PATH="/home/app/node_modules/.bin:$PATH"
+RUN mkdir /home/app/node_modules \
+  && ln -s /home/app/node_modules $APP_HOME/node_modules
+RUN cd $APP_HOME && npm install && npm prune
 
 # Copy sources
 COPY . $APP_HOME
@@ -70,5 +70,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 RUN rm -f /etc/service/sshd/down
 RUN /etc/my_init.d/00_regen_ssh_host_keys.sh
 
+# Make switch-to-app executable
+RUN mv switch-to-app /usr/local/sbin/ && chmod +x /usr/local/sbin/switch-to-app
 
 MAINTAINER Iporaitech
