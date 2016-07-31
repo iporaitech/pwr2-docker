@@ -13,7 +13,7 @@ defmodule Webapp.Router do
     plug :accepts, ["json"]
   end
 
-  forward "/api", Absinthe.Plug.GraphiQL,
+  forward "/graphql", Absinthe.Plug.GraphiQL,
     schema: Webapp.Web.Schema
 
   scope "/", Webapp do
