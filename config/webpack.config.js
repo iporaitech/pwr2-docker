@@ -1,26 +1,34 @@
 const webpack = require('webpack');
 const path = require('path');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   entry: {
     app: "./web/static/js/app.js"
   },
   output: {
-    path: "./priv/static/js",
-    filename: "[name]-bundle.js"
+    path: "./priv/static",
+    filename: "js/[name].js",
+    chunkFilename: "js/[id].js"
   },
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin('commons.chunk.js')
+    new webpack.optimize.CommonsChunkPlugin('js/commons.chunk.js'),
+    new ExtractTextPlugin("css/app.css", {
+      allChunks: true // put css of all chunks in app.css
+    })
   ],
   module: {
     loaders: [{
-      loader: 'babel',
       test: /\.jsx?$/,
+      loader: 'babel',
       exclude: /node_modules/,
       query: {
         plugins: ['transform-runtime'],
         presets: ['react', 'es2015', 'stage-0']
       }
+    },{
+      test: /\.css$/,
+      loader: ExtractTextPlugin.extract("style", "css")
     }]
   }
 };
