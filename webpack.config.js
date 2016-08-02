@@ -23,7 +23,7 @@ module.exports = {
       loader: 'babel',
       exclude: /node_modules/,
       query: {
-        plugins: ['transform-runtime'],
+        plugins: ['transform-runtime', './babelRelayPlugin'],
         presets: ['react', 'es2015', 'stage-0']
       }
     },{
