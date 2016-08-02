@@ -18,7 +18,7 @@ You might experience some errors if trying to execute Elixir commands as root in
 
 ## About the technology stack
 
-Following a brief description of major components of this technology stack.
+Following a brief description of major components of this technology stack. See also the [Dockerfile](https://github.com/iporaitech/pwr2-docker/blob/master/Dockerfile).
 
 ### Baseimage-docker
 
@@ -68,8 +68,8 @@ _Note that these packages are under active development_
 
 ### Relay & React
 
-See also the [Dockerfile](https://github.com/iporaitech/pwr2-docker/blob/master/Dockerfile).
-
+* npm install babel-relay-plugin --save-dev
+* npm install react-relay --save
 
 ## Base Phoenix+Webpack project
 
