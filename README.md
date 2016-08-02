@@ -70,6 +70,7 @@ _Note that these packages are under active development_
 
 * npm install babel-relay-plugin --save-dev
 * npm install react-relay --save
+* npm install --save isomorphic-fetch es6-promise
 
 ## Base Phoenix+Webpack project
 
