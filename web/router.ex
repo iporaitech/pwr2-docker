@@ -14,7 +14,7 @@ defmodule Webapp.Router do
   end
 
   forward "/graphql", Absinthe.Plug.GraphiQL,
-    schema: Webapp.Web.Schema
+    schema: Webapp.Web.GraphQL.Schema
 
   scope "/", Webapp do
     pipe_through :browser # Use the default browser stack

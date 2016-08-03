@@ -1,5 +1,6 @@
-defmodule Webapp.Schema.Types do
+defmodule Webapp.Web.GraphQL.Types do
   use Absinthe.Schema.Notation
+  use Absinthe.Relay.Schema.Notation
 
   object :user do
     field :id, :id
