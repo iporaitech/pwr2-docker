@@ -18,7 +18,10 @@ You might experience some errors if trying to execute Elixir commands as root in
 
 ## About the technology stack
 
-Following a brief description of major components of this technology stack. See also the [Dockerfile](https://github.com/iporaitech/pwr2-docker/blob/master/Dockerfile).
+Basically, the stack is composed of server application and a Javascript client _rendered in the browser_.
+
+Following a brief description of major components of this technology stack.
+See also the [Dockerfile](https://github.com/iporaitech/pwr2-docker/blob/master/Dockerfile).
 
 ### Baseimage-docker
 
@@ -65,6 +68,8 @@ _Note that these packages are under active development_
 ### Node
 
 ### Webpack
+
+**webpack** is a **module bundler**. webpack takes modules with dependencies and generates static assets representing those modules.
 
 ### Relay & React
 
