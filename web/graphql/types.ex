@@ -58,7 +58,7 @@ defmodule Webapp.Web.GraphQL.Types do
     }
   """
   node object :faction do
-    @desc "id of faction id db"
+    @desc "id of faction in db"
     field :faction_id, :id do
       resolve fn
         _, %{source: faction} ->
