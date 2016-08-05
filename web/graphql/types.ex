@@ -14,17 +14,10 @@ defmodule Webapp.Web.GraphQL.Types do
 
 
   @desc """
-  We get the node interface Absinthe.Relay library.
+  Node interface provided by Absinthe.Relay library.
 
   Absinthe will pattern-match the value to determine of the node object type.
   """
-  # node interface do
-  #   resolve_type fn
-  #     %{ship: _}, _-> :ship
-  #     %{faction: _}, _-> :faction
-  #     _, _ -> nil
-  #   end
-  # end
   node interface do
     resolve_type fn
       %{ships: _}, _ ->
@@ -73,7 +66,7 @@ defmodule Webapp.Web.GraphQL.Types do
     connection field :ships, node_type: :ship do
       resolve fn
         pagination_args, %{source: faction} ->
-          connection = Connection.from_list(
+          conn = Connection.from_list(
             Enum.map(faction.ships, fn
               id ->
                 with {:ok, value} <- StarWarsDB.get(:ship, id) do
@@ -82,7 +75,7 @@ defmodule Webapp.Web.GraphQL.Types do
             end),
             pagination_args
           )
-          {:ok, connection}
+          {:ok, conn}
       end
     end
   end

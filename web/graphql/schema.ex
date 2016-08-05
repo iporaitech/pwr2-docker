@@ -31,6 +31,14 @@ defmodule Webapp.Web.GraphQL.Schema do
       end
     end
 
+    field :factions, list_of(:faction) do
+      arg :names, list_of(:string)
+      resolve fn args, _ ->
+        {:ok, StarWarsDB.get_factions(args[:names])}
+      end
+    end
+
+    @desc "This is the field used by Relay to identify an object in the Graph"
     node field do
       resolve fn
         %{type: node_type, id: id}, _ ->
@@ -40,12 +48,12 @@ defmodule Webapp.Web.GraphQL.Schema do
       end
     end
 
-    @desc "Get all users"
+    @desc "Get all system users (fake tmp implementation)"
     field :users, list_of(:user) do
       resolve &UserResolver.all/2
     end
 
-    @desc "Get user by id"
+    @desc "Get user by id (fake tmp implementation)"
     field :user, type: :user do
       arg :id, non_null(:id)
       resolve &UserResolver.find/2

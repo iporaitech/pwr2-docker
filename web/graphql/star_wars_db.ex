@@ -83,12 +83,9 @@ defmodule Webapp.Web.GraphQL.StarWarsDB do
   end
 
   def get_factions(names) do
-    factions = data.factions |> Map.values
-    names
-    |> Enum.map(fn
-      name ->
-        factions
-        |> Enum.find_value(&(&1 == name))
+    factions = data.faction |> Map.values
+    names |> Enum.map(fn name ->
+      factions |> Enum.find(&(&1.name == name))
     end)
   end
 
