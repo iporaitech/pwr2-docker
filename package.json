@@ -22,6 +22,8 @@
     "graphiql": "^0.7.3",
     "graphql": "^0.6.2",
     "isomorphic-fetch": "^2.2.1",
+    "phoenix": "file:deps/phoenix",
+    "phoenix_html": "file:deps/phoenix_html",
     "react": "^15.3.0",
     "react-dom": "^15.3.0",
     "react-relay": "^0.9.2",
