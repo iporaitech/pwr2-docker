@@ -1,6 +1,8 @@
 defmodule Webapp.Web.GraphQL.StarWarsDB do
   @moduledoc """
-  StarWarsDB is a "in memory" database implemented with Elixir.Agent to support the Relay Star Wars example.
+  StarWarsDB is a "in memory" database implemented with Elixir.Agent to support the [Relay Star Wars example](https://github.com/relayjs/relay-examples/blob/master/star-wars)
+
+  NOTICE: in the original example the format of the data is id => name where name is a string.
   """
 
   @initial_state %{
@@ -86,6 +88,10 @@ defmodule Webapp.Web.GraphQL.StarWarsDB do
       factions
       |> Enum.find(&(&1.name == name))
     end)
+  end
+
+  def get_faction(id) do
+    Agent.get(__MODULE__, &get_in(&1, [:faction, id]))
   end
 
 end
