@@ -1,100 +1,91 @@
 defmodule Webapp.Web.GraphQL.StarWarsDB do
+  @moduledoc """
+  StarWarsDB is a "in memory" database implemented with Elixir.Agent to support the Relay Star Wars example.
+  """
 
-  @xwing %{
-    id: "1",
-    name: "X-Wing"
-  }
-
-  @ywing %{
-    id: "2",
-    name: "Y-Wing",
-  }
-
-  @awing %{
-    id: "3",
-    name: "A-Wing",
-  }
-
-  # Yeah, technically it's Corellian. But it flew in the service of the rebels,
-  # so for the purposes of this demo it"s a rebel ship.
-  @falcon %{
-    id: "4",
-    name: "Millenium Falcon"
-  }
-
-  @home_one %{
-    id: "5",
-    name: "Home One"
-  }
-
-  @tie_fighter %{
-    id: "6",
-    name: "TIE Fighter"
-  }
-
-  @tie_interceptor %{
-    id: "7",
-    name: "TIE Interceptor"
-  }
-
-  @executor %{
-    id: "8",
-    name: "Executor"
-}
-
-  @rebels %{
-    id: "1",
-    name: "Alliance to Restore the Republic",
-    ships: ["1", "2", "3", "4", "5"]
-  }
-
-  @empire %{
-    id: "2",
-    name: "Galactic Empire",
-    ships: ["6", "7", "8"]
-  }
-
-  @data %{
-    faction: %{
-      "1" => @rebels,
-      "2" => @empire
-    },
+  @initial_state %{
     ship: %{
-      "1" => @xwing,
-      "2" => @ywing,
-      "3" => @awing,
-      "4" => @falcon,
-      "5" => @home_one,
-      "6" => @tie_fighter,
-      "7" => @tie_interceptor,
-      "8" => @executor
+      "1" => %{id: "1", name: "X-Wing"},
+      "2" => %{id: "2", name: "Y-Wing"},
+      "3" => %{id: "3", name: "A-Wing"},
+      "4" => %{id: "4", name: "Millenium Falcon"},
+      "5" => %{id: "5", name: "Home One"},
+      "6" => %{id: "6", name: "TIE Fighter"},
+      "7" => %{id: "7", name: "TIE Interceptor"},
+      "8" => %{id: "8", name: "Executor"}
+    },
+    faction: %{
+      "1" => %{
+        id: "1",
+        name: "Alliance to Restore the Republic",
+        ships: ["1", "2", "3", "4", "5"]
+      },
+      "2" => %{
+        id: "2",
+        name: "Galactic Empire",
+        ships: ["6", "7", "8"]
+      }
     }
   }
 
-  def data, do: @data
+  @doc """
+  Initialize a DB process (Agent)
+  """
+  def start_link do
+    Agent.start_link(fn -> @initial_state end, name: __MODULE__)
+  end
 
-  def get(node_type, id) do
-    case data |> get_in([node_type, id]) do
+  def stop do
+    Agent.stop(__MODULE__)
+  end
+
+  def get(type, id) do
+    case Agent.get(__MODULE__, &get_in(&1, [type, id])) do
       nil ->
-        {:error, "No #{node_type} with ID #{id}"}
+        {:error, "No #{type} with ID #{id}"}
       result ->
         {:ok, result}
     end
   end
 
-  def get_factions(names) do
-    factions = data.faction |> Map.values
-    names |> Enum.map(fn name ->
-      factions |> Enum.find(&(&1.name == name))
+  @doc """
+  Create a new Ship and assign it to Faction identified by faction_id
+
+  NOTICE: this function is not "concurrent" safe because there is no "lock" on "next_ship_id"
+  and also is doesn't take care of referential integrity.
+  """
+  def create_ship(ship_name, faction_id) do
+    next_ship_id = Agent.get(__MODULE__, fn data ->
+      Map.keys(data[:ship])
+      |> Enum.map(fn id -> String.to_integer(id) end)
+      |> Enum.sort
+      |> List.last
+      |> Kernel.+(1) # there's a deprecation msg when trying to pipe to +
+      |> Integer.to_string
     end)
+
+    ship_data = %{id: next_ship_id, name: ship_name}
+    case Agent.update(__MODULE__, &put_in(&1, [:ship, next_ship_id], ship_data)) do
+      nil ->
+        {:error, "Could not create ship"}
+      :ok ->
+        faction_ships = Agent.get(__MODULE__, &Map.get(&1, :faction))[faction_id][:ships]
+        faction_ships = faction_ships ++ [next_ship_id]
+        Agent.update(__MODULE__, &put_in(&1, [:faction, faction_id, :ships], faction_ships))
+        {:ok, ship_data}
+    end
   end
 
-  def get_rebels do
-    {:ok, @rebels}
+  def dump_db do
+    Agent.get(__MODULE__, fn state -> state end)
   end
 
-  def get_empire do
-    {:ok, @empire}
+  def get_factions(names) do
+    factions = Agent.get(__MODULE__, &Map.get(&1, :faction)) |> Map.values
+    Enum.map(names, fn name ->
+      factions
+      |> Enum.find(&(&1.name == name))
+    end)
   end
 
 end
