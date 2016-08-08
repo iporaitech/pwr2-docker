@@ -14,22 +14,15 @@ defmodule Webapp.Web.GraphQL.Schema do
     type Query {
       factions(names: [FactionName]): [Faction]
       node(id: ID!): Node
+      empire: Faction
+      rebels: Faction
+      user(id: ID!): User
+      users: [User]
     }
+
+    NOTICE that user and users don't implement Node interface
   """
   query do
-    field :rebels, :faction do
-      resolve fn
-        _, _ ->
-          StarWarsDB.get_rebels()
-      end
-    end
-
-    field :empire, :faction do
-      resolve fn
-        _, _ ->
-          StarWarsDB.get_empire()
-      end
-    end
 
     field :factions, list_of(:faction) do
       arg :names, list_of(:string)
@@ -57,6 +50,23 @@ defmodule Webapp.Web.GraphQL.Schema do
     field :user, type: :user do
       arg :id, non_null(:id)
       resolve &UserResolver.find/2
+    end
+
+    mutation do
+      payload field :introduce_ship do
+        input do
+          field :faction_id, non_null(:id)
+          field :ship_name, non_null(:string)
+        end
+        output do
+          field :faction, :faction
+          field :ship, :ship
+        end
+        resolve fn
+          %{faction_id: faction_id, ship_name: ship_name}, _ ->
+            StarWarsDB.create_ship(ship_name, faction_id)
+        end
+      end
     end
   end
 end
