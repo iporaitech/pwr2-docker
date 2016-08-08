@@ -14,8 +14,6 @@ defmodule Webapp.Web.GraphQL.Schema do
     type Query {
       factions(names: [FactionName]): [Faction]
       node(id: ID!): Node
-      empire: Faction
-      rebels: Faction
       user(id: ID!): User
       users: [User]
     }
@@ -60,7 +58,7 @@ defmodule Webapp.Web.GraphQL.Schema do
         end
         output do
           field :faction, :faction
-          field :ship, :ship
+          field :new_ship_edge, :ship_edge
         end
         resolve fn
           %{faction_id: faction_id, ship_name: ship_name}, _ ->
