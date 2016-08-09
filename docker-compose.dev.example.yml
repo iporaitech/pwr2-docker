@@ -1,8 +1,8 @@
 web:
   image: pwr2:latest
   command: /sbin/my_init --enable-insecure-key #enable insecure key for dev
-  volumes:
-    - .:/home/app/webapp
+  # volumes:
+  #   - .:/home/app/webapp
   links:
     - db
   ports:
