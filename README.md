@@ -1,20 +1,46 @@
 # phoenix-webpack-relay-react (pwr2)
 
-Docker image based on Ubuntu setup with Phoenix+Webpack+Relay+React, with some sugar and conventions to develop and build web applications.
+Docker image based on Ubuntu providing a base setup for a Phoenix+Webpack+Relay+React project, with some sugar and conventions to develop and build your own web applications.
+
+_We will improve docs and code including test coverage in the next releases_
+
+## Requirements
+
+To run this software you need to install [Docker](https://www.docker.com/) on your system. It is very simple and there are a lot of guides and tutorials out there on the Internet.
+
+>NOTICE: this was only tested in Unix like OS (Mac OS X and Ubuntu) but with should run on Windows without major problems.
 
 ## Usage Instructions
 
-Clone this repo to your local and start your own Docker image from these files. You might want to watch this repo so you don't miss upgrades or releases you might to apply to your own projects.
+With Docker working on localhost, you can setup this project in 2 ways:
 
-**Notice:** Tags/Releases in this GitHub repo are the equivalent to tags in DockerHub repository, master is the **latest** image in DockerHub.
+1. [Setup cloning this GitHub repo and build the image](#setup-cloning-this-github-repo-and-building-the-image).
+2. [Setup pulling Docker image from Docker Cloud repository](#setup-pulling-docker-image-from-docker-cloud-repository).
 
-### app user and Elixir commands
+With all setup, you can start the corresponding containers (_aka services_) by running the following command in your console:
 
-Most of the code is copied to **APP_HOME=/home/app/webapp**, owned by **app** user.
+```bash
+docker-compose up
+```
 
-If you want to go into the container to execute Elixir/Phoenix commands and other stuff you can use `docker exec -it pwr2docker_web_1 bash` and once inside the container execute `su app` to become the **app** user.
+> you can also just use the [docker-compose.dev.example.yml](docker-compose.dev.example.yml) file directly.
 
-You might experience some errors if trying to execute [Elixir](#elixir) commands as root inside the container.
+```bash
+docker-compose -f docker-compose.dev.example.yml up
+```
+
+> add `-d` to the above commands if you want them to execute in background
+
+When the containers are all up and running, you can go inside the web app container and start the web app so you can play with it. To go inside the container execute the following command in the root directory of the project:
+> Assuming the files are placed in a directory named **pwr2-docker** and the generated container is named **pwr2docker_web_1**
+
+`docker exec -it pwr2docker_web_1 bash`
+
+Once inside the container, you'll need to switch to **app** user in order to execute Elixir/Phoenix commands. To switch to **app** user run:
+
+`su app`
+
+> All the stuff in **/home/app** belongs to **app** user. You might experience some errors if you try to execute [Elixir](#elixir) commands as **root**. Take a look at the Dockerfile to see how all the stuff is installed
 
 Once switched to **app** user and in the `APP_HOME` directory, you can start the application server by running:
 
@@ -24,9 +50,39 @@ Once switched to **app** user and in the `APP_HOME` directory, you can start the
 
 `iex -S mix phoenix.server`
 
+Now you're ready to start making requests to the web app on the ports you specified.
+
+### Setup cloning this GitHub repo and building the image
+
+1. Clone the project to your localhost (_you might want to fork it to your account before_)
+2. Copy the [docker-compose.dev.example.yml](docker-compose.dev.example.yml) to **docker-compose.yml** and adjust the ports and [volumes](#about-docker-volumes).
+3. Build the image. In the root directory of the project execute `docker build`
+4. When the build finishes, **tag** the image to match the _web image_ defined in your **docker-compose** file. For example  `docker tag IMAGE_ID pwr2:latest`
+
+Now you're ready to [start the containers](#usage-instructions) and try some stuff.
+
+### Setup pulling Docker image from Docker Cloud repository
+
+1. Open you console or terminal and execute `docker login`. You might not need this.
+2. Pull the image from Docker Cloud. Execute `docker pull pwr2:latest`. You can also search for other **tags** besides latest.
+3. Copy the [docker-compose.dev.example.yml](docker-compose.dev.example.yml) to **docker-compose.yml** your localhost and adjust the ports, [volumes](#about-docker-volumes) and **image** in **web** section to match the image tag you pulled in above step.
+
+Now you're ready to [start the containers](#usage-instructions) and try some stuff.
+
+Once the containers are up and running you can copy the source code of the base project from the container to your localhost with the following command:
+
+`rsync -rav -e "ssh -p2224 -i insecure_key" --exclude "_build" --exclude "deps" root@localhost:/home/app/webapp/* .`
+
+> Assuming you exposed the port 2224 to access the container via SSH
+
+**Notice:** Tags/Releases in this GitHub repo are the equivalent to tags in the Docker Cloud repository, master is the **latest** image in DockerHub.
+
 ### GraphiQL and Relay Examples
 
-Currently, once all setup and with the app running, you can visit http://localhost:4000/graphiql to access a [GraphiQL](https://github.com/graphql/graphiql) IDE, and http://localhost:4000/star-wars to experiment with our implementation of the [Relay Star Wars example](https://github.com/relayjs/relay-examples/tree/master/star-wars)
+Currently, once all setup and with the app running, you can:
+
+1. Visit http://localhost:4000/graphiql to access a [GraphiQL](https://github.com/graphql/graphiql) IDE.
+2. Visit http://localhost:4000/star-wars to experiment with our implementation of the [Relay Star Wars example](https://github.com/relayjs/relay-examples/tree/master/star-wars)
 
 ## About the technology stack
 
@@ -92,7 +148,7 @@ _We use this instead of_ **brunch.io** _, which is the default to compile static
 
 Take a look at [webpack.config.js](webpack.config.js) to see how the loaders and plugins are configured to make things work in the front-end.
 
-See [package.json](package.json) to see the current versions of this NPM packages.
+See [package.json](package.json) to see the current versions of these NPM packages.
 
 ### Relay & React
 
@@ -114,13 +170,13 @@ Later on, we've added Webpack and its Babel stuff; loader, presets, polyfill and
 
 Take a look at **config/dev.exs** to see how we've configured a watcher for `npm start`, this is how you get live reloading when editing files.
 
-### Using
+## About Docker Volumes
 
-**TODO:** Improve the following explanation
-_Because we're not using volumes due to their extremely low performance we had to copy the project files to include them later in the images with the following command_ :
+Although getting better in each release, we still find Docker for Mac volumes to be very slow. That's why we commented out the **volumes** configuration in the **web** section in the **docker-compose.dev.example.yml** file. Obviously, this is not a problem when running Docker on Linux.
 
-`rsync -rav -e "ssh -p2224 -i insecure_key" --exclude "_build" --exclude "deps" root@localhost:/home/app/webapp/* .`
+Instead of mounting a volume to work with source code on the container we use [Atom](https://atom.io) _IDE_ with the [remote-sync](https://atom.io/packages/remote-sync) plugin. When this plugin is enabled everytime you save a file it gets automatically copied to the container via SSH. Probably, you might find similar or better strategies with your IDE or you local setup.
 
+If you want to try volumes when running the image pulled directly from Docker Cloud, remember to first get the source code of this project into your localhost in the directory you want to share with the container. This is because the volumes are mounted from host to container (HOST:CONTAINER in the volumes definition in the **docker-compose** file). If the file don't exist in your localhost when mounting a dir they won't exist in your container in the specified directory even if they did exist in the image.
 
 ## Issues and Contributing
 
@@ -129,12 +185,10 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 Anyways, just create an issue if you have any question or want something but don't know exactly what it is.
 
 ## Core Maintainers
-From **[Iporaitech](http://www.iporaitech.com)**, a small startup based in Paraguay.
+With love from **[Iporaitech](http://www.iporaitech.com)**, a small startup based in Paraguay.
 * [Hisa Ishibashi](https://github.com/hisapy)
 * [Edipo Da Silva](https://github.com/edipox)
 * [Tania Paiva](https://github.com/taniadaniela)
-
-
 
 ## License
 This project is licensed under [MIT](https://github.com/iporaitech/pwr2-docker/blob/master/LICENSE).
