@@ -13,13 +13,16 @@ defmodule Webapp.Router do
     plug :accepts, ["json"]
   end
 
-  forward "/api", Absinthe.Plug.GraphiQL,
-    schema: Webapp.Web.Schema
+  forward "/graphql", Absinthe.Plug.GraphiQL,
+    schema: Webapp.Web.GraphQL.Schema
 
   scope "/", Webapp do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    get "/graphiql", PageController, :graphiql
+    get "/star-wars", PageController, :star_wars
+    get "/user-widget", PageController, :user_widget
   end
 
   # Other scopes may use custom stacks.

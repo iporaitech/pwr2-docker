@@ -6,11 +6,34 @@ Docker image based on Ubuntu setup with Phoenix+Webpack+Relay+React, with some s
 
 Clone this repo to your local and start your own Docker image from these files. You might want to watch this repo so you don't miss upgrades or releases you might to apply to your own projects.
 
-**Notice:** Tags/Releases in GitHub are the equivalent to tags in DockerHub repository, master is the **latest** image in DockerHub.
+**Notice:** Tags/Releases in this GitHub repo are the equivalent to tags in DockerHub repository, master is the **latest** image in DockerHub.
+
+### app user and Elixir commands
+
+Most of the code is copied to **APP_HOME=/home/app/webapp**, owned by **app** user.
+
+If you want to go into the container to execute Elixir/Phoenix commands and other stuff you can use `docker exec -it pwr2docker_web_1 bash` and once inside the container execute `su app` to become the **app** user.
+
+You might experience some errors if trying to execute [Elixir](#elixir) commands as root inside the container.
+
+Once switched to **app** user and in the `APP_HOME` directory, you can start the application server by running:
+
+`mix phoenix.server`
+
+> or if you want to start the server in a Elixir console
+
+`iex -S mix phoenix.server`
+
+### GraphiQL and Relay Examples
+
+Currently, once all setup and with the app running, you can visit http://localhost:4000/graphiql to access a [GraphiQL](https://github.com/graphql/graphiql) IDE, and http://localhost:4000/star-wars to experiment with our implementation of the [Relay Star Wars example](https://github.com/relayjs/relay-examples/tree/master/star-wars)
 
 ## About the technology stack
 
+Basically, the stack is composed of server application and a Javascript client _rendered in the browser_.
+
 Following a brief description of major components of this technology stack.
+See also the [Dockerfile](https://github.com/iporaitech/pwr2-docker/blob/master/Dockerfile).
 
 ### Baseimage-docker
 
@@ -20,7 +43,7 @@ _A minimal Ubuntu base image modified for Docker-friendliness_. This is the base
 
 ### Erlang/OTP
 
-Erlang is a programming language used to build massively scalable soft real-time systems with requirements on high availability. Some of its uses are in telecoms, banking, e-commerce, computer telephony and instant messaging. Erlang's runtime system has built-in support for concurrency, distribution and fault tolerance.
+[Erlang](http://erlang.org) is a programming language used to build massively scalable soft real-time systems with requirements on high availability. Some of its uses are in telecoms, banking, e-commerce, computer telephony and instant messaging. Erlang's runtime system has built-in support for concurrency, distribution and fault tolerance.
 
 _This provides the Virtual Machine(VM) on top of which Elixir and Phoenix run_
 
@@ -28,7 +51,7 @@ _This provides the Virtual Machine(VM) on top of which Elixir and Phoenix run_
 
 ### Elixir
 
-Elixir is a dynamic, functional language designed for building scalable and maintainable applications http://elixir-lang.org/.
+[Elixir](http://elixir-lang.org/) is a dynamic, functional language designed for building scalable and maintainable applications.
 
 Elixir leverages the Erlang VM, known for running low-latency, distributed and fault-tolerant systems, while also being successfully used in web development and the embedded software domain.
 
@@ -37,7 +60,7 @@ Elixir leverages the Erlang VM, known for running low-latency, distributed and f
 ### Phoenix
 A productive web framework that does not compromise speed and maintainability.
 
-Phoenix leverages the Erlang VM ability to handle millions of connections alongside Elixir's beautiful syntax and productive tooling for building fault-tolerant systems.
+[Phoenix](http://www.phoenixframework.org) leverages the Erlang VM ability to handle millions of connections alongside Elixir's beautiful syntax and productive tooling for building fault-tolerant systems.
 
 _We use Phoenix as our backend programming framework_
 
@@ -45,29 +68,51 @@ _We use Phoenix as our backend programming framework_
 
 ### Absinthe
 
-GraphQL implementation for Elixir, specifically using the packages [Absinthe.Relay](https://github.com/absinthe-graphql/absinthe_relay) and [Absinthe.Plug](https://github.com/absinthe-graphql/absinthe_plug).
+[GraphQL](http://graphql.org) implementation for Elixir, specifically using the packages [Absinthe.Relay](https://github.com/absinthe-graphql/absinthe_relay) and [Absinthe.Plug](https://github.com/absinthe-graphql/absinthe_plug).
 
 **Current versions**:
 
   >{:absinthe_relay, ["~> 0.9.4"](https://github.com/absinthe-graphql/absinthe_relay/tree/v0.9.4)},
   >{:absinthe_plug, "~> 1.1.3"},
 
-_Note that these packages are under active development_
-
 ### Node
+[Node.js®](https://nodejs.org/en/) is a JavaScript runtime built on Chrome's V8 JavaScript engine. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient. Node.js' package ecosystem, npm, is the largest ecosystem of open source libraries in the world.
 
+_Phoenix relies on Node to compile and handle static assets._
+
+Take a look at [package.json](package.json) to see all NPM packages used in this application.
+
+**Current**: [Node v6.3.1](https://github.com/nodejs/node/tree/v6.3.1)
 
 ### Webpack
 
+[webpack](https://webpack.github.io) is a **module bundler**. webpack takes modules with dependencies and generates static assets representing those modules.
+
+_We use this instead of_ **brunch.io** _, which is the default to compile static assets in Phoenix_
+
+Take a look at [webpack.config.js](webpack.config.js) to see how the loaders and plugins are configured to make things work in the front-end.
+
+See [package.json](package.json) to see the current versions of this NPM packages.
 
 ### Relay & React
 
-See also the [Dockerfile](https://github.com/iporaitech/pwr2-docker/blob/master/Dockerfile).
+[Relay](https://facebook.github.io/relay/) is a Javascript framework for building data-driven React applications.
 
+[React](https://facebook.github.io/react/) is a Javascript library for building user interfaces.
 
-## Base Phoenix project
+See [package.json](package.json) to see the current versions of this NPM packages.
+
+## Base Phoenix+Webpack project
+
+Check mix.exs and mix.lock to know Elixir dependencies and package.json to know about Javascript dependencies.
 
 ### How it was created
+
+Inside the container in `APP_HOME` directory with command `mix phoenix.new --no-brunch`.
+
+Later on, we've added Webpack and its Babel stuff; loader, presets, polyfill and runtime.
+
+Take a look at **config/dev.exs** to see how we've configured a watcher for `npm start`, this is how you get live reloading when editing files.
 
 ### Using
 
@@ -79,33 +124,17 @@ _Because we're not using volumes due to their extremely low performance we had t
 
 ## Issues and Contributing
 
-In this repo we follow the conventions defined in Vincent Driessen's **[git branching model](http://nvie.com/posts/a-successful-git-branching-model/)**. See **[git-flow](https://github.com/nvie/gitflow)** if you want some git extensions to help you with the mentioned model.
+See [CONTRIBUTING.md](CONTRIBUTING.md).
 
-We try to use [Semantic Versioning](http://semver.org) and **Scrum** in our software development processes as much as possible. The [issues](https://github.com/iporaitech/pwr2-docker/issues) are grouped into [milestones](https://github.com/iporaitech/pwr2-docker/milestones) and most of the times will be labeled as: **Feature**, **Bug**, **Task**.  
+Anyways, just create an issue if you have any question or want something but don't know exactly what it is.
 
-A milestone can be either a **Release** or a **Hotfix**. A **Release** must increment the MINOR version number and usually corresponds to the work (issues) done in 1 sprint. A **Hotfix** must increment the PATCH version number and usually contains **Bug** fixes. Name milestones prefixing with the work **Release** or **Hotfix** accordingly.
-
-The title of a an issue that is expected to be treated as a **Feature** must be prefixed with **FEATURE:**, i.e., **FEATURE: Login with Facebook**; and its specification/request is expected to be written in **[Gherkin](https://github.com/cucumber/cucumber/wiki/Gherkin)** and be described using the template:
-
-```gherkin
-  As a <type of user>,
-  I want <some goal>
-  so that <some reason>.
-```
-
-A **Task** is something that is not complex enough to be defined as a **Feature**. For example, changing a text, fixing a typo, or other _relatively minor tasks_.
-
-The title of a an issue that is expected to be treated as a **BUG** must be prefixed with **BUG:**, i.e., **BUG: Wrong new notifications count**.
-
-Submit your pull requests to the corresponding branch according to the branching model mentioned at the beginning of this section.
-
-Just create an issue if you have any question.
-
-## Credits
-
+## Core Maintainers
+From **[Iporaitech](http://www.iporaitech.com)**, a small startup based in Paraguay.
 * [Hisa Ishibashi](https://github.com/hisapy)
 * [Edipo Da Silva](https://github.com/edipox)
 * [Tania Paiva](https://github.com/taniadaniela)
+
+
 
 ## License
 This project is licensed under [MIT](https://github.com/iporaitech/pwr2-docker/blob/master/LICENSE).

@@ -46,16 +46,16 @@ RUN mkdir $APP_MIX_DEPS_DIR
 RUN cd $APP_HOME && ln -s $APP_MIX_DEPS_DIR deps
 COPY mix.exs mix.lock $APP_HOME/
 RUN chown -R app:staff /home/app && chmod -R g+s /home/app
-RUN setuser app mix deps.get --force
+RUN setuser app mix do deps.get --force, deps.compile
 
 # Install package.json to build the Front end.
 # Set PATH so we can install node_modules outside of sources (mounted) dir and to allow npm find the bin(s) to execute npm commands later.
-# RUN mkdir $APP_HOME/frontend
-# COPY frontend/package.json $APP_HOME/frontend/
-# ENV PATH="/home/app/node_modules/.bin:$PATH"
-# RUN mkdir /home/app/node_modules \
-#  && ln -s /home/app/node_modules $APP_HOME/frontend/node_modules
-# RUN cd $APP_HOME/frontend && npm install && npm prune
+
+COPY package.json $APP_HOME/
+ENV PATH="/home/app/node_modules/.bin:$PATH"
+RUN mkdir /home/app/node_modules \
+  && ln -s /home/app/node_modules $APP_HOME/node_modules
+RUN cd $APP_HOME && npm install && npm prune
 
 # Copy sources
 COPY . $APP_HOME
@@ -69,6 +69,5 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 # Enable SSH (Authorized keys must be copied in each specific project/environment)
 RUN rm -f /etc/service/sshd/down
 RUN /etc/my_init.d/00_regen_ssh_host_keys.sh
-
 
 MAINTAINER Iporaitech
