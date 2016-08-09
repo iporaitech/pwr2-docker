@@ -82,7 +82,7 @@ Once the containers are up and running you can copy the source code of the base 
 Currently, once all setup and with the app running, you can:
 
 1. Visit http://localhost:4000/graphiql to access a [GraphiQL](https://github.com/graphql/graphiql) IDE.
-2. Visit http://localhost:4000/star-wars to experiment with our implementation of the [Relay Star Wars example](https://github.com/relayjs/relay-examples/tree/master/star-wars)
+2. Visit http://localhost:4000/star-wars to experiment with our implementation of the [Relay Star Wars example](https://github.com/relayjs/relay-examples/tree/master/star-wars). The _[database](./web/graphql/star_wars_db.ex)_ for this example is implemented as an [Elixir.Agent](http://elixir-lang.org/docs/stable/elixir/Agent.html)
 
 ## About the technology stack
 
