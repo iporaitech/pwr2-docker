@@ -56,7 +56,7 @@ Now you're ready to start making requests to the web app on the ports you specif
 
 1. Clone the project to your localhost (_you might want to fork it to your account before_)
 2. Copy the [docker-compose.dev.example.yml](docker-compose.dev.example.yml) to **docker-compose.yml** and adjust the ports and [volumes](#about-docker-volumes).
-3. Build the image. In the root directory of the project execute `docker build`
+3. Build the image. In the root directory of the project execute `docker build .`
 4. When the build finishes, **tag** the image to match the _web image_ defined in your **docker-compose** file. For example  `docker tag IMAGE_ID pwr2:latest`
 
 Now you're ready to [start the containers](#usage-instructions) and try some stuff.
