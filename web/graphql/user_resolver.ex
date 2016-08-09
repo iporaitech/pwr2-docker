@@ -1,4 +1,4 @@
-defmodule Webapp.UserResolver do
+defmodule Webapp.Web.GraphQL.UserResolver do
   def all(_args, _info) do
     {:ok, Webapp.Repo.all(Webapp.User)}
   end
