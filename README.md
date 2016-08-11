@@ -54,8 +54,6 @@ Once switched to **app** user and in the `APP_HOME` directory, you can start the
 
 Now you're ready to start making requests to the web app on the port you specified.
 
-> NOTICE that although deps are compiled when [building the image](Dockerfile#L49) the first time you start your phoenix.server all deps compiled again. We've created an [issue](https://github.com/elixir-lang/elixir/issues/5130) on Elixir repo to see if they can help us with this.
-
 ### Setup cloning this GitHub repo and building the image
 
 1. Clone the project to your localhost (_you might want to fork it to your account before_)
