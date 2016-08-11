@@ -8,7 +8,7 @@ _We will improve docs and code including test coverage in the next releases_
 
 To run this software you need to install [Docker](https://www.docker.com/) on your system. It is very simple and there are a lot of guides and tutorials out there on the Internet.
 
->NOTICE: this was only tested in Unix like OS (Mac OS X and Ubuntu) but with should run on Windows without major problems.
+>NOTICE: this was only tested in Unix like OS (Mac OS X and Ubuntu) but it should run on Windows without major problems.
 
 ## Usage Instructions
 
@@ -64,8 +64,8 @@ Now you're ready to [start the containers](#usage-instructions) and try some stu
 ### Setup pulling Docker image from Docker Cloud repository
 
 1. Open you console or terminal and execute `docker login`. You might not need this.
-2. Pull the image from Docker Cloud. Execute `docker pull pwr2:latest`. You can also search for other **tags** besides latest.
-3. Copy the [docker-compose.dev.example.yml](docker-compose.dev.example.yml) to **docker-compose.yml** your localhost and adjust the ports, [volumes](#about-docker-volumes) and **image** in **web** section to match the image tag you pulled in above step.
+2. Pull the image from Docker Cloud. Execute `docker pull iporaitech/pwr2:latest`. You can also search for other **tags** besides latest.
+3. Copy the [docker-compose.dev.example.yml](docker-compose.dev.example.yml) to **docker-compose.yml** on your localhost and adjust the ports, [volumes](#about-docker-volumes) and **image** in **web** section to match the image tag you pulled in the step above.
 
 Now you're ready to [start the containers](#usage-instructions) and try some stuff.
 
@@ -156,7 +156,7 @@ See [package.json](package.json) to see the current versions of these NPM packag
 
 [React](https://facebook.github.io/react/) is a Javascript library for building user interfaces.
 
-See [package.json](package.json) to see the current versions of this NPM packages.
+See [package.json](package.json) to see the current versions of these dependencies and other NPM packages in this project.
 
 ## Base Phoenix+Webpack project
 
