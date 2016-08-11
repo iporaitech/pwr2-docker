@@ -70,4 +70,8 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 RUN rm -f /etc/service/sshd/down
 RUN /etc/my_init.d/00_regen_ssh_host_keys.sh
 
+# Make mix don't ask for deps.compile again when starting container
+# See: https://github.com/elixir-lang/elixir/issues/5130
+RUN rm -rf deps/*/.fetch
+
 MAINTAINER Iporaitech
