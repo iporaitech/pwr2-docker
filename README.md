@@ -36,6 +36,8 @@ When the containers are all up and running, you can go inside the web app contai
 
 `docker exec -it pwr2docker_web_1 bash`
 
+> You can see the names of running containers with the command `docker ps` on your localhost
+
 Once inside the container, you'll need to switch to **app** user in order to execute Elixir/Phoenix commands. To switch to **app** user run:
 
 `su app`
@@ -50,7 +52,9 @@ Once switched to **app** user and in the `APP_HOME` directory, you can start the
 
 `iex -S mix phoenix.server`
 
-Now you're ready to start making requests to the web app on the ports you specified.
+Now you're ready to start making requests to the web app on the port you specified.
+
+> NOTICE that although deps are compiled when [building the image](Dockerfile#L49) the first time you start your phoenix.server all deps compiled again. We've created an [issue](https://github.com/elixir-lang/elixir/issues/5130) on Elixir repo to see if they can help us with this.
 
 ### Setup cloning this GitHub repo and building the image
 
