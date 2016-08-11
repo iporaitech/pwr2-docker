@@ -19,6 +19,6 @@ db:
     - "55434:5432"
 
 mix_deps:
-  image: pwr2:latest
+  image: iporaitech/pwr2:latest
   volumes:
     - /home/app/mix_deps
