@@ -1,10 +1,7 @@
 FROM phusion/baseimage:0.9.19
 
 # Set basic ENV vars
-ENV HOME=/root \
-  TERM=xterm-color \
-  NODE_VERSION_MAJOR=6 \
-  PHOENIX_VERSION=1.2.0
+ENV HOME=/root TERM=xterm-color
 
 # Elixir requires UTF-8
 RUN locale-gen en_US.UTF-8
@@ -27,6 +24,7 @@ RUN wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb \
   && apt-get install -y esl-erlang elixir
 
 # Install Node.js
+ENV NODE_VERSION_MAJOR=6
 RUN curl -sL https://deb.nodesource.com/setup_$NODE_VERSION_MAJOR.x | bash - && apt-get install -y nodejs
 
 # Create app user and set WORKDIR to its home dir
@@ -36,6 +34,7 @@ RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
 
 # Install Hex, Phoenix and Rebar
+ENV PHOENIX_VERSION=1.2.0
 RUN setuser app mix local.hex --force
 RUN setuser app mix archive.install --force https://github.com/phoenixframework/archives/raw/master/phoenix_new-$PHOENIX_VERSION.ez
 RUN setuser app mix local.rebar --force
