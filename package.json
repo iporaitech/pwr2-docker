@@ -30,3 +30,12 @@
     "sync-request": "^3.0.1"
   }
 }
+# Currently after running npm install we get the following warnings:
+
+npm WARN webapp No description
+npm WARN webapp No repository field.
+npm WARN webapp No license field.
+npm WARN package.json @ No description
+npm WARN package.json @ No repository field.
+npm WARN package.json @ No README data
+npm WARN package.json @ No license field.   
