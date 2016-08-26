@@ -79,6 +79,11 @@ Once the containers are up and running you can copy the source code of the base 
 
 **Notice:** Tags/Releases in this GitHub repo are the equivalent to tags in the Docker Cloud repository, master is the **latest** image in DockerHub.
 
+### Stop the containers
+1. To stop a running container we can perform the next command in the terminal  `docker stop container name` adding the corresponding container name , in this case with our corresponding container name `docker stop pwr2docker_web_1` .
+2. if we have the container running in the foreground we can close it performing `ctrl + c` twice.
+
+
 ### GraphiQL and Relay Examples
 
 Currently, once all setup and with the app running, you can:
