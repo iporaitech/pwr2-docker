@@ -81,7 +81,7 @@ Once the containers are up and running you can copy the source code of the base 
 
 ### Stop the containers
  +1. To stop a running container we can perform the next command in the terminal  `docker stop container name` adding the corresponding container name , in this case with our corresponding container name `docker stop pwr2docker_web_1` .
- +2. if we have the container running in the foreground we can close it performing `ctrl + c` twice.
+ +2. if we have the container running in the foreground we can close it performing `ctrl + c` once.
 
 
 ### GraphiQL and Relay Examples
