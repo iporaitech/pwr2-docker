@@ -1,4 +1,25 @@
 {
+  "name": "pwr2",
+  "description": "Docker image based on Ubuntu providing a base setup for a Phoenix+Webpack+Relay+React project, with some sugar and conventions to develop and build your own web applications.",
+  "main": "webpack.config.js",  
+  "version": "",
+  "directories": {
+    "test": "test"
+  },
+  "keywords": [],
+  "preferGlobal": true,
+  "contributors": [
+    {
+      "name": "Javier Rios Selent",
+      "email": "rsjavier14@gmail.com",
+      "url": "https://github.com/rsjavier14"
+    }
+  ],
+  "readme": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iporaitech/pwr2-docker"
+  },
   "scripts": {
     "start": "webpack --watch-stdin --progress --color --config webpack.config.js"
   },
@@ -28,5 +49,6 @@
     "react-dom": "^15.3.0",
     "react-relay": "^0.9.2",
     "sync-request": "^3.0.1"
-  }
+  },
+  "license" : "MIT"
 }
