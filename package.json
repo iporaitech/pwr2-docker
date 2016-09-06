@@ -1,21 +1,15 @@
 {
-  "name": "pwr2",
-  "description": "Docker image based on Ubuntu providing a base setup for a Phoenix+Webpack+Relay+React project, with some sugar and conventions to develop and build your own web applications.",
+  "name": "pwr2-docker-ui",
+  "description": "Javascript dependencies for pwr2-docker, a Docker image based on Ubuntu providing a base setup for a Phoenix+Webpack+Relay+React project, with some sugar and conventions to develop and build your own web applications.",
   "main": "webpack.config.js",  
-  "version": "",
-  "directories": {
-    "test": "test"
-  },
-  "keywords": [],
-  "preferGlobal": true,
+  "version": "0.2.4",
   "contributors": [
     {
-      "name": "Javier Rios Selent",
-      "email": "rsjavier14@gmail.com",
-      "url": "https://github.com/rsjavier14"
+      "name": "Iporaitech and others",
+      "url": "https://github.com/iporaitech/pwr2-docker/graphs/contributors"
     }
   ],
-  "readme": "README.md",
+  "readme": "https://github.com/iporaitech/pwr2-docker/blob/master/README.md",
   "repository": {
     "type": "git",
     "url": "https://github.com/iporaitech/pwr2-docker"
