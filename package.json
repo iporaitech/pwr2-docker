@@ -1,0 +1,17 @@
+{
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "install":"for dir in ./apps/*; do (cd $dir && npm install); done ; cd .."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iporaitech/pwr2-docker.git"
+  },
+  "author": "Iporaitech & Others",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iporaitech/pwr2-docker/issues"
+  },
+  "homepage": "https://github.com/iporaitech/pwr2-docker#readme"
+}
