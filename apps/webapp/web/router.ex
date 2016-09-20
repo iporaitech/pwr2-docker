@@ -1,3 +1,6 @@
+require Starwars.Router
+require Greeter.Router
+
 defmodule Webapp.Router do
   use Webapp.Web, :router
 
@@ -17,6 +20,15 @@ defmodule Webapp.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+  end
+
+  # act as final catch
+  scope "/starwars" do
+    forward "/", Starwars.Router
+  end
+
+  scope "/greeter" do
+    forward "/", Greeter.Router
   end
 
   # Other scopes may use custom stacks.
