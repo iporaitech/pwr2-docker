@@ -10,6 +10,8 @@ erl_crash.dump
 # We have example files for docker-compose.yml so let's ignore it
 docker-compose.yml
 
+/node_modules
+
 # Ignore in umbrella apps node modules
 apps/*/node_modules/
 

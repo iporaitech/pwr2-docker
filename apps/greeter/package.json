@@ -1,5 +1,5 @@
 {
-  "name": "webapp-example",
+  "name": "greeter-example",
   "version": "0.0.1",
   "scripts": {
     "start": "webpack --watch-stdin --progress --color --config webpack.config.js"
