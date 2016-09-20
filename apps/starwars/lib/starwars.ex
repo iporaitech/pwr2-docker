@@ -11,7 +11,7 @@ defmodule Starwars do
       # Start the Ecto repository
       # supervisor(Starwars.Repo, []),
       # Start the endpoint when the application starts
-      supervisor(Starwars.Endpoint, []),
+      # supervisor(Starwars.Endpoint, []),
       # Start your own worker by calling: Starwars.Worker.start_link(arg1, arg2, arg3)
       # worker(Starwars.Worker, [arg1, arg2, arg3]),
       worker(Starwars.Web.GraphQL.StarWarsDB, [])
