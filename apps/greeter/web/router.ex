@@ -19,6 +19,12 @@ defmodule Greeter.Router do
     get "/", PageController, :index
   end
 
+  # TODO: Test conflictive routes
+  # forward "/starwars", Greeter.PageController, :index
+  # forward "/star-wars", PageController, :index
+  # forward "/starwars/star-wars", PageController, :index
+
+
   # Other scopes may use custom stacks.
   # scope "/api", Greeter do
   #   pipe_through :api
