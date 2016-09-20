@@ -6,11 +6,10 @@ defmodule Webapp do
   def start(_type, _args) do
     import Supervisor.Spec
 
-    # Define workers and child supervisors to be supervised
     children = [
       # Start the endpoint when the application starts
-      supervisor(Webapp.Endpoint, []),
-      # Start your own worker by calling: Webapp.Worker.start_link(arg1, arg2, arg3)
+      supervisor(Webapp.Endpoint, [])
+      # Here you could define other workers and supervisors as children
       # worker(Webapp.Worker, [arg1, arg2, arg3]),
     ]
 
