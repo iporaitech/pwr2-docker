@@ -10,7 +10,7 @@ defmodule Starwars.PageController do
   end
 
   def starwars(conn, _params) do
-    render conn, "starwars.html"
+    render conn, "star_wars.html"
   end
 
   def user_widget(conn, _params) do
