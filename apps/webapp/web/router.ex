@@ -3,7 +3,7 @@ defmodule Webapp.Router do
 
   # Pipelines
   pipeline :browser do
-    plug :accepts, ["html"]
+    plug :accepts, ["html", "json"]
     plug :fetch_session
     plug :fetch_flash
     plug :protect_from_forgery
@@ -34,6 +34,9 @@ defmodule Webapp.Router do
 
     get "/", PageController, :index
     get "/login", PageController, :login
+    get "/docs", PageController, :docs
+    get "/docs/index", DocController, :index
+    get "/docs/:filename", DocController, :show
   end
 
   scope "/admin", Webapp.Admin, as: :admin do

@@ -13,6 +13,7 @@ import AdminLayout from 'layout';
 import Login from 'login';
 import StarWarsApp, { Queries as StarWarsQueries } from 'star_wars/components/StarWarsApp';
 import GraphiQL from 'my-graphiql';
+import Docs from 'docs';
 
 // Auth singleton
 import Auth from 'lib/auth';
@@ -39,6 +40,10 @@ function verifySession(nextState, replace){
     replace({ pathname: "/admin" })
 }
 
+function redirectToDefaultDoc(nextState, replace) {
+  replace({ pathname: "/docs/use_case_examples.md" })
+}
+
 const routes = (
   <Route path="/">
     <IndexRoute component={Hello}/>
@@ -47,6 +52,10 @@ const routes = (
       <IndexRoute component={Hello}/>
       <Route path="star-wars" component={StarWarsApp} queries={StarWarsQueries}/>
       <Route path="graphiql" component={GraphiQL} />
+    </Route>
+    <Route path="/docs" component={AdminLayout}>
+      <IndexRoute component={Docs} onEnter={redirectToDefaultDoc}/>
+      <Route path=":filename" component={Docs}/>
     </Route>
   </Route>
 )
