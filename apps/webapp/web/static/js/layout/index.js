@@ -38,6 +38,9 @@ class Layout extends React.Component {
             <Link to="/admin/graphiql" styleName="mdl-navigation__link">
               GraphiQL
             </Link>
+            <Link to="/docs" styleName="mdl-navigation__link">
+              Documentation
+            </Link>
             <LogoutLink />
           </nav>
         </div>
