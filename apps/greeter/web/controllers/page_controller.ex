@@ -1,5 +1,5 @@
 defmodule Greeter.PageController do
-  use Greeter.Web, :controller
+  use Webapp.Web, :controller
 
   def index(conn, _params) do
     text conn, "Hello!"
