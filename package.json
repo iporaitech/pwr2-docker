@@ -15,22 +15,13 @@
     "url": "https://github.com/iporaitech/pwr2-docker"
   },
   "dependencies": {
-    "babel-polyfill": "^6.9.1",
-    "babel-runtime": "^6.11.6",
-    "es6-promise": "^3.2.1",
-    "graphiql": "^0.7.3",
-    "graphql": "^0.6.2",
-    "isomorphic-fetch": "^2.2.1",
     "phoenix": "file:deps/phoenix",
-    "phoenix_html": "file:deps/phoenix_html",
-    "react": "^15.3.0",
-    "react-dom": "^15.3.0",
-    "react-relay": "^0.9.2",
-    "sync-request": "^3.0.1"
+    "phoenix_html": "file:deps/phoenix_html"
   },
   "license" : "MIT",
   "devDependencies": {},
   "scripts": {
-    "install":"for sub_app in ./apps/*; do (npm install $sub_app); done"
+    "start": "for sub_app in ./apps/*; do (cd $sub_app; npm start $sub_app; cd ..); done",
+    "install":"for sub_app in ./apps/*; do (cd $sub_app; npm install; cd ..); done"
   }
 }
