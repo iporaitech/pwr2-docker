@@ -4,6 +4,8 @@ Docker image based on Ubuntu providing a base setup for a Phoenix+Webpack+Relay+
 
 _We will improve docs and code including test coverage in the next releases_
 
+**NOTICE:** The default branch for this repo is **develop**. Check the  [README](https://github.com/iporaitech/pwr2-docker/blob/master/README.md) on master to see what's in the last release.
+
 ## Requirements
 
 To run this software you need to install [Docker](https://www.docker.com/) on your system. It is very simple and there are a lot of guides and tutorials out there on the Internet.
