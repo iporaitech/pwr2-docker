@@ -54,6 +54,12 @@ Once switched to **app** user and in the `APP_HOME` directory, you can start the
 
 Now you're ready to start making requests to the web app on the port you specified.
 
+### Stopping containers
+
+Execute `docker-compose stop` in the same directory where you started them with `docker-compose up ...`.
+
+If you want to stop them when running in foreground just press **CTRL+C** once.
+
 ### Setup cloning this GitHub repo and building the image
 
 1. Clone the project to your localhost (_you might want to fork it to your account before_)
@@ -78,11 +84,6 @@ Once the containers are up and running you can copy the source code of the base 
 > Assuming you exposed the port 2224 to access the container via SSH
 
 **Notice:** Tags/Releases in this GitHub repo are the equivalent to tags in the Docker Cloud repository, master is the **latest** image in DockerHub.
-
-### Stop the containers
- +1. To stop a running container we can perform the next command in the terminal  `docker stop container name` adding the corresponding container name , in this case with our corresponding container name `docker stop pwr2docker_web_1` .
- +2. if we have the container running in the foreground we can close it performing `ctrl + c` once.
-
 
 ### GraphiQL and Relay Examples
 
