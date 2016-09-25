@@ -1,4 +1,5 @@
 use Mix.Config
+require System
 
 # For development, we disable any cache and enable
 # debugging and code reloading.
@@ -7,7 +8,7 @@ use Mix.Config
 # watchers to your application. For example, we use it
 # with brunch.io to recompile .js and .css sources.
 config :webapp, Webapp.Endpoint,
-  http: [port: 4000],
+  http: [port: {:system, "HTTP_PORT"}],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
@@ -39,8 +40,9 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :webapp, Webapp.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: "webapp_dev",
-  hostname: "db",
+  username: System.get_env("DB_USER"),
+  password: System.get_env("DB_USER_PASSWORD"),
+  database: System.get_env("DB_NAME"),
+  hostname: System.get_env("DB_HOST"),
+  port: 5432,
   pool_size: 10
