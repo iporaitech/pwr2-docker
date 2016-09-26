@@ -1,0 +1,11 @@
+.login-layout {
+  composes: mdl-layout mdl-color--grey-100 from "material-design-lite/material.css";
+  align-items: center;
+  justify-content: center;
+}
+
+.login-content{
+  composes: mdl-layout__content from "material-design-lite/material.css";
+  padding: 24px;
+  flex: none;
+}
