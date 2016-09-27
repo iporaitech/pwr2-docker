@@ -41,10 +41,6 @@ config :guardian_db, GuardianDb,
   repo: Webapp.Repo,
   sweep_interval: 120 # minutes
 
-#canary config
-config :canary, repo: Webapp.Repo, # TODO: Dockerfile: check if we'll need to copy page controller
-  unauthorized_handler: {Webapp.PageController, :handle_unauthorized}
-  
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
