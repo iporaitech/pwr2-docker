@@ -29,15 +29,11 @@ defmodule Webapp.Mixfile do
   end
   def applications(_) do
     [
-      :exfile,
       :phoenix,
       :phoenix_html,
       :cowboy,
       :logger,
       :gettext,
-      :pdf_generator,
-      :bamboo,
-      :bamboo_smtp,
       :phoenix_ecto,
       :postgrex
     ]
