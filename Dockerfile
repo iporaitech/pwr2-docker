@@ -45,9 +45,8 @@ ENV APP_MIX_DEPS_DIR /home/app/mix_deps
 RUN mkdir $APP_MIX_DEPS_DIR
 RUN cd $APP_HOME && ln -s $APP_MIX_DEPS_DIR deps
 COPY mix.exs mix.lock $APP_HOME/
-RUN mkdir $APP_HOME/config  # Some packages like Guardian require specific config to compile
-COPY config/config.exs $APP_HOME/config/config.exs
-COPY config/dev.exs $APP_HOME/config/*.exs
+RUN mkdir $APP_HOME/config # Some packages like Guardian require specific config to compile
+COPY config $APP_HOME/config/
 RUN chown -R app:staff /home/app && chmod -R g+s /home/app
 RUN setuser app mix do deps.get --force, deps.compile
 
@@ -66,7 +65,7 @@ COPY . $APP_HOME
 RUN chown -R app:staff /home/app && chmod -R g+s /home/app
 
 # Uninstall some "heavy" packages and clean up apt-get
-RUN apt-get remove build-essential
+RUN apt-get remove build-essential -y
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Enable SSH (Authorized keys must be copied in each specific project/environment)
