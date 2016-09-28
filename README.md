@@ -46,15 +46,21 @@ Once inside the container, you'll need to switch to **app** user in order to exe
 
 > All the stuff in **/home/app** belongs to **app** user. You might experience some errors if you try to execute [Elixir](#elixir) commands as **root**. Take a look at the Dockerfile to see how all the stuff is installed
 
-Once switched to **app** user and in the `APP_HOME` directory, you can start the application server by running:
+Once switched to **app** user and in the `APP_HOME` directory, you can:
 
-`mix phoenix.server`
+1. Create and migrate **dev** database: `mix do ecto.create, ecto.migrate`
+2. Create and migrate **test** database: `MIX_ENV=mix do ecto.create, ecto.migrate`
+3. Run db seeds to create a **superadmin** dev user: `mix run priv/repo/seeds.exs`. Take a look at the seeds file to get the corresponding credentials.
+4. Start the application server: `mix phoenix.server`, or if you want to start the server in a Elixir console `iex -S mix phoenix.server`
 
-> or if you want to start the server in a Elixir console
+Now you're ready to start making requests to the web app on the port you specified and [try out some examples](#examples).
 
-`iex -S mix phoenix.server`
+### Testing
 
-Now you're ready to start making requests to the web app on the port you specified.
+1. Run all tests `MIX_ENV=test mix espec --trace`.
+2. Run tests while coding, for example, to run a specfic spec: `mix test.watch spec/models/user_spec.exs --trace --focus`.
+
+Check [ESpec](https://github.com/antonmi/espec), [ESpec.Phoenix](https://github.com/antonmi/espec_phoenix) and [mix test.watch](https://github.com/lpil/mix-test.watch) to see more info about the testing framework used in this project.
 
 ### Stopping containers
 
@@ -87,12 +93,23 @@ Once the containers are up and running you can copy the source code of the base 
 
 **Notice:** Tags/Releases in this GitHub repo are the equivalent to tags in the Docker Cloud repository, master is the **latest** image in DockerHub.
 
-### GraphiQL and Relay Examples
+## Examples
 
-Currently, once all setup and with the app running, you can:
+Once all setup and with the app running and assuming your `HTTP_PORT` is 4000, you can:
 
-1. Visit http://localhost:4000/graphiql to access a [GraphiQL](https://github.com/graphql/graphiql) IDE.
-2. Visit http://localhost:4000/star-wars to experiment with our implementation of the [Relay Star Wars example](https://github.com/relayjs/relay-examples/tree/master/star-wars). The _[database](./web/graphql/star_wars_db.ex)_ for this example is implemented as an [Elixir.Agent](http://elixir-lang.org/docs/stable/elixir/Agent.html)
+0. Login with credentials available in [priv/repo/seeds.exs](priv/repo/seeds.exs). Logout is also available **BUT DISPLAYING AN ERROR when trying lo Login with wrong credentials is not implemented yet**.
+1. Visit http://localhost:4000/admin/graphiql to access a [GraphiQL](https://github.com/graphql/graphiql) IDE.
+2. Visit http://localhost:4000/admin/star-wars to experiment with our implementation of the [Relay Star Wars example](https://github.com/relayjs/relay-examples/tree/master/star-wars). The _[database](./web/graphql/star_wars_db.ex)_ for this example is implemented as an [Elixir.Agent](http://elixir-lang.org/docs/stable/elixir/Agent.html)
+3. You can also use something like Google Chrome's Advanced Rest Client(ARC) or any other JSON API client and (with the corresponding Authorization header) send queries to http://localhost:4000/graphql like:
+
+  ```JSON
+  {
+    "query": "query GetFactions($names:[String]){factions(names: $names) {id name}}",
+    "variables": {
+      "names": ["Galactic Empire", "Alliance to Restore the Republic"]
+    }
+  }
+  ```
 
 ## About the technology stack
 
@@ -130,16 +147,13 @@ A productive web framework that does not compromise speed and maintainability.
 
 _We use Phoenix as our backend programming framework_
 
-**Current**: [Phoenix V1.2.0](http://www.phoenixframework.org/v1.2.0)
+See [mix.exs](mix.exs) to check current version.
 
 ### Absinthe
 
 [GraphQL](http://graphql.org) implementation for Elixir, specifically using the packages [Absinthe.Relay](https://github.com/absinthe-graphql/absinthe_relay) and [Absinthe.Plug](https://github.com/absinthe-graphql/absinthe_plug).
 
-**Current versions**:
-
-  >{:absinthe_relay, ["~> 0.9.4"](https://github.com/absinthe-graphql/absinthe_relay/tree/v0.9.4)},
-  >{:absinthe_plug, "~> 1.1.3"},
+See [mix.exs](mix.exs) to check current versions.
 
 ### Node
 [Node.js®](https://nodejs.org/en/) is a JavaScript runtime built on Chrome's V8 JavaScript engine. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient. Node.js' package ecosystem, npm, is the largest ecosystem of open source libraries in the world.
