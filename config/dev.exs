@@ -37,7 +37,7 @@ config :logger, :console, format: "[$level] $message\n"
 # in production as building large stacktraces may be expensive.
 config :phoenix, :stacktrace_depth, 20
 
-# Configure your database
+# DB config
 config :webapp, Webapp.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: System.get_env("DB_USER"),
@@ -46,3 +46,10 @@ config :webapp, Webapp.Repo,
   hostname: System.get_env("DB_HOST"),
   port: 5432,
   pool_size: 10
+
+# Task mix test.watch task config
+config :mix_test_watch,
+  clear: true,
+  tasks: [
+    "espec"
+  ]
