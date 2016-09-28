@@ -2,7 +2,7 @@
   "name": "pwr2-docker-ui",
   "description": "Javascript dependencies for pwr2-docker, a Docker image based on Ubuntu providing a base setup for a Phoenix+Webpack+Relay+React project, with some sugar and conventions to develop and build your own web applications.",
   "main": "webpack.config.js",
-  "version": "0.2.4",
+  "version": "0.3.0",
   "contributors": [
     {
       "name": "Iporaitech and others",
