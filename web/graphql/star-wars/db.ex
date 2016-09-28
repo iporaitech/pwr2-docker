@@ -1,4 +1,4 @@
-defmodule Webapp.Web.GraphQL.StarWarsDB do
+defmodule Webapp.GraphQL.StarWarsDB do
   @moduledoc """
   StarWarsDB is a "in memory" database implemented with Elixir.Agent to support the [Relay Star Wars example](https://github.com/relayjs/relay-examples/blob/master/star-wars)
 
@@ -7,14 +7,14 @@ defmodule Webapp.Web.GraphQL.StarWarsDB do
 
   @initial_state %{
     ship: %{
-      "1" => %{id: "1", name: "X-Wing"},
-      "2" => %{id: "2", name: "Y-Wing"},
-      "3" => %{id: "3", name: "A-Wing"},
-      "4" => %{id: "4", name: "Millenium Falcon"},
-      "5" => %{id: "5", name: "Home One"},
-      "6" => %{id: "6", name: "TIE Fighter"},
-      "7" => %{id: "7", name: "TIE Interceptor"},
-      "8" => %{id: "8", name: "Executor"}
+      "1" => %{id: "1", name: "X-Wing", type: :star_wars_ship},
+      "2" => %{id: "2", name: "Y-Wing", type: :star_wars_ship},
+      "3" => %{id: "3", name: "A-Wing", type: :star_wars_ship},
+      "4" => %{id: "4", name: "Millenium Falcon", type: :star_wars_ship},
+      "5" => %{id: "5", name: "Home One", type: :star_wars_ship},
+      "6" => %{id: "6", name: "TIE Fighter", type: :star_wars_ship},
+      "7" => %{id: "7", name: "TIE Interceptor", type: :star_wars_ship},
+      "8" => %{id: "8", name: "Executor", type: :star_wars_ship}
     },
     faction: %{
       "1" => %{
@@ -66,7 +66,7 @@ defmodule Webapp.Web.GraphQL.StarWarsDB do
       |> Integer.to_string
     end)
 
-    ship_data = %{id: next_ship_id, name: ship_name}
+    ship_data = %{id: next_ship_id, name: ship_name, type: :star_wars_ship}
     case Agent.update(__MODULE__, &put_in(&1, [:ship, next_ship_id], ship_data)) do
       nil ->
         {:error, "Could not create ship"}

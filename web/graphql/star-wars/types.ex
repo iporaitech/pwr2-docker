@@ -1,4 +1,4 @@
-defmodule Webapp.Web.GraphQL.Types do
+defmodule Webapp.GraphQL.StarWars.Types do
   @moduledoc """
   This is an Elixir/Absinthe.Relay version of the GraphQL schema defined in:
   https://github.com/relayjs/relay-examples/blob/master/star-wars/data/schema.js
@@ -10,22 +10,26 @@ defmodule Webapp.Web.GraphQL.Types do
   use Absinthe.Relay.Schema.Notation
 
   alias Absinthe.Relay.Connection
-  alias Webapp.Web.GraphQL.StarWarsDB
+  alias Webapp.GraphQL.StarWarsDB
+  alias Webapp.GraphQL.Resolver
 
 
-  @desc """
-  Node interface provided by Absinthe.Relay library.
-
-  Absinthe will pattern-match the value to determine of the node object type.
-  """
-  node interface do
-    resolve_type fn
-      %{ships: _}, _ ->
-        :faction
-      _, _ ->
-        :ship
+  object :star_wars_root_field do
+    @desc """
+    StarWars field to be used in the RootQueryType.
+    """
+    field :factions, list_of(:faction) do
+      arg :names, list_of(:string)
+      resolve fn
+        # TODO: check roles in this resolver fn
+        args, %{context: %{current_user: nil}} ->
+          Resolver.unauthenticated_error
+        args, %{context: %{current_user: u}} ->
+          {:ok, StarWarsDB.get_factions(args[:names])}
+      end
     end
   end
+
 
   @desc """
   A ship in the Star Wars saga
@@ -98,16 +102,4 @@ defmodule Webapp.Web.GraphQL.Types do
   """
   connection node_type: :ship
 
-  @desc """
-  This is a fictional User from the system described in a
-  multiline description
-
-  This is not related to the Star Wars relay-example
-  """
-  object :user do
-    field :id, :id
-    field :username, :string
-    field :email, :string
-    field :name, :string, description: "The real name of the User"
-  end
 end

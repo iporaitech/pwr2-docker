@@ -1,12 +1,3 @@
 /*
-  Just some CSS example
+  Put here general app css if needed
 */
-body.page-graphiql {
-  height: 100%;
-  margin: 0;
-  width: 100%;
-  overflow: hidden;
-}
-#graphiql {
-  height: 100vh;
-}
