@@ -5,17 +5,8 @@
 # is restricted to this project.
 use Mix.Config
 
-# General application configuration
-config :starwars,
-  ecto_repos: [Starwars.Repo]
+config :starwars, ecto_repos: []
 
-# Configures the endpoint
-config :starwars, Starwars.Endpoint,
-  url: [host: "localhost"],
-  secret_key_base: "ZBOeN5ogBV5cq2p+ttL4pJbU/7EIVMbkyxBYPebuhf6MzNYjO4HOtp9g2uDdQU9v",
-  render_errors: [view: Starwars.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Starwars.PubSub,
-           adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
 config :logger, :console,
