@@ -16,7 +16,9 @@ docker-compose.yml
 apps/*/node_modules/
 
 # Ignore generated files of in umbrella apps
-apps/*/priv/static/js/app.js
-apps/*/priv/static/js/phoenix.js
-apps/*/priv/static/js/commons.chunk.js
-apps/*/priv/static/css/app.css
+apps/**/priv/static/js/app.js*
+apps/**/priv/static/js/phoenix.js*
+apps/**/priv/static/js/app.bundle.js*
+apps/**/priv/static/js/vendor.bundle.js*
+apps/**/priv/static/js/commons.chunk.js*
+apps/**/priv/static/css/app.css*
