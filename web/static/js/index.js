@@ -28,7 +28,7 @@ class Hello extends React.Component {
 function requireAuth(nextState, replace) {
   if (!Auth.loggedIn()) {
     replace({
-      pathname: "/session/new",
+      pathname: "/login",
       state: { nextPathname: nextState.location.pathname }
     })
   }
@@ -39,7 +39,7 @@ ReactDOM.render(
     render={applyRouterMiddleware(useRelay)}
     environment={() => Auth.getEnvironment()}>
     <Route path="/" component={Hello}/>
-    <Route path="/session/new" component={Login}/>
+    <Route path="/login" component={Login}/>
     <Route path="/admin" component={AdminLayout} onEnter={requireAuth}>
       <IndexRoute component={Hello}/>
       <Route path="star-wars" component={StarWarsApp} queries={StarWarsQueries}/>

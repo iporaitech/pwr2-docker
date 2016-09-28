@@ -33,6 +33,7 @@ defmodule Webapp.Router do
     pipe_through [:browser, :browser_auth]
 
     get "/", PageController, :index
+    get "/login", PageController, :login
   end
 
   scope "/admin", Webapp.Admin, as: :admin do
@@ -43,5 +44,5 @@ defmodule Webapp.Router do
     get "/graphiql", PageController, :graphiql
     get "/star-wars", PageController, :star_wars
   end
-  
+
 end

@@ -8,7 +8,7 @@ class LogoutMutation extends Relay.Mutation {
   getVariables() {
     return null;
   }
-  
+
   getMutation() {
     return Relay.QL`mutation {
       logout
@@ -46,7 +46,7 @@ class LogoutLink extends React.Component {
         onSuccess: response => {
           if (response.logout.loggedOut){
             Auth.logout();
-            this.props.router.replace('/session/new');
+            this.props.router.replace('/login');
           } else {
             throw new Error("Could not logout")
           }
@@ -56,7 +56,7 @@ class LogoutLink extends React.Component {
   }
 
   render(){
-    return <a href="/session/delete" className="mdl-navigation__link" onClick={(e) => this.handleClick(e)}>
+    return <a href="/logout" className="mdl-navigation__link" onClick={(e) => this.handleClick(e)}>
       Logout
     </a>
   }

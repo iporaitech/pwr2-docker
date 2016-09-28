@@ -8,12 +8,14 @@
     <meta name="author" content="">
 
     <title>Hello Webapp!</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
   <body class="<%= view_action @conn %>">
     <%= render @view_module, @view_template, assigns %>
     <script src="<%= static_path(@conn, "/js/commons.chunk.js") %>"></script>
-    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+    <script src="<%= static_path(@conn, "/js/vendor.bundle.js") %>"></script>
+    <script src="<%= static_path(@conn, "/js/app.bundle.js") %>"></script>
   </body>
 </html>

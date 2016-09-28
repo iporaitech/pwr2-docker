@@ -3,6 +3,9 @@ defmodule Webapp.GraphQL.Types.AuthMutations do
   use Absinthe.Relay.Schema.Notation
   import Comeonin.Bcrypt, only: [checkpw: 2, dummy_checkpw: 0]
 
+  #TODO: Create resolve functions for these mutations in their own module and test them.
+  # It will be easier to test the resolvers in isolation than embedded in the muations.
+
   object :auth_mutations do
     payload field :login do
       input do
@@ -53,7 +56,7 @@ defmodule Webapp.GraphQL.Types.AuthMutations do
   defp authenticate_user(email, password) do
     user = Webapp.Repo.get_by(Webapp.User, email: email)
     cond do
-      user && checkpw(password, user.encrypted_password) ->
+      user && checkpw(password, user.password_hash) ->
         {:ok, user}
       user ->
         {:error, :unauthorized}
