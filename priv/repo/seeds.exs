@@ -14,6 +14,7 @@ alias Webapp.User
 
 %User{}
 |> User.registration_changeset(%{
+  role: "superadmin",
   first_name: "John",
   last_name: "Rambo",
   email: "jrambo@test.com",
