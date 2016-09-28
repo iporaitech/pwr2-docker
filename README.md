@@ -97,9 +97,19 @@ Once the containers are up and running you can copy the source code of the base 
 
 Once all setup and with the app running and assuming your `HTTP_PORT` is 4000, you can:
 
-0. Login with credentials available in [priv/repo/seeds.exs](priv/repo/seeds.exs). Logout is also available.
+0. Login with credentials available in [priv/repo/seeds.exs](priv/repo/seeds.exs). Logout is also available **BUT DISPLAYING AN ERROR when trying lo Login with wrong credentials is not implemented yet**.
 1. Visit http://localhost:4000/admin/graphiql to access a [GraphiQL](https://github.com/graphql/graphiql) IDE.
 2. Visit http://localhost:4000/admin/star-wars to experiment with our implementation of the [Relay Star Wars example](https://github.com/relayjs/relay-examples/tree/master/star-wars). The _[database](./web/graphql/star_wars_db.ex)_ for this example is implemented as an [Elixir.Agent](http://elixir-lang.org/docs/stable/elixir/Agent.html)
+3. You can also use something like Google Chrome's Advanced Rest Client(ARC) or any other JSON API client and (with the corresponding Authorization header) send queries to http://localhost:4000/graphql like:
+
+  ```JSON
+  {
+    "query": "query GetFactions($names:[String]){factions(names: $names) {id name}}",
+    "variables": {
+      "names": ["Galactic Empire", "Alliance to Restore the Republic"]
+    }
+  }
+  ```
 
 ## About the technology stack
 
