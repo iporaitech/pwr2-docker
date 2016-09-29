@@ -31,10 +31,14 @@ defmodule Webapp.GraphQL.Resolver do
 
   # TODO: Don't forget to remove this StarWars stuff after extracting for pwr2-docker
 <<<<<<< HEAD:web/graphql/resolver.ex
+<<<<<<< HEAD:web/graphql/resolver.ex
   alias Webapp.GraphQL.StarWarsDB
 =======
   alias Starwars.GraphQL.DB
 >>>>>>> e4b98bf... Rename StarwarsDB to DB:apps/webapp/web/graphql/resolver.ex
+=======
+  alias StarWars.GraphQL.DB
+>>>>>>> b08d3ba... Rename Starwars app to StarWars:apps/webapp/web/graphql/resolver.ex
   def resolve(:ship, id, current_user) do
     with {:ok, ship} <- DB.get(:ship, id),
       true <- current_user |> can?(read ship) do
