@@ -5,7 +5,7 @@
 # is restricted to this project.
 use Mix.Config
 
-config :starwars, ecto_repos: []
+config :star_wars, ecto_repos: []
 
 
 # Configures Elixir's Logger

@@ -40,7 +40,7 @@ defmodule Webapp.Mixfile do
       :gettext,
       :phoenix_ecto,
       :postgrex,
-      :starwars
+      :star_wars
     ]
   end
 
@@ -71,7 +71,7 @@ defmodule Webapp.Mixfile do
      {:white_bread, "~> 2.5", only: [:dev, :test] },
      {:mix_test_watch, "~> 0.2", only: :dev},
      {:ex_machina, "~> 1.0", only: :test},
-     {:starwars, in_umbrella: true}
+     {:star_wars, in_umbrella: true}
     ]
   end
 
