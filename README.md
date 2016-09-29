@@ -1,10 +1,26 @@
-# phoenix-webpack-relay-react (pwr2)
+# Phoenix, Webpack, React and Relay (pwr2)
 
 Docker image based on Ubuntu providing a base setup for a Phoenix+Webpack+Relay+React project, with some sugar and conventions to develop and build your own web applications.
 
 _We will improve docs and code including test coverage in the next releases_
 
 **NOTICE:** The default branch for this repo is **develop**. Check the  [README](https://github.com/iporaitech/pwr2-docker/blob/master/README.md) on master to see what's in the last release.
+
+## What is this for?
+
+You can use this to start your own Elixir/Phoenix based web application with React+Relay - styled with Material Design, in the front-end all bundled with Webpack.
+
+So far we've implemented the following:
+
+* A GraphQL endpoint implemented in Elixir with Absinthe.
+* Authentication using JWTs (JSON Web Tokens) via GraphQL (LoginMutation & LogoutMutation).
+* Hardcoded Role based Authorization.
+* StarWars GraphQL example.
+* GraphiQL console.
+* Some interesting React/Relay components in the client(browser), including a router.
+* CSS Modules _integration_ with Material Design Lite.
+* Testing framework for the backend (Elixir/Phoenix).
+
 
 ## Requirements
 
@@ -97,7 +113,7 @@ Once the containers are up and running you can copy the source code of the base 
 
 Once all setup and with the app running and assuming your `HTTP_PORT` is 4000, you can:
 
-0. Login with credentials available in [priv/repo/seeds.exs](priv/repo/seeds.exs). Logout is also available **BUT DISPLAYING AN ERROR when trying lo Login with wrong credentials is not implemented yet**.
+0. Login with credentials available in [priv/repo/seeds.exs](priv/repo/seeds.exs). Logout is also available.
 1. Visit http://localhost:4000/admin/graphiql to access a [GraphiQL](https://github.com/graphql/graphiql) IDE.
 2. Visit http://localhost:4000/admin/star-wars to experiment with our implementation of the [Relay Star Wars example](https://github.com/relayjs/relay-examples/tree/master/star-wars). The _[database](./web/graphql/star_wars_db.ex)_ for this example is implemented as an [Elixir.Agent](http://elixir-lang.org/docs/stable/elixir/Agent.html)
 3. You can also use something like Google Chrome's Advanced Rest Client(ARC) or any other JSON API client and (with the corresponding Authorization header) send queries to http://localhost:4000/graphql like:

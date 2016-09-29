@@ -2,7 +2,7 @@
   "name": "pwr2-docker-ui",
   "description": "Javascript dependencies for pwr2-docker, a Docker image based on Ubuntu providing a base setup for a Phoenix+Webpack+Relay+React project, with some sugar and conventions to develop and build your own web applications.",
   "main": "webpack.config.js",
-  "version": "0.3.0",
+  "version": "0.3.2",
   "contributors": [
     {
       "name": "Iporaitech and others",
@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "babel-runtime": "^6.11.6",
+    "classnames": "^2.2.5",
     "es6-promise": "^3.2.1",
     "graphiql": "^0.7.3",
     "graphql": "^0.6.2",
@@ -48,5 +49,5 @@
     "react-router-relay": "https://github.com/iporaitech/react-router-relay/tarball/build",
     "sync-request": "^3.0.1"
   },
-  "license" : "MIT"
+  "license": "MIT"
 }

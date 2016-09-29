@@ -19,3 +19,5 @@ A **Task** is something that is not complex enough to be defined as a **Feature*
 The title of a an issue that is expected to be treated as a **BUG** must be prefixed with **BUG:**, i.e., **BUG: Wrong new notifications count**.
 
 Submit your pull requests to the corresponding branch according to the branching model mentioned at the beginning of this section.
+
+Last but not least, [stop using `git pull`](https://adamcod.es/2014/12/10/git-pull-correct-workflow.html)

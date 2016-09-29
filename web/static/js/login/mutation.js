@@ -2,9 +2,7 @@ import Relay from 'react-relay';
 
 export default class extends Relay.Mutation {
   getMutation() {
-    return Relay.QL`mutation {
-      login
-    }`;
+    return Relay.QL`mutation {login}`;
   }
 
   getVariables() {
@@ -17,7 +15,7 @@ export default class extends Relay.Mutation {
   // TODO: Add field to LoginPayload to get errors
   getFatQuery() {
     return Relay.QL`
-      fragment on LoginPayload {
+      fragment on LoginPayload @relay(pattern: true) {
         accessToken
       }
     `;
