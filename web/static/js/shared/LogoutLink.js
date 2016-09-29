@@ -1,4 +1,4 @@
-// file: layout/LogoutLink.js
+// file: shared/LogoutLink.js
 import React from 'react';
 import Relay from 'react-relay';
 import Auth from 'lib/auth';
