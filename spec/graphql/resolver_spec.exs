@@ -40,7 +40,11 @@ defmodule Webapp.GraphQL.ResolverSpec do
   describe "StarWars examples" do
     describe "resolve(:ship, id, current_user)" do
       let :ship do
+<<<<<<< HEAD:spec/graphql/resolver_spec.exs
         {:ok, ship} = Webapp.GraphQL.StarWarsDB.get(:ship, "1")
+=======
+        {:ok, ship} = Starwars.GraphQL.DB.get(:ship, "1")
+>>>>>>> e4b98bf... Rename StarwarsDB to DB:apps/webapp/spec/graphql/resolver_spec.exs
         ship
       end
       context "when current_user can read Ship idenfified by id" do
@@ -65,7 +69,11 @@ defmodule Webapp.GraphQL.ResolverSpec do
 
     describe "resolve(:faction, id, current_user)" do
       let :faction do
+<<<<<<< HEAD:spec/graphql/resolver_spec.exs
         {:ok, faction} = Webapp.GraphQL.StarWarsDB.get(:faction, "1")
+=======
+        {:ok, faction} = Starwars.GraphQL.DB.get(:faction, "1")
+>>>>>>> e4b98bf... Rename StarwarsDB to DB:apps/webapp/spec/graphql/resolver_spec.exs
         faction
       end
       context "when current_user can read Faction idenfified by id" do
