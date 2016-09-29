@@ -1,4 +1,4 @@
-defmodule Starwars do
+defmodule StarWars do
   use Application
 
   # See http://elixir-lang.org/docs/stable/elixir/Application.html
@@ -8,14 +8,14 @@ defmodule Starwars do
 
     # Define workers and child supervisors to be supervised
     children = [
-      # Start your own worker by calling: Starwars.Worker.start_link(arg1, arg2, arg3)
-      # worker(Starwars.Worker, [arg1, arg2, arg3]),
-      worker(Starwars.GraphQL.DB, [])
+      # Start your own worker by calling: StarWars.Worker.start_link(arg1, arg2, arg3)
+      # worker(StarWars.Worker, [arg1, arg2, arg3]),
+      worker(StarWars.GraphQL.DB, [])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
     # for other strategies and supported options
-    opts = [strategy: :one_for_one, name: Starwars.Supervisor]
+    opts = [strategy: :one_for_one, name: StarWars.Supervisor]
     Supervisor.start_link(children, opts)
   end
 end

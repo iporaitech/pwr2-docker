@@ -8,12 +8,17 @@ defmodule Webapp.GraphQL.Schema do
 
   # StarWars exaple types and mutations
 <<<<<<< HEAD:web/graphql/schema.ex
+<<<<<<< HEAD:web/graphql/schema.ex
   import_types Webapp.GraphQL.StarWars.Types
   import_types Webapp.GraphQL.StarWars.Mutations
 =======
   import_types Starwars.GraphQL.Types
   import_types Starwars.GraphQL.Mutations
 >>>>>>> 2e248ec... Remove starwars dir. Refs #14:apps/webapp/web/graphql/schema.ex
+=======
+  import_types StarWars.GraphQL.Types
+  import_types StarWars.GraphQL.Mutations
+>>>>>>> b08d3ba... Rename Starwars app to StarWars:apps/webapp/web/graphql/schema.ex
 
   query do
     import_fields :viewer_field
