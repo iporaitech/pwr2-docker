@@ -3,8 +3,11 @@ defmodule Webapp.GraphQL.Types.AuthMutations do
   use Absinthe.Relay.Schema.Notation
   import Comeonin.Bcrypt, only: [checkpw: 2, dummy_checkpw: 0]
 
-  #TODO: Create resolve functions for these mutations in their own module and test them.
-  # It will be easier to test the resolvers in isolation than embedded in the muations.
+  #TODO:
+  # 1. Create resolve functions for these mutations in their own module and test them. It
+  #    will be easier to test the resolvers in isolation than embedded in the muations.
+  # 2. Refactor to use Scalar types for email and password.
+  #    See http://graphql.org/learn/schema/#scalar-types
 
   object :auth_mutations do
     payload field :login do
