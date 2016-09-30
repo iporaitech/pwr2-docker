@@ -35,6 +35,6 @@ db:
     - "55432:5432" # use this port to access Postgres from outside of the container.
 
 mix_deps:
-  image: iporaitech/pwr2:latest
+  image: iporaitech/pwr2-docker:latest
   volumes:
     - /home/app/mix_deps
