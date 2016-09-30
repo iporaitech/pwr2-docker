@@ -8,6 +8,7 @@ defmodule Webapp.Mixfile do
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
+<<<<<<< HEAD
      start_permanent: Mix.env == :prod,
 <<<<<<< HEAD
      aliases: aliases(),
@@ -102,4 +103,8 @@ defmodule Webapp.Mixfile do
   #     "spec": ["espec apps/webapp"],
   #   ]
   # end
+=======
+     start_permanent: Mix.env == :prod ]
+  end
+>>>>>>> 69c5eb1... Fix test for in umbrella apps. Refs #14
 end
