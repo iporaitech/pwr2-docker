@@ -65,7 +65,7 @@ Once inside the container, you'll need to switch to **app** user in order to exe
 Once switched to **app** user and in the `APP_HOME` directory, you can:
 
 1. Create and migrate **dev** database: `mix do ecto.create, ecto.migrate`
-2. Create and migrate **test** database: `MIX_ENV=test do ecto.create, ecto.migrate`
+2. Create and migrate **test** database: `MIX_ENV=test mix do ecto.create, ecto.migrate`
 3. Run db seeds to create a **superadmin** dev user: `mix run priv/repo/seeds.exs`. Take a look at the seeds file to get the corresponding credentials.
 4. Start the application server: `mix phoenix.server`, or if you want to start the server in a Elixir console `iex -S mix phoenix.server`
 
@@ -96,7 +96,7 @@ Now you're ready to [start the containers](#usage-instructions) and try some stu
 ### Setup pulling Docker image from Docker Cloud repository
 
 1. Open you console or terminal and execute `docker login`. You might not need this.
-2. Pull the image from Docker Cloud. Execute `docker pull iporaitech/pwr2:latest`. You can also search for other **tags** besides latest.
+2. Pull the image from Docker Cloud. Execute `docker pull iporaitech/pwr2-docker:latest`. You can also search for other **tags** besides latest.
 3. Copy the [docker-compose.dev.example.yml](docker-compose.dev.example.yml) to **docker-compose.yml** on your localhost and adjust the ports, [volumes](#about-docker-volumes) and **image** in **web** section to match the image tag you pulled in the step above.
 
 Now you're ready to [start the containers](#usage-instructions) and try some stuff.
