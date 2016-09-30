@@ -9,9 +9,15 @@ defmodule Webapp.Mixfile do
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
+<<<<<<< HEAD
      aliases: aliases(),
      deps: deps(),
      preferred_cli_env: [espec: :test]]
+=======
+    #  aliases: aliases(),
+     deps: deps ]#,
+    #  preferred_cli_env: [espec: :test]]
+>>>>>>> 4cce494... WIP tests from umbrella
   end
 
   # Configuration for the OTP application.
@@ -74,6 +80,7 @@ defmodule Webapp.Mixfile do
   #
   #     $ mix ecto.setup
   #
+<<<<<<< HEAD
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
@@ -81,6 +88,18 @@ defmodule Webapp.Mixfile do
       "spec": ["ecto.create --quiet", "ecto.migrate", "espec"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       "test": ["ecto.create --quiet", "ecto.migrate", "test"]
+=======
+  # Dependencies listed here are available only for this project
+  # and cannot be accessed from applications inside the apps folder
+  defp deps do
+    [     #test packages
+      {:espec_phoenix, "~> 0.6.0", only: :test, app: false}
+>>>>>>> 4cce494... WIP tests from umbrella
     ]
   end
+  # defp aliases do
+  #   [
+  #     "spec": ["espec apps/webapp"],
+  #   ]
+  # end
 end
