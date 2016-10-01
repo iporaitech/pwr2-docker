@@ -1,0 +1,27 @@
+.login-layout {
+  composes: mdl-layout mdl-color--grey-100 from "material-design-lite/material.css";
+  align-items: center;
+  justify-content: center;
+}
+
+.login-content{
+  composes: mdl-layout__content from "material-design-lite/material.css";
+  padding: 24px;
+  flex: none;
+}
+
+.card {
+  composes: mdl-card mdl-shadow--6dp from "material-design-lite/material.css";
+}
+
+.card-title {
+  composes: mdl-card__title mdl-color--primary mdl-color-text--white
+    from "material-design-lite/material.css";
+}
+
+.login-error {
+  composes: mdl-typography--caption-color-contrast from "material-design-lite/material.css";
+  color: red;
+  text-align: center;
+  font-size: 14px;
+}
