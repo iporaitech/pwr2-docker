@@ -1,0 +1,40 @@
+web:
+  image: iporaitech/pwr2-docker:latest
+  command: /sbin/my_init --enable-insecure-key #enable insecure key for dev
+  # volumes:
+  #   - .:/home/app/webapp
+  links:
+    - db
+  ports:
+    - "4000:4000" # use this port for HTTP_PORT
+    - "4443:4443" # use this port for HTTPS_PORT
+    - "2222:22" # use this port to access container via "normal" SSH
+    - "44369:4369" # use this port to config SSH forward to distributed node
+    - "9001:9001" # use this port when starting webapp  as distributed node
+  environment:
+    MIX_ENV: dev
+    NODE_ENV: development
+    HTTP_PORT: 4000
+    HTTPS_PORT: 4443
+    GRAPHQL_URL: http://localhost:4000/graphql
+    # database
+    DB_HOST: db
+    DB_NAME: webapp_dev
+    DB_USER: postgres
+    DB_USER_PASSWORD:
+    # mailer
+    MAILER_SERVER: localhost
+    MAILER_USERNAME: dev_user
+    MAILER_PASSWORD: dev_password
+  volumes_from:
+    - mix_deps
+
+db:
+  image: postgres:9.4.4
+  ports:
+    - "55432:5432" # use this port to access Postgres from outside of the container.
+
+mix_deps:
+  image: iporaitech/pwr2-docker:latest
+  volumes:
+    - /home/app/mix_deps

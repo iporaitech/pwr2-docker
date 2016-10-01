@@ -4,10 +4,6 @@ defmodule Webapp.Mixfile do
   def project do
     [app: :webapp,
      version: "0.3.4",
-     build_path: "../../_build",
-     config_path: "../../config/config.exs",
-     deps_path: "../../deps",
-     lockfile: "../../mix.lock",     
      elixir: "~> 1.3",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
@@ -39,7 +35,6 @@ defmodule Webapp.Mixfile do
       :logger,
       :gettext,
       :phoenix_ecto,
-      :star_wars,
       :postgrex
     ]
   end
@@ -70,7 +65,6 @@ defmodule Webapp.Mixfile do
      {:espec_phoenix, "~> 0.6.0", only: :test, app: false},
      {:white_bread, "~> 2.5", only: [:dev, :test] },
      {:mix_test_watch, "~> 0.2", only: :dev},
-     {:star_wars, in_umbrella: true},
      {:ex_machina, "~> 1.0", only: :test}
     ]
   end
