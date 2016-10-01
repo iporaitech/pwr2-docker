@@ -18,6 +18,5 @@ alias Webapp.User
   first_name: "John",
   last_name: "Rambo",
   email: "jrambo@test.com",
-  password: "12341234",
-  role: "superadmin"})
+  password: "12341234"})
 |> Repo.insert!
