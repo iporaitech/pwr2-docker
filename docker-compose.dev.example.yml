@@ -20,6 +20,7 @@ web:
     # database
     DB_HOST: db
     DB_NAME: webapp_dev
+    TEST_DB_NAME: webapp_dev
     DB_USER: postgres
     DB_USER_PASSWORD:
     # mailer
