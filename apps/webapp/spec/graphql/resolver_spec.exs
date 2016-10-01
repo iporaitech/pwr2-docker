@@ -40,7 +40,7 @@ defmodule Webapp.GraphQL.ResolverSpec do
   describe "StarWars examples" do
     describe "resolve(:ship, id, current_user)" do
       let :ship do
-        {:ok, ship} = Webapp.GraphQL.StarWarsDB.get(:ship, "1")
+        {:ok, ship} = StarWars.GraphQL.DB.get(:ship, "1")
         ship
       end
       context "when current_user can read Ship idenfified by id" do
@@ -65,7 +65,7 @@ defmodule Webapp.GraphQL.ResolverSpec do
 
     describe "resolve(:faction, id, current_user)" do
       let :faction do
-        {:ok, faction} = Webapp.GraphQL.StarWarsDB.get(:faction, "1")
+        {:ok, faction} = StarWars.GraphQL.DB.get(:faction, "1")
         faction
       end
       context "when current_user can read Faction idenfified by id" do

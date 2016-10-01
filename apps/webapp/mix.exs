@@ -65,7 +65,8 @@ defmodule Webapp.Mixfile do
      {:espec_phoenix, "~> 0.6.0", only: :test, app: false},
      {:white_bread, "~> 2.5", only: [:dev, :test] },
      {:mix_test_watch, "~> 0.2", only: :dev},
-     {:ex_machina, "~> 1.0", only: :test}
+     {:ex_machina, "~> 1.0", only: :test},
+     {:star_wars, in_umbrella: true}
     ]
   end
 
