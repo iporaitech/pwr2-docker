@@ -1,4 +1,4 @@
-defmodule Webapp.GraphQL.StarWars.Types do
+defmodule StarWars.GraphQL.Types do
   @moduledoc """
   This is an Elixir/Absinthe.Relay version of the GraphQL schema defined in:
   https://github.com/relayjs/relay-examples/blob/master/star-wars/data/schema.js
@@ -10,7 +10,7 @@ defmodule Webapp.GraphQL.StarWars.Types do
   use Absinthe.Relay.Schema.Notation
 
   alias Absinthe.Relay.Connection
-  alias Webapp.GraphQL.StarWarsDB
+  alias StarWars.GraphQL.DB
   alias Webapp.GraphQL.Resolver
 
 
@@ -25,7 +25,7 @@ defmodule Webapp.GraphQL.StarWars.Types do
         args, %{context: %{current_user: nil}} ->
           Resolver.unauthenticated_error
         args, %{context: %{current_user: u}} ->
-          {:ok, StarWarsDB.get_factions(args[:names])}
+          {:ok, DB.get_factions(args[:names])}
       end
     end
   end
@@ -73,7 +73,7 @@ defmodule Webapp.GraphQL.StarWars.Types do
           conn = Connection.from_list(
             Enum.map(faction.ships, fn
               id ->
-                with {:ok, value} <- StarWarsDB.get(:ship, id) do
+                with {:ok, value} <- DB.get(:ship, id) do
                   value
                 end
             end),

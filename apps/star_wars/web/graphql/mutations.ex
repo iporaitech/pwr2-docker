@@ -1,8 +1,8 @@
-defmodule Webapp.GraphQL.StarWars.Mutations do
+defmodule StarWars.GraphQL.Mutations do
   use Absinthe.Schema.Notation
   use Absinthe.Relay.Schema.Notation
   alias Absinthe.Relay.Connection
-  alias Webapp.GraphQL.StarWarsDB
+  alias StarWars.GraphQL.DB
 
   object :star_wars_mutations do
     @desc """
@@ -25,8 +25,8 @@ defmodule Webapp.GraphQL.StarWars.Mutations do
         # TODO: Add and use context for Auth
         %{faction_id: faction_id, ship_name: ship_name}, _ ->
           # just fail if not :ok
-          {:ok, ship} = StarWarsDB.create_ship(ship_name, faction_id)
-          faction = StarWarsDB.get_faction(faction_id)
+          {:ok, ship} = DB.create_ship(ship_name, faction_id)
+          faction = DB.get_faction(faction_id)
 
           # In the original examples a cursorFromObjectInConnection() imported
           # from graphql-relay is used to get the cursor. I didn't find

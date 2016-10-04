@@ -1,0 +1,33 @@
+# App artifacts
+ /_build
+/db
+/cover
+ /deps
+/*.ez
+
+# Generated on crash by the VM
+ erl_crash.dump
+*.ez
+
+# The config/prod.secret.exs file by default contains sensitive
+# data and you should not commit it into version control.
+#
+# Alternatively, you may comment the line below and commit the
+# secrets file as long as you replace its contents by environment
+# variables.
+/config/prod.secret.exs
+
+# Atom's RemoteSync plugin config file
+.remotesync.json
+
+# Ignore generated files
+node_modules/
+priv/static/js/app.js*
+priv/static/js/phoenix.js*
+priv/static/js/app.bundle.js*
+priv/static/js/vendor.bundle.js*
+priv/static/js/commons.chunk.js*
+priv/static/css/app.css*
+
+# We have example files for dockercompose.yml so let's ignore it
+dockercompose.yml

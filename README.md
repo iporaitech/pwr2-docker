@@ -66,7 +66,7 @@ Once switched to **app** user and in the `APP_HOME` directory, you can:
 
 1. Create and migrate **dev** database: `mix do ecto.create, ecto.migrate`
 2. Create and migrate **test** database: `MIX_ENV=test mix do ecto.create, ecto.migrate`
-3. Run db seeds to create a **superadmin** dev user: `mix run priv/repo/seeds.exs`. Take a look at the seeds file to get the corresponding credentials.
+3. Run db seeds to create a **superadmin** dev user: `mix run apps/webapp/priv/repo/seeds.exs`. Take a look at the seeds file to get the corresponding credentials.
 4. Start the application server: `mix phoenix.server`, or if you want to start the server in a Elixir console `iex -S mix phoenix.server`
 
 Now you're ready to start making requests to the web app on the port you specified and [try out some examples](#examples).

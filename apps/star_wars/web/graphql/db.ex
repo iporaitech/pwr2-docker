@@ -1,6 +1,6 @@
-defmodule Webapp.GraphQL.StarWarsDB do
+defmodule StarWars.GraphQL.DB do
   @moduledoc """
-  StarWarsDB is a "in memory" database implemented with Elixir.Agent to support the [Relay Star Wars example](https://github.com/relayjs/relay-examples/blob/master/star-wars)
+  DB is a "in memory" database implemented with Elixir.Agent to support the [Relay Star Wars example](https://github.com/relayjs/relay-examples/blob/master/star-wars)
 
   NOTICE: in the original example the format of the data is id => name where name is a string.
   """
