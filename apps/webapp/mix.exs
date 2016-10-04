@@ -55,8 +55,6 @@ defmodule Webapp.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
-     {:absinthe_relay, "~> 0.9.4"},
-     {:absinthe_plug, "~> 1.1.3"},
      {:comeonin, "~> 2.4"},
      {:guardian, "~> 0.12.0"},
      {:guardian_db, "~> 0.7"},
