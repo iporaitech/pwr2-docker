@@ -20,6 +20,7 @@ So far we've implemented the following:
 * Some interesting React/Relay components in the client(browser), including a router.
 * CSS Modules _integration_ with Material Design Lite.
 * Testing framework for the backend (Elixir/Phoenix).
+* [Docs](docs) where you can find additional information about this project.
 
 
 ## Requirements
