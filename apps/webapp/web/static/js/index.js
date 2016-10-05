@@ -35,14 +35,26 @@ function requireAuth(nextState, replace) {
 }
 
 class Application extends React.Component{
+
+  constructor(props){
+    super(props);
+    this.state = { environment: Auth.getEnvironment() };
+    const app = this;
+    Auth.onLogout = ()=> app.handleLogout() ;
+  }
+
+  handleLogout(){
+    this.setState({ environment: Auth.getEnvironment() })
+  }
+
   render(){
     return (
       <Router history={browserHistory}
         render={applyRouterMiddleware(useRelay)}
-        environment={Auth.getEnvironment()}>
+        environment={this.state.environment}>
         <Route path="/" component={Hello}/>
         <Route path="/login" component={Login}/>
-        <Route path="/admin" component={AdminLayout} onEnter={requireAuth}>
+        <Route path="/admin" component={AdminLayout} onEnter={requireAuth} >
           <IndexRoute component={Hello}/>
           <Route path="star-wars" component={StarWarsApp} queries={StarWarsQueries}/>
           <Route path="graphiql" component={GraphiQL} />
