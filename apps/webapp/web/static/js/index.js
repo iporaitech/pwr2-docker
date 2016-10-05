@@ -39,8 +39,7 @@ class Application extends React.Component{
   constructor(props){
     super(props);
     this.state = { environment: Auth.getEnvironment() };
-    const app = this;
-    Auth.onLogout = ()=> app.handleLogout() ;
+    Auth.onLogout = ()=> this.handleLogout();
   }
 
   handleLogout(){
