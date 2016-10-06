@@ -36,14 +36,15 @@ function requireAuth(nextState, replace) {
 
 const routes = (
   <Route path="/" >
-    <Route path="login" component={Login}/>
-    <Route path="admin" component={AdminLayout} onEnter={requireAuth} >
+    <IndexRoute component={Hello}/>
+    <Route path="/login" component={Login}/>
+    <Route path="/admin" component={AdminLayout} onEnter={requireAuth} >
       <IndexRoute component={Hello}/>
       <Route path="star-wars" component={StarWarsApp} queries={StarWarsQueries}/>
       <Route path="graphiql" component={GraphiQL} />
     </Route>
   </Route>
-);
+)
 
 class Application extends React.Component{
 
