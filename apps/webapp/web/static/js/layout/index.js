@@ -14,7 +14,7 @@ class Layout extends React.Component {
             <span styleName="mdl-layout-title">pwr2-docker</span>
             <div styleName="mdl-layout-spacer"></div>
             <nav styleName="mdl-navigation">
-              <Link to="/" styleName="mdl-navigation__link">
+              <Link to="/admin" styleName="mdl-navigation__link">
                 Inicio
               </Link>
               <Link to="/admin/star-wars" styleName="mdl-navigation__link">
@@ -29,7 +29,7 @@ class Layout extends React.Component {
         <div styleName="mdl-layout__drawer">
           <span styleName="mdl-layout-title">Admin</span>
           <nav styleName="mdl-navigation">
-            <Link to="/" styleName="mdl-navigation__link">
+            <Link to="/admin" styleName="mdl-navigation__link">
               Inicio
             </Link>
             <Link to="/admin/star-wars" styleName="mdl-navigation__link">

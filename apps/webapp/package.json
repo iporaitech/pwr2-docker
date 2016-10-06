@@ -46,7 +46,7 @@
     "react-dom": "^15.3.0",
     "react-relay": "^0.9.2",
     "react-router": "^2.7.0",
-    "react-router-relay": "https://github.com/iporaitech/react-router-relay/tarball/build",
+    "react-router-relay": "^0.13.5",
     "sync-request": "^3.0.1"
   },
   "license": "MIT"
