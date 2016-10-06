@@ -1,5 +1,11 @@
 # react-router-relay and Auth
 
+## Auth
+
+[Auth](apps/webapp/web/static/js/lib/auth.js) is a class created to manage the `Relay.Environment` and any information related to the authentication process, for example the [JWT access token](https://jwt.io/introduction/). Most of the `Auth` functions are self explanatory the only thing that could be a little tricky is the `logout(callback)`. Logout receives an optional callback function as argument, but `Auth` also have an `onLogout` property  that is an optional function that is executed before the mentioned callback. This `onLogout` property is very useful because `Auth` is imported as a singleton so you can set this property in any moment. You can see this in action in the code bellow.
+
+
+## react-router-relay
 
 We need to reset the Router environment because when an user logs out we need to remove all the data stored there. A simple solution would be to use environment as a function, in that case we could change the function's returned value and it would be very straightforward. But as [react-router-relay does not support this feature](https://goo.gl/vwxrPK) we have to do the following:
 ```javascript
