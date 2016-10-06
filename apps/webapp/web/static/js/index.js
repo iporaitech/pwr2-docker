@@ -34,17 +34,47 @@ function requireAuth(nextState, replace) {
   }
 }
 
-ReactDOM.render(
-  <Router history={browserHistory}
-    render={applyRouterMiddleware(useRelay)}
-    environment={() => Auth.getEnvironment()}>
-    <Route path="/" component={Hello}/>
-    <Route path="/login" component={Login}/>
+function verifySession(nextState, replace){
+  if(Auth.loggedIn())
+    replace({ pathname: "/admin" })
+}
+
+const routes = (
+  <Route path="/">
+    <IndexRoute component={Hello}/>
+    <Route path="/login" component={Login}  onEnter={verifySession}/>
     <Route path="/admin" component={AdminLayout} onEnter={requireAuth}>
       <IndexRoute component={Hello}/>
       <Route path="star-wars" component={StarWarsApp} queries={StarWarsQueries}/>
       <Route path="graphiql" component={GraphiQL} />
     </Route>
-  </Router>,
+  </Route>
+)
+
+class Application extends React.Component{
+
+  constructor(props){
+    super(props);
+    this.state = { environment: Auth.getEnvironment() };
+    Auth.onLogout = ()=> this.handleLogout();
+  }
+
+  handleLogout(){
+    this.setState({ environment: Auth.getEnvironment() })
+  }
+
+  render(){
+    return (
+      <Router history={browserHistory}
+        render={applyRouterMiddleware(useRelay)}
+        environment={this.state.environment}>
+        {routes}
+      </Router>
+    );
+  }
+}
+
+ReactDOM.render(
+  <Application/>,
   document.getElementById('react-root')
 );
