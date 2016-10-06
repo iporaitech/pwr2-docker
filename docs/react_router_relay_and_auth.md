@@ -1,3 +1,6 @@
+# react-router-relay and Auth
+
+
 We need to reset the Router environment because when an user logs out we need to remove all the data stored there. A simple solution would be to use environment as a function, in that case we could change the function's returned value and it would be very straightforward. But as [react-router-relay does not support this feature](https://goo.gl/vwxrPK) we have to do the following:
 ```javascript
 /*
