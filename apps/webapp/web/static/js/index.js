@@ -34,10 +34,15 @@ function requireAuth(nextState, replace) {
   }
 }
 
+function verifySession(nextState, replace){
+  if(Auth.loggedIn())
+    replace({ pathname: "/admin" })
+}
+
 const routes = (
   <Route path="/">
     <IndexRoute component={Hello}/>
-    <Route path="/login" component={Login}/>
+    <Route path="/login" component={Login}  onEnter={verifySession}/>
     <Route path="/admin" component={AdminLayout} onEnter={requireAuth}>
       <IndexRoute component={Hello}/>
       <Route path="star-wars" component={StarWarsApp} queries={StarWarsQueries}/>
