@@ -60,9 +60,10 @@ class Application extends React.Component{
 
   render(){
     return (
-      <Router history={browserHistory} routes={routes}
+      <Router history={browserHistory}
         render={applyRouterMiddleware(useRelay)}
         environment={this.state.environment}>
+        {routes}
       </Router>
     );
   }
