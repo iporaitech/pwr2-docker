@@ -172,6 +172,13 @@ See [mix.exs](mix.exs) to check current version.
 
 See [mix.exs](mix.exs) to check current versions.
 
+Also, you might want to checkout the Relay GraphQL specifications to write GraphQL schemas to support Relay apps:
+
+* [Object Identification](https://facebook.github.io/relay/graphql/objectidentification.htm)
+* [Cursor Connections](https://facebook.github.io/relay/graphql/connections.htm)
+* [Input Object Mutations](https://facebook.github.io/relay/graphql/mutations.htm)
+
+
 ### Node
 [Node.js®](https://nodejs.org/en/) is a JavaScript runtime built on Chrome's V8 JavaScript engine. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient. Node.js' package ecosystem, npm, is the largest ecosystem of open source libraries in the world.
 
