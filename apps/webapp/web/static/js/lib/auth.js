@@ -18,6 +18,7 @@ class Auth {
     // "Renew" this.environment each login
     this.environment = new Relay.Environment();
     this.environment.injectNetworkLayer(this._buildNetworkLayer());
+    if (this.afterLogin) this.afterLogin();
   }
 
   logout(callback) {
@@ -26,9 +27,8 @@ class Auth {
     // Renew this.environment each logout to override
     this.environment = new Relay.Environment();
     this.environment.injectNetworkLayer(this._buildNetworkLayer());
-    if (this.onLogout) this.onLogout();
     if (callback) callback();
-
+    if (this.afterLogout) this.afterLogout();
   }
 
   loggedIn() {
