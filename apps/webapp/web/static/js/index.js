@@ -52,15 +52,15 @@ const routes = (
 )
 
 class Application extends React.Component{
-
   constructor(props){
     super(props);
-    this.state = { environment: Auth.getEnvironment() };
-    Auth.onLogout = ()=> this.handleLogout();
+    this.state = {environment: Auth.getEnvironment()};
+    Auth.afterLogin = () => this.resetRelayEnvironment();
+    Auth.afterLogout = () => this.resetRelayEnvironment();
   }
 
-  handleLogout(){
-    this.setState({ environment: Auth.getEnvironment() })
+  resetRelayEnvironment(){
+    this.setState({environment: Auth.getEnvironment()});
   }
 
   render(){

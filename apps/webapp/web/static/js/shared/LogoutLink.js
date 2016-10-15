@@ -45,8 +45,9 @@ class LogoutLink extends React.Component {
       new LogoutMutation(), {
         onSuccess: response => {
           if (response.logout.loggedOut){
-            Auth.logout();
-            this.props.router.replace('/login');
+            Auth.logout(() => {
+              this.props.router.replace('/login')
+            });
           } else {
             throw new Error("Could not logout")
           }
