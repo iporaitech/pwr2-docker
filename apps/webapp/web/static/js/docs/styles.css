@@ -19,16 +19,16 @@ h2.mdl-menu__title-text {
     padding-top: 0;
 }
 
-a {
+.doc-page a {
     color: #4183C4;
     text-decoration: none;
 }
 
-a.absent {
+.doc-page a.absent {
     color: #cc0000;
 }
 
-a.anchor {
+.doc-page a.anchor {
     display: block;
     padding-left: 30px;
     margin-left: -30px;
@@ -43,7 +43,7 @@ a.anchor {
     text-decoration: underline;
 }
 
-h1, h2, h3, h4, h5, h6 {
+.doc-page h1, h2, h3, h4, h5, h6 {
     margin: 20px 0 10px;
     padding: 0;
     font-weight: bold;
@@ -52,124 +52,120 @@ h1, h2, h3, h4, h5, h6 {
     position: relative;
 }
 
-h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
-    text-decoration: underline;
-}
-
-h1 tt, h1 code {
+.doc-page h1 tt, .doc-page h1 code {
     font-size: inherit;
 }
 
-h2 tt, h2 code {
+.doc-page h2 tt, .doc-page h2 code {
     font-size: inherit;
 }
 
-h3 tt, h3 code {
+.doc-page h3 tt, .doc-page h3 code {
     font-size: inherit;
 }
 
-h4 tt, h4 code {
+.doc-page h4 tt, .doc-page h4 code {
     font-size: inherit;
 }
 
-h5 tt, h5 code {
+.doc-page h5 tt, .doc-page h5 code {
     font-size: inherit;
 }
 
-h6 tt, h6 code {
+.doc-page h6 tt, .doc-page h6 code {
     font-size: inherit;
 }
 
-h1 {
+.doc-page h1 {
     font-size: 34px;
     border-bottom: 1px solid #DDDDDD;
     color: black;
 }
 
-h2 {
+.doc-page h2 {
     font-size: 24px;
     border-bottom: 1px solid #DDDDDD;
     color: black;
 }
 
-h3 {
+.doc-page h3 {
     font-size: 18px;
 }
 
-h4 {
+.doc-page h4 {
     font-size: 16px;
 }
 
-h5 {
+.doc-page h5 {
     font-size: 14px;
 }
 
-h6 {
+.doc-page h6 {
     color: #777777;
     font-size: 14px;
 }
 
-p, blockquote, ul, ol, dl, li, table, pre {
+.doc-page p, .doc-page blockquote, .doc-page ul, .doc-page ol, .doc-page dl, .doc-page li, .doc-page table, .doc-page pre {
     margin: 15px 0;
 }
 
-hr {
+.doc-page hr {
     border: 0 none;
     color: #DDDDDD;
     height: 4px;
     padding: 0;
 }
 
-body>h2:first-child {
+body>.doc-page h2:first-child {
     margin-top: 0;
     padding-top: 0;
 }
 
-body>h1:first-child {
+body>.doc-page h1:first-child {
     margin-top: 0;
     padding-top: 0;
 }
 
-body>h1:first-child+h2 {
+body>.doc-page h1:first-child+h2 {
     margin-top: 0;
     padding-top: 0;
 }
 
-body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+body>.doc-page h3:first-child, body>.doc-page h4:first-child, body>.doc-page h5:first-child, body>.doc-page h6:first-child {
     margin-top: 0;
     padding-top: 0;
 }
 
-a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+.doc-page a:first-child h1, .doc-page a:first-child h2, .doc-page a:first-child h3, .doc-page a:first-child h4, .doc-page a:first-child h5, .doc-page a:first-child h6 {
     margin-top: 0;
     padding-top: 0;
 }
 
-h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+.doc-page h1 p, .doc-page h2 p, .doc-page h3 p, .doc-page h4 p, .doc-page h5 p, .doc-page h6 p {
     margin-top: 0;
 }
 
-li p.first {
+.doc-page li p.first {
     display: inline-block;
 }
 
-ul, ol {
+.doc-page ul, .doc-page ol {
     padding-left: 30px;
 }
 
-ul :first-child, ol :first-child {
+.doc-page ul :first-child, .doc-page ol :first-child {
     margin-top: 0;
 }
 
-ul :last-child, ol :last-child {
+.doc-page ul :last-child, .doc-page ol :last-child {
     margin-bottom: 0;
 }
 
-dl {
+.doc-page dl {
     padding: 0;
 }
 
-dl dt {
+.doc-page dl dt {
     font-size: 14px;
     font-weight: bold;
     font-style: italic;
@@ -177,69 +173,65 @@ dl dt {
     margin: 15px 0 5px;
 }
 
-dl dt:first-child {
+.doc-page dl dt:first-child {
     padding: 0;
 }
 
-dl dt> :first-child {
+.doc-page dl dt> :first-child {
     margin-top: 0;
 }
 
-dl dt> :last-child {
+.doc-page dl dt> :last-child {
     margin-bottom: 0;
 }
 
-dl dd {
+.doc-page dl dd {
     margin: 0 0 15px;
     padding: 0 15px;
 }
 
-dl dd> :first-child {
+.doc-page dl dd> :first-child {
     margin-top: 0;
 }
 
-dl dd> :last-child {
+.doc-page dl dd> :last-child {
     margin-bottom: 0;
 }
 
-blockquote {
+.doc-page blockquote {
     border-left: 4px solid #dddddd;
     padding: 0 15px;
     color: #777777;
 }
 
-blockquote> :first-child {
+.doc-page blockquote> :first-child {
     margin-top: 0;
 }
 
-blockquote> :last-child {
+.doc-page blockquote> :last-child {
     margin-bottom: 0;
 }
 
-blockquote::before {
+.doc-page blockquote::before, .doc-page blockquote::after{
     display: none;
 }
 
-blockquote::after {
-    display: none;
-}
-
-table {
+.doc-page table {
     padding: 0;
 }
 
-table tr {
+.doc-page table tr {
     border-top: 1px solid #DDDDDD;
     background-color: white;
     margin: 0;
     padding: 0;
 }
 
-table tr:nth-child(2n) {
+.doc-page table tr:nth-child(2n) {
     background-color: #f8f8f8;
 }
 
-table tr th {
+.doc-page table tr th {
     font-weight: bold;
     border: 1px solid #DDDDDD;
     text-align: left;
@@ -247,31 +239,31 @@ table tr th {
     padding: 6px 13px;
 }
 
-table tr td {
+.doc-page table tr td {
     border: 1px solid #DDDDDD;
     text-align: left;
     margin: 0;
     padding: 6px 13px;
 }
 
-table tr th :first-child, table tr td :first-child {
+.doc-page table tr th :first-child, .doc-page table tr td :first-child {
     margin-top: 0;
 }
 
-table tr th :last-child, table tr td :last-child {
+.doc-page table tr th :last-child, .doc-page table tr td :last-child {
     margin-bottom: 0;
 }
 
-img {
+.doc-page img {
     max-width: 100%;
 }
 
-span.frame {
+.doc-page span.frame {
     display: block;
     overflow: hidden;
 }
 
-span.frame>span {
+.doc-page span.frame>span {
     border: 1px solid #dddddd;
     display: block;
     float: left;
@@ -281,80 +273,80 @@ span.frame>span {
     width: auto;
 }
 
-span.frame span img {
+.doc-page span.frame span img {
     display: block;
     float: left;
 }
 
-span.frame span span {
+.doc-page span.frame span span {
     clear: both;
     color: #333333;
     display: block;
     padding: 5px 0 0;
 }
 
-span.align-center {
+.doc-page span.align-center {
     display: block;
     overflow: hidden;
     clear: both;
 }
 
-span.align-center>span {
+.doc-page span.align-center>span {
     display: block;
     overflow: hidden;
     margin: 13px auto 0;
     text-align: center;
 }
 
-span.align-center span img {
+.doc-page span.align-center span img {
     margin: 0 auto;
     text-align: center;
 }
 
-span.align-right {
+.doc-page span.align-right {
     display: block;
     overflow: hidden;
     clear: both;
 }
 
-span.align-right>span {
+.doc-page span.align-right>span {
     display: block;
     overflow: hidden;
     margin: 13px 0 0;
     text-align: right;
 }
 
-span.align-right span img {
+.doc-page span.align-right span img {
     margin: 0;
     text-align: right;
 }
 
-span.float-left {
+.doc-page span.float-left {
     display: block;
     margin-right: 13px;
     overflow: hidden;
     float: left;
 }
 
-span.float-left span {
+.doc-page span.float-left span {
     margin: 13px 0 0;
 }
 
-span.float-right {
+.doc-page span.float-right {
     display: block;
     margin-left: 13px;
     overflow: hidden;
     float: right;
 }
 
-span.float-right>span {
+.doc-page span.float-right>span {
     display: block;
     overflow: hidden;
     margin: 13px auto 0;
     text-align: right;
 }
 
-code, tt {
+.doc-page code, tt {
     margin: 0 2px;
     padding: 0 5px;
     white-space: nowrap;
@@ -363,7 +355,7 @@ code, tt {
     border-radius: 3px;
 }
 
-pre code {
+.doc-page pre code {
     margin: 0;
     padding: 0;
     white-space: pre;
@@ -371,7 +363,7 @@ pre code {
     background: transparent;
 }
 
-pre {
+.doc-page pre {
     background-color: #f8f8f8;
     border: 1px solid #DDDDDD;
     font-size: 13px;
@@ -381,7 +373,7 @@ pre {
     border-radius: 3px;
 }
 
-pre code, pre tt {
+.doc-page pre code, .doc-page pre tt {
     background-color: transparent;
     border: none;
 }
