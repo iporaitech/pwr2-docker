@@ -16,7 +16,6 @@ h2.mdl-menu__title-text {
 
 .mdl-menu__supporting-text {
     composes: mdl-card__supporting-text from "material-design-lite/material.css";
-    padding-top: 0;
 }
 
 .doc-page a {
