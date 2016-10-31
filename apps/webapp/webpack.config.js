@@ -11,29 +11,28 @@ module.exports = {
     root: [
       rootDir,
       path.resolve('./web/static/js')
-    ]
+    ],
+    extensions: ['', '.js', '.css', '.scss']
   },
   entry: {
+    polyfill: "babel-polyfill",
     vendor: Object.keys(pkg.dependencies).filter(function(pkgName){
-      // vendor and app use runtime from commons chunk
+      // TODO: review this babel-runtime config now that we only have vendor and app
       return pkgName != "babel-runtime"
     }),
     app: "./web/static/js/index"
   },
   output: {
     path: "./priv/static",
-    filename: "js/app.bundle.js"
+    filename: "js/[name].js"
   },
   plugins: [
-    // NOTICE: the order of CommonsChunkPlugin is important!
-    new webpack.optimize.CommonsChunkPlugin('vendor', 'js/vendor.bundle.js'),
-    new webpack.optimize.CommonsChunkPlugin('js/commons.chunk.js'),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      chunks: ['vendor', 'app']
+    }),
     new ExtractTextPlugin("css/app.css", {
       allChunks: true // put css of all chunks in app.css
-    }),
-    new webpack.DefinePlugin({
-      // Define here some global CONFIG "constants" needed in the frontend
-      GRAPHQL_URL: JSON.stringify(process.env.GRAPHQL_URL)
     })
   ],
   module: {
@@ -49,26 +48,14 @@ module.exports = {
         presets: ['react', 'es2015', 'stage-0']
       }
     },{
-      // Loader for MDL and GraphiQL need special treatment because its JS depends on class names
-      test: /\.css$/,
-      include: [
-        /material-design-lite/,
-        /graphiql/
-      ],
+      test: /\.scss$/,
       loader: ExtractTextPlugin.extract(
-        'style-loader?sourceMap',
-        'css?modules&importLoaders=1&localIdentName=[local]'
-      )
-    },{
-      // Loader for the rest of the css
-      test: /\.css$/,
-      exclude: [
-        /material-design-lite/,
-        /graphiql/
-      ],
-      loader: ExtractTextPlugin.extract(
-        'style-loader?sourceMap',
-        'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]'
+        'style?sourceMap',
+        [
+          'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
+          'resolve-url',
+          'sass?sourceMap'
+        ]
       )
     }]
   }
