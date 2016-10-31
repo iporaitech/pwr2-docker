@@ -3,7 +3,8 @@
   margin: 0;
   width: 100%;
   overflow: hidden;
-}
-.graphiql-container {
-  height: 100vh;
+
+  & > div {
+    height: 100vh;
+  }
 }
