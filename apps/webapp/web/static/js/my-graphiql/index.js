@@ -2,17 +2,17 @@ import React from 'react';
 import GraphiQL from 'graphiql';
 import fetch from 'isomorphic-fetch';
 import CSSModules from 'react-css-modules';
-import 'graphiql/graphiql.css';
-import styles from './styles.css';
+import '!style!css!graphiql/graphiql.css';
+import styles from './styles.scss';
 import Auth from 'lib/auth';
 
 class MyGraphiQL extends React.Component {
   render(){
     return(
       <div styleName="graphiql-wrapper">
-        <GraphiQL styleName="graphiql-container" fetcher={
+        <GraphiQL fetcher={
           (graphQLParams) => {
-            return fetch(window.location.origin + '/graphql/graphiql', {
+            return fetch(GRAPHIQL_URL, {
               method: 'post',
               headers: {
                 "Content-Type": "application/json",

@@ -1,18 +1,25 @@
 // file: login/index.js
-import React from 'react';
-import Relay from 'react-relay';
-import mdlUpgrade from 'lib/mdlUpgrade';
-import Loading from 'shared/loading';
-import material from 'material-design-lite/material.css';
-import classNames from 'classnames/bind';
-import styles from './styles.css';
-import { withRouter } from 'react-router';
-import LoginMutation from './mutation';
-import Auth from 'lib/auth';
 
-const cx = classNames.bind(styles);
+import React, { PropTypes } from 'react';
+import Relay from 'react-relay';
+import { withRouter } from 'react-router';
+import Auth from 'lib/auth';
+import LoginMutation from './mutation';
+
+// Base components
+import Spinner from 'shared/spinner';
+import Layout from 'shared/layout';
+import Textfield from 'shared/textfield';
+
+// CSS
+import CSSModules from 'react-css-modules';
+import mdlUpgrade from 'lib/mdlUpgrade';
+import styles from './styles.scss';
 
 class Login extends React.Component {
+  static propTypes = {
+    styles: PropTypes.object
+  }
 
   constructor(props) {
     super(props);
@@ -28,8 +35,8 @@ class Login extends React.Component {
 
     this.props.relay.commitUpdate(
       new LoginMutation({
-        email: this.refs.email.value,
-        password: this.refs.password.value
+        email: this.refs.email.value(),
+        password: this.refs.password.value()
       }), {
         onSuccess: response => {
           Auth.login(response.login.accessToken);
@@ -42,49 +49,54 @@ class Login extends React.Component {
           }
         },
         onFailure: transaction => {
-          this.setState({hasError: true});
-          this.setState({isLoading: false});
+          this.setState({
+            hasError: true,
+            isLoading: false
+          });
         }
       }
     );
   }
 
   render() {
-    // We use classNames for CSS that depends on MDL javascript
-    const inputClassName = cx(
-      "mdl-js-textfield",
-      'mdl-textfield',
-      'mdl-textfield--floating-label',
-      {"is-invalid": this.state.hasError}
-    );
-    const { isLoading } = this.state;
+    const { styles } = this.props;
+    const { isLoading, hasError } = this.state;
 
     return (
-      <div className="mdl-js-layout" styleName="login-layout">
+      <Layout styleName="login-layout">
         <main styleName="login-content">
           <div styleName="card">
             <div styleName="card-title">
               <h2 styleName="mdl-card__title-text">Login</h2>
             </div>
-            <form onSubmit={this.handleSubmit.bind(this)}>
+            <form id="login-form" onSubmit={this.handleSubmit.bind(this)}>
               <div>
-                { isLoading && (<Loading />)}
+                { isLoading && (<div styleName="loading">
+                  <Spinner />
+                </div>)}
+
                 <div styleName="mdl-card__supporting-text">
                   { this.state.hasError && (
-                    <span styleName="login-error">Incorrect email or password</span>
+                    <span styleName="login-error">
+                      Incorrect email or password
+                    </span>
                   )}
-                  <div className={inputClassName}>
-                    <input ref="email" styleName="mdl-textfield__input" type="text" id="email" />
-                    <label styleName="mdl-textfield__label" htmlFor="email">Email</label>
-                  </div>
-                  <div className={inputClassName}>
-                    <input ref="password" styleName="mdl-textfield__input" type="password" id="userpass" />
-                    <label styleName="mdl-textfield__label" htmlFor="userpass">Password</label>
-                  </div>
+                  <Textfield id="email"
+                    ref="email"
+                    labelText="Email"
+                    floatingLabel={true}
+                    hasError={hasError} />
+
+                  <Textfield id="password"
+                    ref="password"
+                    type="password"
+                    labelText="Password"
+                    floatingLabel={true}
+                    hasError={hasError} />
                 </div>
+
                 <div styleName="mdl-card__actions">
-                  <button
-                    className="mdl-js-button mdl-js-ripple-effect mdl-button mdl-button--colored">
+                  <button type="submit" className="mdl-js-button mdl-js-ripple-effect" styleName="login-button">
                     Enter
                   </button>
                 </div>
@@ -92,16 +104,17 @@ class Login extends React.Component {
             </form>
           </div>
         </main>
-      </div>
+      </Layout>
     )
   }
 }
 
-// NOTICE: we merge the material and styles
-// style.css contains customizations on some mdl classes
+/*** exports ***/
 export default Relay.createContainer(
   withRouter(
-    mdlUpgrade(Login, Object.assign({}, material, styles))
+    mdlUpgrade(
+      CSSModules(Login, styles)
+    )
   ),{
     fragments: {}
   }
