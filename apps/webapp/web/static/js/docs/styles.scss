@@ -1,21 +1,24 @@
-.mdl-menu-width {
-    width: 350px;
+@import '~material-design-lite/src/card/card';
+@import '~material-design-lite/src/palette/palette';
+
+.toc-menu li:first-child {
+  @extend .mdl-card__title;
+  @extend .mdl-color--primary;
+  @extend .mdl-color-text--white;
+  margin-bottom: 10px !important;
 }
 
-.mdl-menu__title {
-    composes: mdl-card__title mdl-color--primary mdl-color-text--white from "material-design-lite/material.css";
+.toc-menu li:first-child a {
+  @extend .mdl-card__title-text;
 }
 
-.mdl-menu__title-text {
-    composes: mdl-card__title-text from "material-design-lite/material.css";
+.toc-menu a {
+  color: black;
+  text-decoration: none !important;
 }
 
 h2.mdl-menu__title-text {
     border-bottom: 0;
-}
-
-.mdl-menu__supporting-text {
-    composes: mdl-card__supporting-text from "material-design-lite/material.css";
 }
 
 .doc-page a {

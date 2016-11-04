@@ -11,7 +11,7 @@ import useRelay from 'react-router-relay';
 // App components
 import AdminLayout from 'layout';
 import Login from 'login';
-import StarWarsApp, { Queries as StarWarsQueries } from 'star_wars/components/StarWarsApp';
+import StarWarsApp, { Queries as StarWarsQueries } from 'star-wars';
 import GraphiQL from 'my-graphiql';
 import Docs from 'docs';
 

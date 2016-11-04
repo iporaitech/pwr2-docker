@@ -1,11 +1,18 @@
 // file: docs/index.js
 import React from 'react';
-import mdlUpgrade from 'lib/mdlUpgrade';
-import material from 'material-design-lite/material.css';
-import styles from 'docs/styles.css';
+import { withRouter } from 'react-router';
+import fetch from 'isomorphic-fetch';
 import TableOfContents from 'docs/TableOfContents';
 import DocPage from 'docs/DocPage';
-import fetch from 'isomorphic-fetch';
+
+// Base components
+import Spinner from 'shared/spinner';
+import Layout from 'shared/layout';
+
+// CSS
+import CSSModules from 'react-css-modules';
+import mdlUpgrade from 'lib/mdlUpgrade';
+import styles from 'docs/styles.scss';
 
 class Index extends React.Component {
   constructor(props) {
@@ -61,7 +68,7 @@ class Index extends React.Component {
 
   render() {
     return (
-      <div className="page-content">
+      <div>
         <TableOfContents docs={this.state.docs}/>
         <DocPage file={this.state.file}/>
       </div>
@@ -69,4 +76,9 @@ class Index extends React.Component {
   }
 }
 
-export default mdlUpgrade(Index, Object.assign({}, material, styles), {allowMultiple: true});
+/*** exports ***/
+export default  withRouter(
+  mdlUpgrade(
+    CSSModules(Index, styles)
+  )
+);

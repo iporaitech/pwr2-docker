@@ -1,36 +1,54 @@
 // file: docs/TableOfContents.js
 import React from 'react';
-import {Link} from 'react-router';
+import { withRouter, Link } from 'react-router';
+
+// Base components
+import Grid, { Cell } from 'shared/grid';
+import Button from 'shared/button';
+
+import Menu, {
+  MenuItem,
+} from 'shared/menu';
+
+import Layout, {
+  LayoutIcon,
+} from 'shared/layout';
+
+// CSS
+import CSSModules from 'react-css-modules';
 import mdlUpgrade from 'lib/mdlUpgrade';
-import material from 'material-design-lite/material.css';
-import styles from 'docs/styles.css';
+import styles from 'docs/styles.scss';
 
 class TableOfContents extends React.Component {
   render() {
-    const list = this.props.docs.map((item) => {
-      return <Link key={item.filename} activeStyle={{ color: "#3F51B5" }} to={`/docs/${item.filename}`} className="mdl-menu__item">{item.title}</Link>
-    });
 
     return (
-      <div styleName="mdl-grid">
-        <div styleName="mdl-cell mdl-cell--11-offset mdl-cell--1-col">
-          <button id="dropdown-menu-docs" className="mdl-button mdl-js-button mdl-button--primary" styleName="mdl-menu--bottom-right" title="Documentations">
-            <i styleName="material-icons">list</i>
-          </button>
-          <ul className="mdl-menu mdl-menu--bottom-right mdl-js-menu" styleName="mdl-menu-width" htmlFor="dropdown-menu-docs">
-            <li>
-              <div styleName="mdl-menu__title">
-                <h2 styleName="mdl-menu__title-text">Table of Contents</h2>
-              </div>
-            </li>
-            <div styleName="mdl-menu__supporting-text">
-              {list}
-            </div>
-          </ul>
-        </div>
-      </div>
+      <Grid>
+        <Cell offset={11} col={1}>
+          <Button id="dropdown-menu-docs" primary title="Documentations">
+            <LayoutIcon className="material-icons">list</LayoutIcon>
+          </Button>
+          <Menu styleName="toc-menu" bottomRight={true} htmlFor="dropdown-menu-docs">
+            <MenuItem>Table Of Contents</MenuItem>
+            {this.props.docs.map((item) => {
+              return <MenuItem key={item.filename}>
+                <Link to={`/docs/${item.filename}`}
+                  activeStyle={{ color: "#3F51B5" }}
+                  styleName="">
+                  {item.title}
+                </Link>
+              </MenuItem>;
+            })}
+          </Menu>
+        </Cell>
+      </Grid>
     );
   }
 }
 
-export default mdlUpgrade(TableOfContents, Object.assign({}, material, styles), {allowMultiple: true});
+/*** exports ***/
+export default withRouter(
+  mdlUpgrade(
+    CSSModules(TableOfContents, styles)
+  )
+);
