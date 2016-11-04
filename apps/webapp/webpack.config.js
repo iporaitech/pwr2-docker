@@ -57,6 +57,9 @@ module.exports = {
           'sass?sourceMap'
         ]
       )
+    },{
+      test: /\.json$/,
+      loader: 'json'
     }]
   }
 };
