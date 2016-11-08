@@ -14,6 +14,7 @@ import Login from 'login';
 import StarWarsApp, { Queries as StarWarsQueries } from 'star-wars';
 import GraphiQL from 'my-graphiql';
 import Docs from 'docs';
+import NewUser from 'users/New';
 
 // Auth singleton
 import Auth from 'lib/auth';
@@ -50,6 +51,7 @@ const routes = (
     <Route path="/login" component={Login}  onEnter={verifySession}/>
     <Route path="/admin" component={AdminLayout} onEnter={requireAuth}>
       <IndexRoute component={Hello}/>
+      <Route path="users/new" component={NewUser}/>
       <Route path="star-wars" component={StarWarsApp} queries={StarWarsQueries}/>
       <Route path="graphiql" component={GraphiQL} />
     </Route>

@@ -37,7 +37,7 @@ export default class extends React.Component {
         <LayoutDrawer>
           <Navigation>
             <NavigationLink to="/">Inicio</NavigationLink>
-            <NavigationLink to="/admin/users">Users</NavigationLink>
+            <NavigationLink to="/admin/users/new">Users</NavigationLink>
             <NavigationLink to="/admin/star-wars">Star Wars Examples</NavigationLink>
             <NavigationLink to="/admin/graphiql">GraphiQL</NavigationLink>
             <NavigationLink to="/docs">Documentation</NavigationLink>
