@@ -10,6 +10,7 @@ export class Cell extends React.Component {
     col: PropTypes.number,
     phone: PropTypes.number,
     tablet: PropTypes.number,
+    desktop: PropTypes.number,
     offset: PropTypes.number,
     offsetDesktop: PropTypes.number,
     offsetTablet: PropTypes.number,
@@ -20,7 +21,7 @@ export class Cell extends React.Component {
   };
 
   render() {
-    const { className, align, col, phone, tablet, offset, offsetDesktop,
+    const { className, align, col, phone, tablet, desktop, offset, offsetDesktop,
       offsetTablet, offsetPhone, hideDesktop, hidePhone, hideTablet,
       children, ...otherProps } = this.props;
 
@@ -29,6 +30,7 @@ export class Cell extends React.Component {
         [`mdl-cell--${col}-col`]: col,
         [`mdl-cell--${phone}-col-phone`]: phone,
         [`mdl-cell--${tablet}-col-tablet`]: tablet,
+        [`mdl-cell--${desktop}-col-tablet`]: desktop,
         // alignment and offsets
         [`mdl-cell--${align}`]: align,
         [`mdl-cell--${offset}-offset`]: offset,

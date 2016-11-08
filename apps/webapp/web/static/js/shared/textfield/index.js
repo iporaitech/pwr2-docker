@@ -12,15 +12,16 @@ import '!style!css!sass!material-design-lite/src/textfield/_textfield.scss';
 
 export default class Textfield extends React.Component {
   static propTypes = {
-    type: PropTypes.string,
+    id: PropTypes.string.isRequired,
+    className: PropTypes.string,
+    tag: PropTypes.oneOf(['input', 'textarea']),
     labelText: PropTypes.string,
     floatingLabel: PropTypes.bool,
-    hasError: PropTypes.bool,
-    onChange: PropTypes.func
+    hasError: PropTypes.bool
   }
 
   static defaultProps = {
-    type: "text",
+    tag: 'input',
     floatingLabel: true,
     hasError: false
   }
@@ -33,8 +34,8 @@ export default class Textfield extends React.Component {
   }
 
   render() {
-    const { id, type, floatingLabel, hasError, className,
-      labelText,  onChange } = this.props;
+    const { id, className, tag, labelText, floatingLabel,
+      hasError, ...otherProps } = this.props;
 
     const classes = classNames('mdl-js-textfield mdl-textfield', {
       'mdl-textfield--floating-label': floatingLabel,
@@ -43,7 +44,13 @@ export default class Textfield extends React.Component {
 
     return (
       <div className={classes} >
-        <input ref="input" id={id} type={type} onChange={onChange} className="mdl-textfield__input" />
+        {React.createElement(
+          tag, Object.assign({}, otherProps, {
+            id: id,
+            ref: 'input',
+            className: 'mdl-textfield__input'
+          })
+        )}
         <label htmlFor={id} className="mdl-textfield__label">{labelText}</label>
       </div>
     );
