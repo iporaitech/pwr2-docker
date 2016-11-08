@@ -1,0 +1,13 @@
+@import '~material-design-lite/src/typography/typography';
+@import '~material-design-lite/src/palette/palette';
+
+.form-title {
+  @extend .mdl-color-text--grey-700;
+  @extend .mdl-typography--display-1;
+  @extend .mdl-typography--text-center;
+}
+
+.form-section-heading {
+  @extend .mdl-color-text--grey-600;
+  @extend .mdl-typography--text-center;
+}
