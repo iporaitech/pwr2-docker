@@ -47,7 +47,6 @@ defmodule Webapp.Router do
     get "/graphiql", PageController, :graphiql
     get "/star-wars", PageController, :star_wars
     get "/users", PageController, :users
-    get "/users/new", PageController, :users
   end
 
 end

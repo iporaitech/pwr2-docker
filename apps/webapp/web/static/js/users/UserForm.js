@@ -1,4 +1,4 @@
-// file: users/New.js
+// file: users/UserForm.js
 
 import React, { PropTypes } from 'react';
 import Relay from 'react-relay';
@@ -15,7 +15,7 @@ import CSSModules from 'react-css-modules';
 import mdlUpgrade from 'lib/mdlUpgrade';
 import styles from './styles.scss';
 
-class New extends React.Component {
+class UserForm extends React.Component {
   static propTypes = {
     title: PropTypes.string,
     user: PropTypes.object
@@ -103,6 +103,6 @@ class New extends React.Component {
 /*** exports ***/
 export default withRouter(
   mdlUpgrade(
-    CSSModules(New, styles)
+    CSSModules(UserForm, styles)
   )
 );
