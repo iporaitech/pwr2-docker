@@ -30,7 +30,7 @@ RUN curl -sL https://deb.nodesource.com/setup_$NODE_VERSION_MAJOR.x | bash - && 
 
 # Create app user and set WORKDIR to its home dir
 RUN adduser --ingroup staff --disabled-password --gecos "" app
-ENV APP_HOME=/home/app/webapp
+ENV APP_HOME=/home/app/umbrella
 RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
 
