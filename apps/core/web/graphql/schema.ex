@@ -1,10 +1,10 @@
-defmodule Web.GraphQL.Schema do
+defmodule Core.GraphQL.Schema do
   use Absinthe.Schema
   use Absinthe.Relay.Schema
-  alias Web.GraphQL.Resolver
+  alias Core.GraphQL.Resolver
 
-  import_types Web.GraphQL.Types.AuthMutations
-  import_types Web.GraphQL.Types.Viewer
+  import_types Core.GraphQL.Types.AuthMutations
+  import_types Core.GraphQL.Types.Viewer
 
   query do
     import_fields :viewer_field

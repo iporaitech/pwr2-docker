@@ -1,4 +1,4 @@
-defmodule Web.GraphQL.Resolver do
+defmodule Core.GraphQL.Resolver do
   @moduledoc """
   Functions to resolve GraphQL schema fields.
   """
