@@ -1,4 +1,4 @@
-defmodule Web.GraphQL.Types.AuthMutations do
+defmodule Core.GraphQL.Types.AuthMutations do
   use Absinthe.Schema.Notation
   use Absinthe.Relay.Schema.Notation
   import Comeonin.Bcrypt, only: [checkpw: 2, dummy_checkpw: 0]

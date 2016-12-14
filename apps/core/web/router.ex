@@ -20,15 +20,15 @@ defmodule Core.Router do
     plug Core.Plug.GraphQLContext, repo: Core.Repo
   end
 
-  forward "/star-wars", StarWars.Router
+  # forward "/star-wars", StarWars.Router
 
   # Routes
   # NOTE: every data related request is done through GraphQL, including login/logout.
   scope "/graphql" do
     pipe_through [:graphql]
 
-    post "/graphiql", Absinthe.Plug.GraphiQL, schema: Web.GraphQL.Schema
-    forward "/", Absinthe.Plug, schema: Web.GraphQL.Schema
+    post "/graphiql", Absinthe.Plug.GraphiQL, schema: Core.GraphQL.Schema
+    forward "/", Absinthe.Plug, schema: Core.GraphQL.Schema
   end
 
   scope "/", Core do

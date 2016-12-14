@@ -46,10 +46,3 @@ config :core, Core.Repo,
   hostname: System.get_env("DB_HOST"),
   port: 5432,
   pool_size: 10
-
-# Task mix test.watch task config
-config :mix_test_watch,
-  clear: true,
-  tasks: [
-    "espec"
-  ]
