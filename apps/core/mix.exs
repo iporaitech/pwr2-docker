@@ -12,7 +12,7 @@ defmodule Core.Mixfile do
      build_path: "../../_build",
      config_path: "../../config/config.exs",
      deps_path: "../../deps",
-     lockfile: "../../mix.lock",     
+     lockfile: "../../mix.lock",
      aliases: aliases(),
      deps: deps(),
      preferred_cli_env: [espec: :test]]
@@ -57,18 +57,18 @@ defmodule Core.Mixfile do
      {:postgrex, ">= 0.0.0"},
      {:phoenix_html, "~> 2.6"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
-     {:gettext, "~> 0.11"},
+     {:gettext, "~> 0.13"},
      {:cowboy, "~> 1.0"},
      {:comeonin, "~> 2.4"},
-     {:guardian, "~> 0.12.0"},
+     {:guardian, "~> 0.13.0"},
      {:guardian_db, "~> 0.7"},
      {:canada, "~> 1.0.0"},
+     {:absinthe_relay, "~> 1.2"},
+     {:absinthe_plug, "~> 1.2"},
      #test packages
      {:espec_phoenix, "~> 0.6.0", only: :test, app: false},
-     {:white_bread, "~> 2.5", only: [:dev, :test] },
-     {:mix_test_watch, "~> 0.2", only: :dev},
-     {:ex_machina, "~> 1.0", only: :test},
-     {:star_wars, in_umbrella: true}
+     {:mix_test_watch, "~> 0.2", only: :test},
+     {:ex_machina, "~> 1.0", only: :test}
     ]
   end
 
