@@ -1,4 +1,4 @@
-defmodule Core.GraphQL.Resolver do
+defmodule Web.GraphQL.Resolver do
   @moduledoc """
   Functions to resolve GraphQL schema fields.
   """
@@ -29,25 +29,6 @@ defmodule Core.GraphQL.Resolver do
     end
   end
 
-  # TODO: Don't forget to remove this StarWars stuff after extracting for pwr2-docker
-  alias StarWars.GraphQL.DB, as: StarWarsDB
-  def resolve(:ship, id, current_user) do
-    with {:ok, ship} <- StarWarsDB.get(:ship, id),
-      true <- current_user |> can?(read ship) do
-      {:ok, ship}
-    else
-      {:error, _no_ship_msg} -> {:ok, nil}
-      false -> @unauthorized_error
-    end
-  end
-  def resolve(:faction, id, current_user) do
-    with {:ok, faction} <- StarWarsDB.get(:faction, id),
-      true <- current_user |> can?(read faction) do
-      {:ok, faction}
-    else
-      {:error, _no_faction_msg} -> {:ok, nil}
-      false -> @unauthorized_error
-    end
-  end
+
 
 end

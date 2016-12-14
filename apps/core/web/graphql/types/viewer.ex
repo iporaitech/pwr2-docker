@@ -1,4 +1,4 @@
-defmodule Core.GraphQL.Types.Viewer do
+defmodule Web.GraphQL.Types.Viewer do
   use Absinthe.Schema.Notation
   use Absinthe.Relay.Schema.Notation
 
