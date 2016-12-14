@@ -11,7 +11,7 @@ defmodule StarWars.GraphQL.Types do
 
   alias Absinthe.Relay.Connection
   alias StarWars.GraphQL.DB
-  alias Webapp.GraphQL.Resolver
+  alias StarWars.GraphQL.Resolver
 
 
   object :star_wars_root_field do

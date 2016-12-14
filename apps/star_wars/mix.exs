@@ -21,8 +21,8 @@ defmodule StarWars.Mixfile do
   #
   # Type `mix help compile.app` for more information.
   def application do
-    [mod: {StarWars, []},
-     applications: [:absinthe_relay, :absinthe_plug]]
+    [applications: [:logger],
+    mod: {StarWars, []}]
   end
 
   # Specifies which paths to compile per environment.
@@ -33,7 +33,18 @@ defmodule StarWars.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    []
+    [{:phoenix, "~> 1.2.0"},
+     {:phoenix_html, "~> 2.8"},
+     {:phoenix_live_reload, "~> 1.0", only: :dev},
+     {:gettext, "~> 0.11"},
+     {:cowboy, "~> 1.0"},
+     {:absinthe_relay, "~> 1.2"},
+     {:absinthe_plug, "~> 1.2"},
+     #test packages
+     {:mix_test_watch, "~> 0.2", only: :test},
+     {:ex_machina, "~> 1.0", only: :test},
+     {:wallaby, "~> 0.14.0", only: [:dev, :test]}
+   ]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
