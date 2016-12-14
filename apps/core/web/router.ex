@@ -20,13 +20,15 @@ defmodule Core.Router do
     plug Core.Plug.GraphQLContext, repo: Core.Repo
   end
 
+  forward "/star-wars", StarWars.Router
+
   # Routes
   # NOTE: every data related request is done through GraphQL, including login/logout.
   scope "/graphql" do
     pipe_through [:graphql]
 
-    post "/graphiql", Absinthe.Plug.GraphiQL, schema: Core.GraphQL.Schema
-    forward "/", Absinthe.Plug, schema: Core.GraphQL.Schema
+    post "/graphiql", Absinthe.Plug.GraphiQL, schema: Web.GraphQL.Schema
+    forward "/", Absinthe.Plug, schema: Web.GraphQL.Schema
   end
 
   scope "/", Core do
@@ -41,11 +43,9 @@ defmodule Core.Router do
 
   scope "/admin", Core.Admin, as: :admin do
     pipe_through [:browser, :browser_auth]
-    # forward "/files", Exfile.Router
 
     get "/", PageController, :index
     get "/graphiql", PageController, :graphiql
-    get "/star-wars", PageController, :star_wars
   end
 
 end

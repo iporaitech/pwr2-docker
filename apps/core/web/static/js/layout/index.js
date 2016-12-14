@@ -1,6 +1,6 @@
 // file: layout/index.js
 import React from 'react';
-import { Link } from 'react-router';
+// import { Link } from 'react-router';
 import LogoutLink from 'shared/LogoutLink';
 import mdlUpgrade from 'lib/mdlUpgrade';
 import Layout, {
