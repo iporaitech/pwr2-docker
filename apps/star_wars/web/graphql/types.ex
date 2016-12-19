@@ -11,8 +11,6 @@ defmodule StarWars.GraphQL.Types do
 
   alias Absinthe.Relay.Connection
   alias StarWars.GraphQL.DB
-  alias StarWars.GraphQL.Resolver
-
 
   object :star_wars_root_field do
     @desc """
@@ -21,10 +19,7 @@ defmodule StarWars.GraphQL.Types do
     field :factions, list_of(:faction) do
       arg :names, list_of(:string)
       resolve fn
-        # TODO: check roles in this resolver fn
-        args, %{context: %{current_user: nil}} ->
-          Resolver.unauthenticated_error
-        args, %{context: %{current_user: u}} ->
+        args, _ ->
           {:ok, DB.get_factions(args[:names])}
       end
     end

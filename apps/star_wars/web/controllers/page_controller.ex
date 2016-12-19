@@ -5,11 +5,8 @@ defmodule StarWars.PageController do
     render conn, "index.html"
   end
 
-  def login(conn, _params) do
+  def graphiql(conn, _params) do
     render conn, "index.html"
   end
 
-  def docs(conn, _params) do
-    render conn, "index.html"
-  end
 end

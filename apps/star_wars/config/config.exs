@@ -5,14 +5,19 @@
 # is restricted to this project.
 use Mix.Config
 
-config :star_wars, ecto_repos: []
 
+# Configures the endpoint
+config :star_wars, StarWars.Endpoint,
+  url: [host: "localhost"],
+  secret_key_base: "ZBOeN5ogBV5cq2p+ttL4jaja/7EIVMbkyxBYPebuhf6MzNYjO4HOtp9g2uDdQU9v",
+  render_errors: [view: StarWars.ErrorView, accepts: ~w(html json)],
+  pubsub: [name: StarWars.PubSub,
+           adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
-  metadata: [:request_id],
-  reloadable_paths: ["lib", "graphql"]
+  metadata: [:request_id]
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

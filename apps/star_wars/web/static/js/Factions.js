@@ -1,18 +1,16 @@
 // file: star-wars/index.js
 import React from 'react';
 import Relay from 'react-relay';
+import { mdlUpgrade } from 'react-to-mdl';
 
 // Base components
 import Ship from './Ship';
 import AddShipMutation from './AddShipMutation';
-import Grid, { Cell } from 'shared/grid';
-import Textfield from 'shared/textfield';
+import Grid, { Cell } from 'react-to-mdl/grid';
+import Textfield from 'react-to-mdl/textfield';
+import Button from 'react-to-mdl/button';
 
-// CSS
-import mdlUpgrade from 'lib/mdlUpgrade';
-import CSSModules from 'react-css-modules';
-
-class StarWarsApp extends React.Component {
+class StarWarsFactions extends React.Component {
   constructor(props) {
     super();
     this.state = {
@@ -92,10 +90,11 @@ class StarWarsApp extends React.Component {
                 </label>
               </Cell>
               <Cell col={12}>
-                <button onClick={this.handleAddShip.bind(this)}
-                  className="mdl-js-button mdl-button mdl-button--raised mdl-button--colored">
+                <Button primary={true}
+                  raised={true}
+                  onClick={this.handleAddShip.bind(this)}>
                   Add Ship
-                </button>
+                </Button>
               </Cell>
             </Grid>
           </Cell>
@@ -118,17 +117,17 @@ class StarWarsApp extends React.Component {
 } // class StarWarsApp
 
 /*** exports ***/
+// TODO: change harcoded ships(first: 100) and implement pagination
+const shipsLimit = 1000
 export default Relay.createContainer(
-  mdlUpgrade(
-    StarWarsApp
-  ),{
+  mdlUpgrade(StarWarsFactions), {
     fragments: {
       factions: () => Relay.QL`
         fragment on Faction @relay(plural: true) {
           id,
           factionId,
           name,
-          ships(first: 10) {
+          ships(first: 100) {
             edges {
               node {
                 id
