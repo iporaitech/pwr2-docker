@@ -5,7 +5,7 @@ import ReactMarkdown from 'react-markdown';
 import CodeBlock from './CodeBlock';
 
 // Base components
-import Grid, { Cell } from 'shared/grid';
+import Grid, { Cell } from 'react-to-mdl/grid';
 
 // CSS
 import CSSModules from 'react-css-modules';

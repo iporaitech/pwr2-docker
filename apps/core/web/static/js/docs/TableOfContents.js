@@ -3,16 +3,16 @@ import React from 'react';
 import { withRouter, Link } from 'react-router';
 
 // Base components
-import Grid, { Cell } from 'shared/grid';
-import Button from 'shared/button';
+import Grid, { Cell } from 'react-to-mdl/grid';
+import Button from 'react-to-mdl/button';
 
 import Menu, {
   MenuItem,
-} from 'shared/menu';
+} from 'react-to-mdl/menu';
 
 import Layout, {
   LayoutIcon,
-} from 'shared/layout';
+} from 'react-to-mdl/layout';
 
 // CSS
 import CSSModules from 'react-css-modules';

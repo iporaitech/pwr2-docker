@@ -13,7 +13,7 @@ import Layout, {
   NavigationLink,
   LayoutDrawer,
   LayoutContent,
-} from 'shared/layout';
+} from 'react-to-mdl/layout';
 
 import '!style!css!react-select/dist/react-select.css';
 

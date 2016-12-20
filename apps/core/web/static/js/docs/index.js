@@ -6,8 +6,8 @@ import TableOfContents from 'docs/TableOfContents';
 import DocPage from 'docs/DocPage';
 
 // Base components
-import Spinner from 'shared/spinner';
-import Layout from 'shared/layout';
+import Spinner from 'react-to-mdl/spinner';
+import Layout from 'react-to-mdl/layout';
 
 // CSS
 import CSSModules from 'react-css-modules';

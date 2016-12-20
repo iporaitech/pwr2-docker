@@ -7,9 +7,9 @@ import Auth from 'lib/auth';
 import LoginMutation from './mutation';
 
 // Base components
-import Spinner from 'shared/spinner';
-import Layout from 'shared/layout';
-import Textfield from 'shared/textfield';
+import Spinner from 'react-to-mdl/spinner';
+import Layout from 'react-to-mdl/layout';
+import Textfield from 'react-to-mdl/textfield';
 
 // CSS
 import CSSModules from 'react-css-modules';
