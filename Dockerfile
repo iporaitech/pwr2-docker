@@ -28,6 +28,11 @@ RUN rm erlang-solutions*.deb
 ENV NODE_VERSION_MAJOR=6
 RUN curl -sL https://deb.nodesource.com/setup_$NODE_VERSION_MAJOR.x | bash - && apt-get install -y nodejs
 
+# Install Yarn
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+RUN apt-get update && apt-get install yarn
+
 # Create app user and set WORKDIR to its home dir
 RUN adduser --ingroup staff --disabled-password --gecos "" app
 ENV APP_HOME=/home/app/umbrella
@@ -61,7 +66,10 @@ RUN setuser app mix do deps.get --force, deps.compile
 #
 # Set PATH so we can install node_modules outside of sources (mounted) dir and
 # to allow npm find the bin(s) to execute npm commands later.
-COPY package.json $APP_HOME/
+COPY ./apps/star_wars/package.json $APP_HOME/star_wars
+COPY ./apps/star_wars/yarn.lock $APP_HOME/star_wars
+COPY ./apps/core/package.json $APP_HOME/core
+COPY ./apps/core/yarn.lock $APP_HOME/core
 ENV PATH="/home/app/node_modules/.bin:$PATH"
 
 # Create shared node_modules for all the apps inside the umbrella
@@ -70,11 +78,12 @@ RUN mkdir /home/app/node_modules \
   && ln -s /home/app/node_modules $APP_HOME/apps/star_wars/node_modules
 
 # Install NPM dependencies for each app inside the umbrella
-RUN cd $APP_HOME/apps/core/ && npm install
-RUN cd $APP_HOME/apps/star_wars/ && npm install
+RUN cd $APP_HOME/apps/star_wars/ && yarn install
+RUN cd $APP_HOME/apps/core/ && yarn install
 
-# Install super useful pkg to check npm dependencies
-RUN cd $APP_HOME && npm install -g npm-check
+# Install useful pkg to check npm dependencies.
+# TODO: research for a yarn equivalent of npm-check
+RUN cd $APP_HOME && yarn install -g npm-check
 
 # Copy sources
 COPY . $APP_HOME
