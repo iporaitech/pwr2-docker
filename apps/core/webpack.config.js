@@ -5,7 +5,7 @@ const pkg = require(path.resolve(rootDir, 'package.json'));
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
-  devtool: "cheap-source-map",
+  devtool: "cheap-module-eval-source-map",
   context: rootDir,
   resolve: {
     root: [
