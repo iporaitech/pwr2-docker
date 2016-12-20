@@ -14,8 +14,7 @@ defmodule Core.Mixfile do
      deps_path: "../../deps",
      lockfile: "../../mix.lock",
      aliases: aliases(),
-     deps: deps(),
-     preferred_cli_env: [espec: :test]]
+     deps: deps()]
   end
 
   # Configuration for the OTP application.
@@ -44,7 +43,7 @@ defmodule Core.Mixfile do
   end
 
   # Specifies which paths to compile per environment.
-  defp elixirc_paths(:test), do: ["lib", "web", "spec/support"]
+  defp elixirc_paths(:test), do: ["lib", "web", "test/support"]
   defp elixirc_paths(_),     do: ["lib", "web"]
 
   # Specifies your project dependencies.
@@ -55,7 +54,7 @@ defmodule Core.Mixfile do
      {:phoenix_pubsub, "~> 1.0"},
      {:phoenix_ecto, "~> 3.0"},
      {:postgrex, ">= 0.0.0"},
-     {:phoenix_html, "~> 2.6"},
+     {:phoenix_html, "~> 2.8"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.13"},
      {:cowboy, "~> 1.0"},
