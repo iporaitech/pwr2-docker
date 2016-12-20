@@ -13,7 +13,7 @@ config :star_wars, StarWars.Endpoint,
   code_reloader: true,
   check_origin: false,
   watchers: [
-    npm: [
+    yarn: [
       "start",
       cd: Path.expand("../", __DIR__)
     ]
