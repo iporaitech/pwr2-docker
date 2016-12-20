@@ -1,6 +1,6 @@
 {
-  "name": "pwr2-docker-ui",
-  "description": "Javascript dependencies for pwr2-docker, a Docker image based on Ubuntu providing a base setup for a Phoenix+Webpack+Relay+React project, with some sugar and conventions to develop and build your own web applications.",
+  "name": "pwr2-star-wars-ui",
+  "description": "UI for the star_wars app inside pwr2-docker's umbrella project.",
   "main": "webpack.config.js",
   "version": "0.3.4",
   "contributors": [
