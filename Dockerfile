@@ -40,23 +40,41 @@ RUN setuser app mix local.hex --force
 RUN setuser app mix archive.install --force https://github.com/phoenixframework/archives/raw/master/phoenix_new-$PHOENIX_VERSION.ez
 RUN setuser app mix local.rebar --force
 
-# Install dependencies in mix.exs / mix.lock
+# Copy umbrella mix.exs / mix.lock
 ENV APP_MIX_DEPS_DIR /home/app/mix_deps
 RUN mkdir $APP_MIX_DEPS_DIR
 RUN cd $APP_HOME && ln -s $APP_MIX_DEPS_DIR deps
 COPY mix.exs mix.lock $APP_HOME/
-RUN mkdir $APP_HOME/config # Some packages like Guardian require specific config to compile
+
+# Copy config for some packages like Guardian that config to compile
+RUN mkdir $APP_HOME/config
 COPY config $APP_HOME/config/
+
+# Set ownership and permissions
 RUN chown -R app:staff /home/app && chmod -R g+s /home/app
+
+# Install Elixir deps for all apps inside the umbrella project
 RUN setuser app mix do deps.get --force, deps.compile
 
+#
 # Install package.json to build the Front end.
-# Set PATH so we can install node_modules outside of sources (mounted) dir and to allow npm find the bin(s) to execute npm commands later.
+#
+# Set PATH so we can install node_modules outside of sources (mounted) dir and
+# to allow npm find the bin(s) to execute npm commands later.
 COPY package.json $APP_HOME/
 ENV PATH="/home/app/node_modules/.bin:$PATH"
+
+# Create shared node_modules for all the apps inside the umbrella
 RUN mkdir /home/app/node_modules \
-  && ln -s /home/app/node_modules $APP_HOME/node_modules
-RUN cd $APP_HOME && npm install && npm prune
+  && ln -s /home/app/node_modules $APP_HOME/apps/core/node_modules
+  && ln -s /home/app/node_modules $APP_HOME/apps/star_wars/node_modules
+
+# Install NPM dependencies for each app inside the umbrella
+RUN cd $APP_HOME/apps/core/ && npm install
+RUN cd $APP_HOME/apps/star_wars/ && npm install
+
+# Install super useful pkg to check npm dependencies
+RUN cd $APP_HOME && npm install -g npm-check
 
 # Copy sources
 COPY . $APP_HOME
