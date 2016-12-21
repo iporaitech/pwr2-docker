@@ -28,7 +28,7 @@ export default class extends React.Component {
             <LayoutSpacer />
             <Navigation>
               <NavigationLink to="/admin">Inicio</NavigationLink>
-              <NavigationLink to="/admin/star-wars">Star Wars Examples</NavigationLink>
+              <a className="mdl-navigation__link" href="/star-wars">Star Wars</a>
               <NavigationLink to="/admin/graphiql">GraphiQL</NavigationLink>
             </Navigation>
           </LayoutHeaderRow>
