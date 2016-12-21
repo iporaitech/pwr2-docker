@@ -11,7 +11,6 @@ import useRelay from 'react-router-relay';
 // App components
 import AdminLayout from 'layout';
 import Login from 'login';
-import StarWarsApp, { Queries as StarWarsQueries } from 'star-wars';
 import GraphiQL from 'my-graphiql';
 import Docs from 'docs';
 
@@ -50,7 +49,6 @@ const routes = (
     <Route path="/login" component={Login}  onEnter={verifySession}/>
     <Route path="/admin" component={AdminLayout} onEnter={requireAuth}>
       <IndexRoute component={Hello}/>
-      <Route path="star-wars" component={StarWarsApp} queries={StarWarsQueries}/>
       <Route path="graphiql" component={GraphiQL} />
     </Route>
     <Route path="/docs" component={AdminLayout}>
@@ -84,6 +82,6 @@ class Application extends React.Component{
 }
 
 ReactDOM.render(
-  <Application/>,
+  <Application />,
   document.getElementById('react-root')
 );
