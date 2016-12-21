@@ -53,7 +53,7 @@
     "react-router": "^3.0.0",
     "react-router-relay": "^0.13.5",
     "react-select": "^1.0.0-rc.2",
-    "react-to-mdl": "https://github.com/iporaitech/react-to-mdl/tarball/master"
+    "react-to-mdl": "https://github.com/iporaitech/react-to-mdl/tarball/v0.1.1"
   },
   "license": "MIT"
 }
