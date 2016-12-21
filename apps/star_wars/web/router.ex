@@ -35,8 +35,6 @@ defmodule StarWars.Router do
 
     get "/", PageController, :index
     get "/graphiql", PageController, :graphiql
-    get "/star-wars", PageController, :star_wars
   end
-
 
 end
