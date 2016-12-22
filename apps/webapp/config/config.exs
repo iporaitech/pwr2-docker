@@ -6,11 +6,11 @@
 use Mix.Config
 
 # General application configuration
-config :core,
+config :webapp,
   ecto_repos: [Webapp.Repo]
 
 # Configures the endpoint
-config :core, Webapp.Endpoint,
+config :webapp, Webapp.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "ZBOeN5ogBV5cq2p+ttL4pJbU/7EIVMbkyxBYPebuhf6MzNYjO4HOtp9g2uDdQU9v",
   render_errors: [view: Webapp.ErrorView, accepts: ~w(html json)],

@@ -2,26 +2,61 @@
 
 Docker image based on Ubuntu providing a base setup for a Phoenix+Webpack+Relay+React project, with some sugar and conventions to develop and build your own web applications.
 
+**You can also use this project without docker. See #49 for more info**
+
 _We will improve docs and code including test coverage in the next releases_
 
 **NOTICE:** The default branch for this repo is **develop**. Check the  [README](https://github.com/iporaitech/pwr2-docker/blob/master/README.md) on master to see what's in the last release.
 
 ## What is this for?
 
-You can use this to start your own Elixir/Phoenix based web application with React+Relay - styled with Material Design, in the front-end all bundled with Webpack.
+You can use this to start/learn/critic an Elixir Umbrella project with a **core** child Phoenix app acting as the web endpoint for _core_ stuff and forwarding requests to `/star-wars` from its router to a Star Wars example app, also a Phoenix app under the same umbrella.
+
+The **core** also provides the base assets used for other umbrella children as well as functionality to build (_via Webpack_) assets for other children apps.
 
 So far we've implemented the following:
 
 * A GraphQL endpoint implemented in Elixir with Absinthe.
 * Authentication using JWTs (JSON Web Tokens) via GraphQL (LoginMutation & LogoutMutation).
 * Hardcoded Role based Authorization.
-* StarWars GraphQL example.
+* StarWars GraphQL example as **core's** sibling Phoenix app.
 * GraphiQL console.
 * Some interesting React/Relay components in the client(browser), including a router.
-* CSS Modules _integration_ with Material Design Lite.
+* CSS Modules _integration_ with Material Design Lite, now extracted to [react-to-mdl](https://github.com/iporaitech/react-to-mdl).
 * Testing framework for the backend (Elixir/Phoenix).
 * [Docs](docs) where you can find additional information about this project.
 
+
+## Umbrella Architecture
+
+This whole Umbrella Architecture section is a _WIP_.
+
+### The workflow and "lifecycle"
+
+1. Create umbrella
+2. Create Core Phoenix app inside umbrella, run it on `HTTP_PORT` making sure everything works.
+3. Turn off Core.
+4. Create StarWars app inside umbrella, run it _also_ on `HTTP_PORT` making sure everything works.
+5. Turn off StarWars.
+6. Configure `Core.Mixfile` to depend on `{​:star_wars, ​in_umbrella:​ true}`.
+7. Configure `Core.Router` to `forward "/star-wars", StarWars.Router`.
+8. Don't start `StarWars.Endpoint`. Comment it out in **lib/star_wars.ex**.
+9. Create **core/webpack.umbrella.config.js** containing instructions to build one commons bundle and one bundle for each app in the umbrella.
+10. Define a script in **core/package.json** to start Webpack using  **webpack.umbrella.config** to build & watch the assets in _dev_.
+11. Adjust watchers in **core/config/dev.exs**.
+12. Turn ON `iex -S mix phoenix.server` from the root of the umbrella making sure everything works.
+13. Analyse and REFACTOR to architecture. After applying principles like DRY, SRP and others, now every app in the umbrella is responsible for a particular _domain_.
+
+
+### About the front-end Architecture
+
+* Apps outside umbrella.
+* Apps inside umbrella running simultaneously.
+* Apps using its own Phoenix page layout and bundle.
+* _Apps using page layout from a sibling_
+* _Other scenarios_
+
+_Also talk about **yarn**_
 
 ## Requirements
 
