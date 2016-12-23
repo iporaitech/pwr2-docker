@@ -28,14 +28,14 @@ import '!style!css!react-select/dist/react-select.css';
 
 let store = new Relay.Environment();
 store.injectNetworkLayer(
-  new Relay.DefaultNetworkLayer('/star-wars/graphql')
+  new Relay.DefaultNetworkLayer('/star_wars/graphql')
 );
 
 ReactDOM.render(
   <Router history={browserHistory}
     render={applyRouterMiddleware(useRelay)}
     environment={store}>
-    <Route path="/star-wars" component={AppLayout}>
+    <Route path="/star_wars" component={AppLayout}>
       <IndexRoute component={Factions} queries={Queries} />
       <Route path="graphiql" component={GraphiQL} />
     </Route>

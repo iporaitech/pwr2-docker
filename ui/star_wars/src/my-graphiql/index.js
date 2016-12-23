@@ -4,7 +4,6 @@ import fetch from 'isomorphic-fetch';
 import CSSModules from 'react-css-modules';
 import '!style!css!graphiql/graphiql.css';
 import styles from './styles.scss';
-import Auth from 'lib/auth';
 
 class MyGraphiQL extends React.Component {
   render(){
@@ -12,12 +11,10 @@ class MyGraphiQL extends React.Component {
       <div styleName="graphiql-wrapper">
         <GraphiQL fetcher={
           (graphQLParams) => {
-            // return fetch(GRAPHIQL_URL, {
-            return fetch('/star-wars/graphql/graphiql', {
+            return fetch(GRAPHIQL_URL, {
               method: 'post',
               headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${Auth.getToken()}`
+                "Content-Type": "application/json"
               },
               body: JSON.stringify(graphQLParams),
             }).then(response => response.json());

@@ -7,6 +7,10 @@ defmodule StarWars.GraphQL.Schema do
   import_types StarWars.GraphQL.Types
   import_types StarWars.GraphQL.Mutations
 
+  def hola do
+    "hola hisa"
+  end
+
   query do
     import_fields :star_wars_root_field
 

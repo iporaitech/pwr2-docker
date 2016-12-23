@@ -14,8 +14,8 @@ config :core, Webapp.Endpoint,
   check_origin: false,
   watchers: [
     yarn: [
-      "start:umbrella",
-      cd: Path.expand("../", __DIR__)
+      "start",
+      cd: Path.expand("../../../ui", __DIR__)
     ]
   ]
 

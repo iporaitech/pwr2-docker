@@ -1,5 +1,5 @@
 {
-  "name": "pwr2-core-ui",
+  "name": "pwr2-ui-core",
   "description": "UI for the core app inside pwr2-docker's umbrella project.",
   "main": "webpack.config.js",
   "version": "0.3.4",
@@ -18,7 +18,7 @@
     "start": "webpack --watch-stdin --progress --color --config webpack.config.js",
     "start:umbrella": "webpack --watch-stdin --progress --color --config webpack.umbrella.config.js"
   },
-  "devDependencies": {
+  "peerDependencies": {
     "babel-core": "^6.20.0",
     "babel-loader": "^6.2.10",
     "babel-plugin-transform-runtime": "^6.15.0",
@@ -35,9 +35,8 @@
     "sass-loader": "^4.1.0",
     "style-loader": "^0.13.1",
     "sync-request": "^3.0.1",
-    "webpack": "^1.14.0"
-  },
-  "dependencies": {
+    "webpack": "^1.14.0",
+
     "babel-runtime": "^6.20.0",
     "classnames": "^2.2.5",
     "es6-promise": "^4.0.5",

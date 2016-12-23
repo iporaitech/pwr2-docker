@@ -6,8 +6,8 @@
 use Mix.Config
 
 # General application configuration
-config :webapp,
-  ecto_repos: [Webapp.Repo]
+# config :webapp,
+#   ecto_repos: [Webapp.Repo]
 
 # Configures the endpoint
 config :webapp, Webapp.Endpoint,
@@ -23,23 +23,23 @@ config :logger, :console,
   metadata: [:request_id]
 
 #guardian config
-config :guardian, Guardian,
-  hooks: GuardianDb,
-  allowed_algos: ["HS512"], # optional
-  verify_module: Guardian.JWT,  # optional
-  issuer: "Webapp",
-  ttl: { 30, :days },
-  verify_issuer: true, # optional
-  secret_key: "JYUIKDM2CQE87DAWG3CY4RNWL8",
-  # TODO: vv
-  # secret_key: fn ->
-  #   System.get_env("SECRET_KEY_PASSPHRASE") |> JOSE.JWK.from_file(System.get_env("SECRET_KEY_FILE"))
-  # end
-  serializer: Webapp.GuardianSerializer
-
-config :guardian_db, GuardianDb,
-  repo: Webapp.Repo,
-  sweep_interval: 120 # minutes
+# config :guardian, Guardian,
+#   hooks: GuardianDb,
+#   allowed_algos: ["HS512"], # optional
+#   verify_module: Guardian.JWT,  # optional
+#   issuer: "Webapp",
+#   ttl: { 30, :days },
+#   verify_issuer: true, # optional
+#   secret_key: "JYUIKDM2CQE87DAWG3CY4RNWL8",
+#   # TODO: vv
+#   # secret_key: fn ->
+#   #   System.get_env("SECRET_KEY_PASSPHRASE") |> JOSE.JWK.from_file(System.get_env("SECRET_KEY_FILE"))
+#   # end
+#   serializer: Webapp.GuardianSerializer
+#
+# config :guardian_db, GuardianDb,
+#   repo: Webapp.Repo,
+#   sweep_interval: 120 # minutes
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

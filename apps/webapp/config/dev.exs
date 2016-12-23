@@ -14,8 +14,8 @@ config :webapp, Webapp.Endpoint,
   check_origin: false,
   watchers: [
     yarn: [
-      "start:umbrella",
-      cd: Path.expand("../", __DIR__)
+      "start",
+      cd: Path.expand("../../../ui", __DIR__)
     ]
   ]
 
@@ -37,12 +37,12 @@ config :logger, :console, format: "[$level] $message\n"
 # in production as building large stacktraces may be expensive.
 config :phoenix, :stacktrace_depth, 20
 
-# DB config
-config :webapp, Webapp.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  username: System.get_env("DB_USER"),
-  password: System.get_env("DB_USER_PASSWORD"),
-  database: System.get_env("DB_NAME"),
-  hostname: System.get_env("DB_HOST"),
-  port: 5432,
-  pool_size: 10
+# # DB config
+# config :webapp, Webapp.Repo,
+#   adapter: Ecto.Adapters.Postgres,
+#   username: System.get_env("DB_USER"),
+#   password: System.get_env("DB_USER_PASSWORD"),
+#   database: System.get_env("DB_NAME"),
+#   hostname: System.get_env("DB_HOST"),
+#   port: 5432,
+#   pool_size: 10
