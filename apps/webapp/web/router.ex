@@ -46,9 +46,10 @@ defmodule Webapp.Router do
     pipe_through [:browser, :browser_auth]
 
     get "/", PageController, :index
-    get "/login", PageController, :login
+    get "/login", PageController, :index
 
     # from here on we get "apps" not specified before
+    # TODO: create plug to handle app_name NOT FOUND
     get "/:app_name", PageController, :index
   end
 
