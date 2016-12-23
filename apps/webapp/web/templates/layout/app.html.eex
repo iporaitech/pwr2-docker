@@ -19,7 +19,7 @@
       <script src="<%= static_path(@conn, "/js/polyfill.js") %>"></script>
     <% end %>
     <script type="text/javascript"><%= server_js_vars %></script>
-    <script src="<%= static_path(@conn, "/js/vendor.js") %>"></script>
-    <script src="<%= static_path(@conn, "/js/core.js") %>"></script>
+    <script src="<%= static_path(@conn, "/js/common.js") %>"></script>
+    <script src="<%= static_path(@conn, "/js/#{@app_js}") %>"></script>
   </body>
 </html>
