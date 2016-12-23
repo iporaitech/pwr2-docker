@@ -27,7 +27,11 @@ export default class extends React.Component {
             <LayoutTitle>pwr2-docker</LayoutTitle>
             <LayoutSpacer />
             <Navigation>
-              <NavigationLink to="/admin">Inicio</NavigationLink>
+              <NavigationLink to="/">Inicio</NavigationLink>
+              {/*
+                TODO: Use <NavigationLink tag='a' href='star-wars'> after
+                upgrading react-to-mdl.
+              */}
               <a className="mdl-navigation__link" href="/star-wars">Star Wars</a>
               <NavigationLink to="/admin/graphiql">GraphiQL</NavigationLink>
             </Navigation>
@@ -37,8 +41,6 @@ export default class extends React.Component {
         <LayoutDrawer>
           <Navigation>
             <NavigationLink to="/">Inicio</NavigationLink>
-            <NavigationLink to="/admin/users">Users</NavigationLink>
-            <NavigationLink to="/admin/star-wars">Star Wars Examples</NavigationLink>
             <NavigationLink to="/admin/graphiql">GraphiQL</NavigationLink>
             <NavigationLink to="/docs">Documentation</NavigationLink>
             <LogoutLink />
