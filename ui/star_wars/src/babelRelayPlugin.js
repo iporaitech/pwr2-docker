@@ -5,21 +5,23 @@ const babelRelayPlugin = require('babel-relay-plugin');
 /**
  * This should be for production
  */
-const path = require('path');
-const schema = require(path.join(process.env.APP_HOME, 'apps/star_wars/schema.json'));
+// const path = require('path');
+// const schema = require(path.join(process.env.APP_HOME, 'apps/star_wars/schema.json'));
 
 /**
  * This should be for development
  */
-// const introspectionQuery = require('graphql/utilities').introspectionQuery;
-// const request = require('sync-request');
-// // Get the GraphQL schema from the server to be used later by Relay
-// const response = request('GET', process.env.GRAPHQL_URL, {
-//   qs: {
-//     query: introspectionQuery
-//   }
-// });
-// const schema = JSON.parse(response.body.toString('utf-8'));
+const introspectionQuery = require('graphql/utilities').introspectionQuery;
+const request = require('sync-request');
+const server = 'http://localhost:4001/star_wars/graphql';
+
+// Get the GraphQL schema from the server to be used later by Relay
+const response = request('GET', server, {
+  qs: {
+    query: introspectionQuery
+  }
+});
+const schema = JSON.parse(response.body.toString('utf-8'));
 
 // In the end need we need to export this
 module.exports = babelRelayPlugin(schema.data, {

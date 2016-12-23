@@ -18,8 +18,8 @@
     <%= if Mix.env == :test do %>
       <script src="<%= static_path(@conn, "/js/polyfill.js") %>"></script>
     <% end %>
-    <script type="text/javascript"><%= server_js_vars %></script>
+    <script type="text/javascript"><%= server_js_vars(@app_name) %></script>
     <script src="<%= static_path(@conn, "/js/common.js") %>"></script>
-    <script src="<%= static_path(@conn, "/js/#{@app_js}") %>"></script>
+    <script src="<%= static_path(@conn, "/js/#{@app_name}.js") %>"></script>
   </body>
 </html>

@@ -21,14 +21,6 @@ defmodule Webapp.Router do
   end
 
   # Routes
-  # NOTE: every data related request is done through GraphQL, including login/logout.
-  # scope "/graphql" do
-  #   pipe_through [:graphql]
-  #
-  #   # post "/graphiql", Absinthe.Plug.GraphiQL, schema: Webapp.GraphQL.Schema
-  #   # forward "/", Absinthe.Plug, schema: Webapp.GraphQL.Schema
-  # end
-
   scope "/admin", Webapp.Admin, as: :admin do
     pipe_through [:browser, :browser_auth]
 
@@ -48,9 +40,16 @@ defmodule Webapp.Router do
     get "/", PageController, :index
     get "/login", PageController, :index
 
-    # from here on we get "apps" not specified before
+    # From here on we go to "apps" not specified before
     # TODO: create plug to handle app_name NOT FOUND
     get "/:app_name", PageController, :index
   end
 
+  # TODO: find out how to dinamically init Absinthe.Plug
+  scope "/star_wars/graphql" do
+    pipe_through [:graphql]
+
+    post "/graphiql", Absinthe.Plug.GraphiQL, schema: StarWars.GraphQL.Schema
+    forward "/", Absinthe.Plug, schema: StarWars.GraphQL.Schema
+  end
 end

@@ -53,6 +53,8 @@ defmodule Webapp.Mixfile do
      {:cowboy, "~> 1.0"},
      {:comeonin, "~> 2.4"},
      {:guardian, "~> 0.13.0"},
+     {:absinthe_plug, "~> 1.2"},
+     {:star_wars, in_umbrella: true},
 
      #test packages
      {:mix_test_watch, "~> 0.2", only: :test},

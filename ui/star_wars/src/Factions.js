@@ -52,7 +52,7 @@ class StarWarsFactions extends React.Component {
         </Grid>
         <Grid>
           <Cell col={12}>
-            <h2 className="mdl-layout-title">Introduce Ship</h2>
+            <h2 className="mdl-layout-title">Add Ship to faction</h2>
             <Grid>
               <Cell col={12}>
                 <Textfield id="ship-name"

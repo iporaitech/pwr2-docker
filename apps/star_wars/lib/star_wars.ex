@@ -8,9 +8,6 @@ defmodule StarWars do
 
     # Define workers and child supervisors to be supervised
     children = [
-      # Start the endpoint when the application starts
-      # supervisor(StarWars.Endpoint, []),
-
       # Start your own worker by calling: StarWars.Worker.start_link(arg1, arg2, arg3)
       # worker(StarWars.Worker, [arg1, arg2, arg3]),
       worker(StarWars.GraphQL.DB, [])
@@ -22,10 +19,4 @@ defmodule StarWars do
     Supervisor.start_link(children, opts)
   end
 
-  # Tell Phoenix to update the endpoint configuration
-  # whenever the application is updated.
-  def config_change(changed, _new, removed) do
-    StarWars.Endpoint.config_change(changed, removed)
-    :ok
-  end
 end
