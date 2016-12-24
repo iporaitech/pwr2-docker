@@ -15,7 +15,7 @@
     "url": "https://github.com/iporaitech/pwr2-docker"
   },
   "scripts": {
-    "start": "webpack --watch-stdin --progress --color --config webpack.config.js"
+    "start": "webpack --display-chunks --display-modules --display-origins --watch-stdin --progress --color --config webpack.config.js"
   },
   "devDependencies": {
     "babel-core": "^6.20.0",
