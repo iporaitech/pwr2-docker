@@ -21,11 +21,12 @@ defmodule Webapp.Router do
   end
 
   # Routes
-  scope "/admin", Webapp.Admin, as: :admin do
+  scope "/admin", Webapp, as: :admin do
     pipe_through [:browser, :browser_auth]
 
-    get "/", PageController, :index
-    get "/graphiql", PageController, :graphiql
+    Enum.each ["/", "/graphiql"], fn path ->
+      get path, PageController, :index
+    end
   end
 
   scope "/docs", Webapp do
@@ -45,11 +46,18 @@ defmodule Webapp.Router do
     get "/:app_name", PageController, :index
   end
 
+  scope "/graphql" do
+    pipe_through [:graphql]
+
+    forward "/graphiql", Core.Plug.GraphiQLWrapper, schema: Core.GraphQL.Schema
+    forward "/", Core.Plug.GraphQLWrapper, schema: Core.GraphQL.Schema
+  end
+
   # TODO: find out how to dinamically init Absinthe.Plug
   scope "/star_wars/graphql" do
     pipe_through [:graphql]
 
-    post "/graphiql", Absinthe.Plug.GraphiQL, schema: StarWars.GraphQL.Schema
-    forward "/", Absinthe.Plug, schema: StarWars.GraphQL.Schema
+    forward "/graphiql", StarWars.Plug.GraphiQLWrapper, schema: StarWars.GraphQL.Schema
+    forward "/", StarWars.Plug.GraphQLWrapper, schema: StarWars.GraphQL.Schema
   end
 end
