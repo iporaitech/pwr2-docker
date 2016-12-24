@@ -6,7 +6,7 @@ defmodule Core.Mixfile do
      version: "0.3.4",
      elixir: "~> 1.3",
      elixirc_paths: elixirc_paths(Mix.env),
-     compilers: [:phoenix, :gettext] ++ Mix.compilers,
+     compilers: [:gettext] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      build_path: "../../_build",
@@ -53,6 +53,7 @@ defmodule Core.Mixfile do
       {:guardian, "~> 0.13.0"},
       {:guardian_db, "~> 0.7"},
       {:canada, "~> 1.0.0"},
+      {:absinthe_plug, "~> 1.2"},
       {:absinthe_relay, "~> 1.2"},
 
       #test packages
