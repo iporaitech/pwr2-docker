@@ -17,6 +17,12 @@ import Docs from 'core/docs';
 // Auth singleton
 import Auth from 'core/lib/auth';
 
+// Import some global CSS (some because not implemented in shared)
+import '!style!css!sass!material-design-lite/src/shadow/_shadow.scss';
+import '!style!css!sass!material-design-lite/src/typography/_typography.scss';
+import '!style!css!react-select/dist/react-select.css';
+
+
 // Just a tmp component for IndexRoute
 class Hello extends React.Component {
   render() {

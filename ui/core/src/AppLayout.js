@@ -15,8 +15,6 @@ import Layout, {
   LayoutContent,
 } from 'react-to-mdl/layout';
 
-import '!style!css!react-select/dist/react-select.css';
-
 export default class extends React.Component {
   render() {
     return (
