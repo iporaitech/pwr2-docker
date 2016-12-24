@@ -4,7 +4,7 @@ import fetch from 'isomorphic-fetch';
 import CSSModules from 'react-css-modules';
 import '!style!css!graphiql/graphiql.css';
 import styles from './styles.scss';
-import Auth from 'lib/auth';
+import Auth from 'core/lib/auth';
 
 class MyGraphiQL extends React.Component {
   render(){

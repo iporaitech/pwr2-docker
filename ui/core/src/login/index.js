@@ -3,17 +3,17 @@
 import React, { PropTypes } from 'react';
 import Relay from 'react-relay';
 import { withRouter } from 'react-router';
-import Auth from 'lib/auth';
+import Auth from 'core/lib/auth';
 import LoginMutation from './mutation';
 
 // Base components
+import { mdlUpgrade } from 'react-to-mdl';
 import Spinner from 'react-to-mdl/spinner';
 import Layout from 'react-to-mdl/layout';
 import Textfield from 'react-to-mdl/textfield';
 
 // CSS
 import CSSModules from 'react-css-modules';
-import mdlUpgrade from 'lib/mdlUpgrade';
 import styles from './styles.scss';
 
 class Login extends React.Component {

@@ -5,13 +5,13 @@ import ReactMarkdown from 'react-markdown';
 import CodeBlock from './CodeBlock';
 
 // Base components
+import { mdlUpgrade } from 'react-to-mdl';
 import Grid, { Cell } from 'react-to-mdl/grid';
 
 // CSS
 import CSSModules from 'react-css-modules';
-import mdlUpgrade from 'lib/mdlUpgrade';
-import styles from 'docs/styles.scss';
-import 'docs/hljs.scss';
+import styles from './styles.scss';
+import './hljs.scss';
 
 class DocPage extends React.Component {
   constructor(props) {

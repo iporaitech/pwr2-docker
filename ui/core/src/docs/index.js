@@ -2,17 +2,17 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 import fetch from 'isomorphic-fetch';
-import TableOfContents from 'docs/TableOfContents';
-import DocPage from 'docs/DocPage';
+import TableOfContents from './TableOfContents';
+import DocPage from './DocPage';
 
 // Base components
+import { mdlUpgrade } from 'react-to-mdl';
 import Spinner from 'react-to-mdl/spinner';
 import Layout from 'react-to-mdl/layout';
 
 // CSS
 import CSSModules from 'react-css-modules';
-import mdlUpgrade from 'lib/mdlUpgrade';
-import styles from 'docs/styles.scss';
+import styles from './styles.scss';
 
 class Index extends React.Component {
   constructor(props) {
