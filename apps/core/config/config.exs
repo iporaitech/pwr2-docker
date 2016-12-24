@@ -7,15 +7,7 @@ use Mix.Config
 
 # General application configuration
 config :core,
-  ecto_repos: [Webapp.Repo]
-
-# Configures the endpoint
-config :core, Webapp.Endpoint,
-  url: [host: "localhost"],
-  secret_key_base: "ZBOeN5ogBV5cq2p+ttL4pJbU/7EIVMbkyxBYPebuhf6MzNYjO4HOtp9g2uDdQU9v",
-  render_errors: [view: Webapp.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Webapp.PubSub,
-           adapter: Phoenix.PubSub.PG2]
+  ecto_repos: [Core.Repo]
 
 # Configures Elixir's Logger
 config :logger, :console,
@@ -27,7 +19,7 @@ config :guardian, Guardian,
   hooks: GuardianDb,
   allowed_algos: ["HS512"], # optional
   verify_module: Guardian.JWT,  # optional
-  issuer: "Webapp",
+  issuer: "Core",
   ttl: { 30, :days },
   verify_issuer: true, # optional
   secret_key: "JYUIKDM2CQE87DAWG3CY4RNWL8",
@@ -35,10 +27,10 @@ config :guardian, Guardian,
   # secret_key: fn ->
   #   System.get_env("SECRET_KEY_PASSPHRASE") |> JOSE.JWK.from_file(System.get_env("SECRET_KEY_FILE"))
   # end
-  serializer: Webapp.GuardianSerializer
+  serializer: Core.GuardianSerializer
 
 config :guardian_db, GuardianDb,
-  repo: Webapp.Repo,
+  repo: Core.Repo,
   sweep_interval: 120 # minutes
 
 # Import environment specific config. This must remain at the bottom

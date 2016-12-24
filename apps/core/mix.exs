@@ -1,8 +1,8 @@
-defmodule Webapp.Mixfile do
+defmodule Core.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :webapp,
+    [app: :core,
      version: "0.3.4",
      elixir: "~> 1.3",
      elixirc_paths: elixirc_paths(Mix.env),
@@ -22,7 +22,7 @@ defmodule Webapp.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {Webapp, []},
+      mod: {Core, []},
       applications: applications(Mix.env)
     ]
   end
@@ -32,43 +32,32 @@ defmodule Webapp.Mixfile do
   end
   def applications(_) do
     [
-      :phoenix,
-      :phoenix_html,
-      :cowboy,
       :logger,
       :gettext,
-      :phoenix_ecto,
       :postgrex
     ]
   end
 
   # Specifies which paths to compile per environment.
-  defp elixirc_paths(:test), do: ["lib", "web", "test/support"]
-  defp elixirc_paths(_),     do: ["lib", "web"]
+  defp elixirc_paths(:test), do: ["lib", "graphql", "test/support"]
+  defp elixirc_paths(_),     do: ["lib", "graphql"]
 
   # Specifies your project dependencies.
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:phoenix, "~> 1.2.0"},
-     {:phoenix_pubsub, "~> 1.0"},
-     {:phoenix_ecto, "~> 3.0"},
-     {:postgrex, ">= 0.0.0"},
-     {:phoenix_html, "~> 2.8"},
-     {:phoenix_live_reload, "~> 1.0", only: :dev},
-     {:gettext, "~> 0.13"},
-     {:cowboy, "~> 1.0"},
-     {:comeonin, "~> 2.4"},
-     {:guardian, "~> 0.13.0"},
-     {:guardian_db, "~> 0.7"},
-     {:canada, "~> 1.0.0"},
-     {:absinthe_relay, "~> 1.2"},
-     {:absinthe_plug, "~> 1.2"},
-     {:star_wars, in_umbrella: true},
-     #test packages
-     {:espec_phoenix, "~> 0.6.0", only: :test, app: false},
-     {:mix_test_watch, "~> 0.2", only: :test},
-     {:ex_machina, "~> 1.0", only: :test}
+    [
+      {:postgrex, ">= 0.0.0"},
+      {:gettext, "~> 0.13"},
+      {:comeonin, "~> 2.4"},
+      {:guardian, "~> 0.13.0"},
+      {:guardian_db, "~> 0.7"},
+      {:canada, "~> 1.0.0"},
+      {:absinthe_relay, "~> 1.2"},
+
+      #test packages
+      {:mix_test_watch, "~> 0.2", only: :test},
+      {:ex_machina, "~> 1.0", only: :test}
     ]
   end
 
@@ -81,7 +70,6 @@ defmodule Webapp.Mixfile do
   defp aliases do
     [
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
-      "spec": ["ecto.create --quiet", "ecto.migrate", "espec"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       "test": ["ecto.create --quiet", "ecto.migrate", "test"]
     ]
