@@ -34,10 +34,11 @@ module.exports = {
   },
   output: {
     path: "../apps/webapp/priv/static",
-    filename: "js/[name].js"
+    filename: "js/[name].js",
+    chunkFilename: "js/[id].chunk.js"
   },
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin("js/common.js") ,
+    new webpack.optimize.CommonsChunkPlugin("js/common.js", ["core", "star_wars"]) ,
     new ExtractTextPlugin("css/[name].css", {
       allChunks: true // put css of all chunks in app.css
     })
