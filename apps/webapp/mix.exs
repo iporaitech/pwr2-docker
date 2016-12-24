@@ -54,6 +54,7 @@ defmodule Webapp.Mixfile do
      {:comeonin, "~> 2.4"},
      {:guardian, "~> 0.13.0"},
      {:absinthe_plug, "~> 1.2"},
+     {:core, in_umbrella: true},
      {:star_wars, in_umbrella: true},
 
      #test packages
