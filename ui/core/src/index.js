@@ -9,7 +9,7 @@ import { Router, Route, IndexRoute, browserHistory, applyRouterMiddleware } from
 import useRelay from 'react-router-relay';
 
 // App components
-import AdminLayout from 'layout';
+import AppLayout from './AppLayout';
 import Login from 'login';
 import GraphiQL from 'my-graphiql';
 import Docs from 'docs';
