@@ -1,5 +1,5 @@
 /**
- * file: web/static/js/index.js
+ * file: ui/core/src/index.js
  */
 
 import React from 'react';
@@ -9,13 +9,13 @@ import { Router, Route, IndexRoute, browserHistory, applyRouterMiddleware } from
 import useRelay from 'react-router-relay';
 
 // App components
-import AppLayout from './AppLayout';
-import Login from 'login';
-import GraphiQL from 'my-graphiql';
-import Docs from 'docs';
+import AppLayout from 'core/AppLayout';
+import Login from 'core/login';
+import GraphiQL from 'core/my-graphiql';
+import Docs from 'core/docs';
 
 // Auth singleton
-import Auth from 'lib/auth';
+import Auth from 'core/lib/auth';
 
 // Just a tmp component for IndexRoute
 class Hello extends React.Component {
@@ -47,11 +47,11 @@ const routes = (
   <Route path="/">
     <IndexRoute component={Hello}/>
     <Route path="/login" component={Login}  onEnter={verifySession}/>
-    <Route path="/admin" component={AdminLayout} onEnter={requireAuth}>
+    <Route path="/admin" component={AppLayout} onEnter={requireAuth}>
       <IndexRoute component={Hello}/>
       <Route path="graphiql" component={GraphiQL} />
     </Route>
-    <Route path="/docs" component={AdminLayout}>
+    <Route path="/docs" component={AppLayout}>
       <IndexRoute component={Docs} onEnter={redirectToDefaultDoc}/>
       <Route path=":filename" component={Docs}/>
     </Route>

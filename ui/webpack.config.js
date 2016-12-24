@@ -18,9 +18,15 @@ const buildBabelLoader = function(entryName) {
 }
 
 module.exports = {
-  // devtool: "cheap-module-eval-source-map",
-  devtool: "eval",
+  devtool: "cheap-module-eval-source-map",
   context: __dirname,
+  resolve: {
+    root: path.resolve(__dirname),
+    alias: {
+      core: 'core/src',
+      star_wars: 'star_wars/src'
+    }
+  },
   entry: {
     polyfill: "babel-polyfill",
     star_wars: "./star_wars/src",

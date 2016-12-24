@@ -1,7 +1,7 @@
 // file: shared/LogoutLink.js
 import React from 'react';
 import Relay from 'react-relay';
-import Auth from 'lib/auth';
+import Auth from 'core/lib/auth';
 import { withRouter } from 'react-router';
 
 class LogoutMutation extends Relay.Mutation {

@@ -3,21 +3,15 @@ import React from 'react';
 import { withRouter, Link } from 'react-router';
 
 // Base components
+import { mdlUpgrade } from 'react-to-mdl';
 import Grid, { Cell } from 'react-to-mdl/grid';
 import Button from 'react-to-mdl/button';
-
-import Menu, {
-  MenuItem,
-} from 'react-to-mdl/menu';
-
-import Layout, {
-  LayoutIcon,
-} from 'react-to-mdl/layout';
+import Menu, { MenuItem } from 'react-to-mdl/menu';
+import Layout, { LayoutIcon } from 'react-to-mdl/layout';
 
 // CSS
 import CSSModules from 'react-css-modules';
-import mdlUpgrade from 'lib/mdlUpgrade';
-import styles from 'docs/styles.scss';
+import styles from './styles.scss';
 
 class TableOfContents extends React.Component {
   render() {
