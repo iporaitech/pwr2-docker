@@ -5,7 +5,7 @@ defmodule Core.Factory do
   User factory and its role and password helpers
   """
   def user_factory do
-    %Webapp.User{
+    %Core.User{
       first_name: "Joe",
       last_name: "Rambo",
       email: sequence(:email, &"joe_#{&1}@test.com")
@@ -19,7 +19,7 @@ defmodule Core.Factory do
   end
   def set_password(user, password) do
     user
-    |> Webapp.User.registration_changeset(%{password: password})
+    |> Core.User.registration_changeset(%{password: password})
   end
 
 end
