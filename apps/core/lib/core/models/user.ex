@@ -1,5 +1,5 @@
 defmodule Core.User do
-  use Core.Web, :model
+  use Core.Common, :model
 
   schema "users" do
     field :first_name, :string

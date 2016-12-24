@@ -8,10 +8,11 @@ defmodule Core do
 
     # Define workers and child supervisors to be supervised
     children = [
+      supervisor(Core.Repo, []),
 
       # Start your own worker by calling: StarWars.Worker.start_link(arg1, arg2, arg3)
       # worker(StarWars.Worker, [arg1, arg2, arg3]),
-      # worker(StarWars.GraphQL.DB, [])
+      worker(GuardianDb.ExpiredSweeper, [])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
