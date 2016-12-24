@@ -30,7 +30,7 @@ export default class extends React.Component {
                 TODO: Use <NavigationLink tag='a' href='star-wars'> after
                 upgrading react-to-mdl.
               */}
-              <a className="mdl-navigation__link" href="/star-wars">Star Wars</a>
+              <a className="mdl-navigation__link" href="/star_wars">Star Wars</a>
               <NavigationLink to="/admin/graphiql">GraphiQL</NavigationLink>
             </Navigation>
           </LayoutHeaderRow>
