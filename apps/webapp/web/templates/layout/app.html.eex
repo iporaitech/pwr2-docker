@@ -9,7 +9,7 @@
 
     <title>pwr2</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/#{@app_name}.css") %>">
   </head>
 
   <body style="margin: 0">

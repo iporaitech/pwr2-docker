@@ -38,7 +38,7 @@ module.exports = {
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin("js/common.js") ,
-    new ExtractTextPlugin("css/app.css", {
+    new ExtractTextPlugin("css/[name].css", {
       allChunks: true // put css of all chunks in app.css
     })
   ],
