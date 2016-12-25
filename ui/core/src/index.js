@@ -52,7 +52,7 @@ function redirectToDefaultDoc(nextState, replace) {
 const routes = (
   <Route path="/">
     <IndexRoute component={Hello}/>
-    <Route path="/login" component={Login}  onEnter={verifySession}/>
+    <Route path="/login" component={Login} onEnter={verifySession}/>
     <Route path="/admin" component={AppLayout} onEnter={requireAuth}>
       <IndexRoute component={Hello}/>
       <Route path="graphiql" component={GraphiQL} />
