@@ -21,10 +21,10 @@ import Queries from './RelayQueryConfig';
 import GraphiQL from './my-graphiql';
 
 // Import some global CSS (some because not implemented in shared)
-import '!style!css!sass!material-design-lite/src/shadow/_shadow.scss';
-import '!style!css!sass!material-design-lite/src/radio/_radio.scss';
-import '!style!css!sass!material-design-lite/src/typography/_typography.scss';
-import '!style!css!react-select/dist/react-select.css';
+import 'material-design-lite/src/shadow/_shadow.scss';
+import 'material-design-lite/src/radio/_radio.scss';
+import 'material-design-lite/src/typography/_typography.scss';
+import 'react-select/dist/react-select.css';
 
 let store = new Relay.Environment();
 store.injectNetworkLayer(

@@ -15,7 +15,8 @@
     "url": "https://github.com/iporaitech/pwr2-docker"
   },
   "scripts": {
-    "start": "webpack --display-chunks --display-modules --display-origins --watch-stdin --progress --color --config webpack.config.js"
+    "start": "webpack --display-chunks --display-modules --display-origins --watch-stdin --progress --color --config webpack.config.js",
+    "start": "webpack --watch-stdin --progress --color --config webpack.config.js"
   },
   "devDependencies": {
     "babel-core": "^6.20.0",
@@ -28,13 +29,13 @@
     "babel-relay-plugin": "^0.10.0",
     "css-loader": "^0.26.1",
     "exports-loader": "^0.6.3",
-    "extract-text-webpack-plugin": "^1.0.1",
+    "extract-text-webpack-plugin": "2.0.0-beta.4",
     "node-sass": "^4.0.0",
     "resolve-url-loader": "^1.6.1",
     "sass-loader": "^4.1.0",
     "style-loader": "^0.13.1",
     "sync-request": "^3.0.1",
-    "webpack": "^1.14.0"
+    "webpack": "2.1.0-beta.28"
   },
   "dependencies": {
     "babel-runtime": "^6.20.0",

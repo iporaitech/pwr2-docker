@@ -11,16 +11,16 @@ import useRelay from 'react-router-relay';
 // App components
 import AppLayout from 'core/AppLayout';
 import Login from 'core/login';
-import GraphiQL from 'core/my-graphiql';
+// import GraphiQL from 'core/my-graphiql';
 import Docs from 'core/docs';
 
 // Auth singleton
 import Auth from 'core/lib/auth';
 
 // Import some global CSS (some because not implemented in shared)
-import '!style!css!sass!material-design-lite/src/shadow/_shadow.scss';
-import '!style!css!sass!material-design-lite/src/typography/_typography.scss';
-import '!style!css!react-select/dist/react-select.css';
+import 'material-design-lite/src/shadow/_shadow.scss';
+import 'material-design-lite/src/typography/_typography.scss';
+import 'react-select/dist/react-select.css';
 
 
 // Just a tmp component for IndexRoute
@@ -55,7 +55,7 @@ const routes = (
     <Route path="/login" component={Login} onEnter={verifySession}/>
     <Route path="/admin" component={AppLayout} onEnter={requireAuth}>
       <IndexRoute component={Hello}/>
-      <Route path="graphiql" component={GraphiQL} />
+      {/* <Route path="graphiql" component={GraphiQL} /> */}
     </Route>
     <Route path="/docs" component={AppLayout}>
       <IndexRoute component={Docs} onEnter={redirectToDefaultDoc}/>
