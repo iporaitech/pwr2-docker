@@ -44,6 +44,7 @@ defmodule Webapp.Router do
     # From here on we go to "apps" not specified before
     # TODO: create plug to handle app_name NOT FOUND
     get "/:app_name", PageController, :index
+    get "/:app_name/graphiql", PageController, :index
   end
 
   scope "/graphql" do
