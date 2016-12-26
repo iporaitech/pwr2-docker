@@ -32,16 +32,17 @@ class AppLayout extends React.Component {
                 TODO: Use <NavigationLink tag='a' href='star-wars'> after
                 upgrading react-to-mdl.
               */}
-              <a className="mdl-navigation__link" href="/">Home</a>
-              <NavigationLink to="/graphiql">GraphiQL</NavigationLink>
+              <NavigationLink to="/star_wars">Home</NavigationLink>
+              <NavigationLink to="/star_wars/graphiql">GraphiQL</NavigationLink>
             </Navigation>
           </LayoutHeaderRow>
         </LayoutHeader>
 
         <LayoutDrawer>
           <Navigation>
-            <NavigationLink to="/">Home</NavigationLink>
-            <NavigationLink to="/graphiql">GraphiQL</NavigationLink>
+            <NavigationLink to="/star_wars">Home</NavigationLink>
+            <NavigationLink to="/star_wars/graphiql">GraphiQL</NavigationLink>
+            <a className="mdl-navigation__link" href="/">Home (public)</a>
             {/* <LogoutLink /> */}
           </Navigation>
         </LayoutDrawer>
