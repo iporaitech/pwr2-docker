@@ -66,36 +66,13 @@ module.exports = {
           loader: "css-loader?source!resolve-url-loader",
         })
       },{
-        test: /material-design-lite\/.+\.scss$/,
-        loader: ExtractTextPlugin.extract({
-          fallbackLoader: 'style-loader',
-          loader: 'css-loader!resolve-url-loader!sass-loader',
-        }),
-      },{
         test: /\.scss$/,
-        include: [
-          path.resolve(__dirname, 'core'),
-          path.resolve(__dirname, 'star_wars')
-        ],
         loader: ExtractTextPlugin.extract({
           fallbackLoader: 'style-loader',
           loader: [
-            {
-              loader: 'css-loader',
-              options: {
-                sourceMap: true,
-                modules: true,
-                importLoaders: '1',
-                localIdentName: '[path]___[name]__[local]___[hash:base64:5]'
-              }
-            },{
-              loader: 'resolve-url-loader',
-            },{
-              loader: 'sass-loader',
-              options: {
-                sourceMap: true
-              }
-            }
+            'css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
+            'resolve-url-loader',
+            'sass-loader?sourceMap'
           ]
         })
       }
