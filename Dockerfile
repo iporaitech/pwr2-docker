@@ -35,7 +35,7 @@ RUN apt-get update && apt-get install yarn
 
 # Create app user and set WORKDIR to its home dir
 RUN adduser --ingroup staff --disabled-password --gecos "" app
-ENV APP_HOME=/home/app/umbrella
+ENV APP_HOME=/home/app/pwr2
 RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
 
