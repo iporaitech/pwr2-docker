@@ -18,7 +18,8 @@ defmodule Webapp.DocController do
   end
 
   def show(conn, %{"filename" => filename}) do
-    render conn, Webapp.PageView, "index.html"
+    # TODO: create plug to set app_name in router.
+    render conn, Webapp.PageView, "index.html", app_name: "core"
   end
 
   defp doc_title(doc_name) do
