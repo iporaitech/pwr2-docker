@@ -12,7 +12,7 @@ import useRelay from 'react-router-relay';
 import AppLayout from 'core/AppLayout';
 import Login from 'core/login';
 // import GraphiQL from 'core/my-graphiql';
-import Docs from 'core/docs';
+// import Docs from 'core/docs';
 
 // Auth singleton
 import Auth from 'core/lib/auth';
@@ -58,8 +58,16 @@ const routes = (
       {/* <Route path="graphiql" component={GraphiQL} /> */}
     </Route>
     <Route path="/docs" component={AppLayout}>
-      <IndexRoute component={Docs} onEnter={redirectToDefaultDoc}/>
-      <Route path=":filename" component={Docs}/>
+      <IndexRoute onEnter={redirectToDefaultDoc}/>
+      <Route
+        path=":filename"
+        getComponent={(location, callback) => {
+          import('core/docs').then(module => {
+            callback(null, module.default);
+          }).catch(err => {
+            console.log(err);
+          })
+        }}/>
     </Route>
   </Route>
 )

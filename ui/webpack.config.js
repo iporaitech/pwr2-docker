@@ -43,9 +43,10 @@ module.exports = {
     core: "./core/src",
   },
   output: {
-    path: "../apps/webapp/priv/static",
-    filename: "js/[name].js",
-    chunkFilename: "js/[id].chunk.js"
+    path: path.resolve('../apps/webapp/priv/static'),
+    publicPath: '/',
+    filename: 'js/[name].js',
+    chunkFilename: 'js/[id].chunk.js'
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
