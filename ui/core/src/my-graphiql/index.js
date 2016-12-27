@@ -2,7 +2,7 @@ import React from 'react';
 import GraphiQL from 'graphiql';
 import fetch from 'isomorphic-fetch';
 import CSSModules from 'react-css-modules';
-import 'graphiql/graphiql';
+import 'graphiql/graphiql.css';
 import styles from './styles.scss';
 import Auth from 'core/lib/auth';
 

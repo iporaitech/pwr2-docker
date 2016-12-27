@@ -5,14 +5,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Relay from 'react-relay';
-import { Router, Route, IndexRoute, browserHistory, applyRouterMiddleware } from 'react-router'
+import {
+  Router,
+  Route,
+  IndexRoute,
+  browserHistory,
+  applyRouterMiddleware
+} from 'react-router'
 import useRelay from 'react-router-relay';
 
 // App components
-import AppLayout from 'core/AppLayout';
-import Login from 'core/login';
-// import GraphiQL from 'core/my-graphiql';
-// import Docs from 'core/docs';
+import AppLayout from './AppLayout';
+import Login from './login';
 
 // Auth singleton
 import Auth from 'core/lib/auth';
@@ -49,25 +53,45 @@ function redirectToDefaultDoc(nextState, replace) {
   replace({ pathname: "/docs/use_case_examples.md" })
 }
 
+const importError = (err) => {
+  console.log(err);
+}
+
+/**
+  TODO: find out why can't call import() from inside a function
+*/
 const routes = (
   <Route path="/">
     <IndexRoute component={Hello}/>
-    <Route path="/login" component={Login} onEnter={verifySession}/>
+    <Route path="/login"
+      getComponent={(location, cb) => {
+        import('core/login').then(module => {
+          cb(null, module.default);
+        }).catch(importError)
+      }}
+      onEnter={verifySession}
+    />
     <Route path="/admin" component={AppLayout} onEnter={requireAuth}>
       <IndexRoute component={Hello}/>
-      {/* <Route path="graphiql" component={GraphiQL} /> */}
+      <Route
+        path="graphiql"
+        getComponent={(location, cb) => {
+          import('core/my-graphiql').then(module => {
+            cb(null, module.default);
+          }).catch(importError)
+        }}
+      />
     </Route>
     <Route path="/docs" component={AppLayout}>
       <IndexRoute onEnter={redirectToDefaultDoc}/>
       <Route
         path=":filename"
-        getComponent={(location, callback) => {
+        getComponent={(location, cb) => {
           import('core/docs').then(module => {
-            callback(null, module.default);
-          }).catch(err => {
-            console.log(err);
-          })
-        }}/>
+            cb(null, module.default);
+          }).catch(importError)
+        }}
+      />
     </Route>
   </Route>
 )
