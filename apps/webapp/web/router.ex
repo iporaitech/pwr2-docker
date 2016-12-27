@@ -9,20 +9,16 @@ defmodule Webapp.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
-  pipeline :browser_auth do
-   plug Guardian.Plug.VerifySession
-   plug Guardian.Plug.LoadResource
-  end
   pipeline :graphql do
     plug :accepts, ["json"]
     plug Guardian.Plug.VerifyHeader, realm: "Bearer"
-    plug Guardian.Plug.LoadResource
-    # plug Webapp.Plug.GraphQLContext, repo: Webapp.Repo
+    plug Guardian.Plug.LoadResource, serializer: Core.GuardianSerializer
+    plug Core.Plug.GraphQLCurrentUser, repo: Core.Repo
   end
 
   # Routes
   scope "/admin", Webapp, as: :admin do
-    pipe_through [:browser, :browser_auth]
+    pipe_through [:browser]
 
     Enum.each ["/", "/graphiql"], fn path ->
       get path, PageController, :index
@@ -30,13 +26,15 @@ defmodule Webapp.Router do
   end
 
   scope "/docs", Webapp do
+    pipe_through [:browser]
+
     get "/", PageController, :docs
     get "/index", DocController, :index
     get "/:filename", DocController, :show
   end
 
   scope "/", Webapp do
-    pipe_through [:browser, :browser_auth]
+    pipe_through [:browser]
 
     get "/", PageController, :index
     get "/login", PageController, :index
