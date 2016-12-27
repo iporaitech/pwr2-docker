@@ -34,6 +34,7 @@ defmodule Core.Mixfile do
     [
       :logger,
       :gettext,
+      :ecto,
       :postgrex
     ]
   end
@@ -47,6 +48,7 @@ defmodule Core.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:ecto, "~> 2.0"},
       {:postgrex, ">= 0.0.0"},
       {:gettext, "~> 0.13"},
       {:comeonin, "~> 2.4"},
