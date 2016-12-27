@@ -38,9 +38,9 @@ module.exports = {
     }
   },
   entry: {
-    polyfill: "babel-polyfill",
-    star_wars: "./star_wars/src",
-    core: "./core/src",
+    polyfill: 'babel-polyfill',
+    core: './core/src',
+    star_wars: './star_wars/src'
   },
   output: {
     path: path.resolve('../apps/webapp/priv/static'),
