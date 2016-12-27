@@ -18,7 +18,6 @@ import {
 import AppLayout from './AppLayout';
 import Factions from './Factions';
 import Queries from './RelayQueryConfig';
-import GraphiQL from './my-graphiql';
 
 // Import some global CSS (some because not implemented in shared)
 import 'material-design-lite/src/shadow/_shadow.scss';
@@ -31,13 +30,24 @@ store.injectNetworkLayer(
   new Relay.DefaultNetworkLayer('/star_wars/graphql')
 );
 
+const importError = (err) => {
+  console.log(err);
+}
+
 ReactDOM.render(
   <Router history={browserHistory}
     render={applyRouterMiddleware(useRelay)}
     environment={store}>
     <Route path="/star_wars" component={AppLayout}>
       <IndexRoute component={Factions} queries={Queries} />
-      <Route path="graphiql" component={GraphiQL} />
+      <Route
+        path="graphiql"
+        getComponent={(location, cb) => {
+          import('core/my-graphiql').then(module => {
+            cb(null, module.default);
+          }).catch(importError)
+        }}
+      />
     </Route>
   </Router>,
   document.getElementById('react-root')
