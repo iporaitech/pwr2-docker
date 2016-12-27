@@ -1,4 +1,4 @@
-defmodule Webapp.Plug.GraphQLContext do
+defmodule Core.Plug.GraphQLCurrentUser do
   @behaviour Plug
   import Plug.Conn
 
