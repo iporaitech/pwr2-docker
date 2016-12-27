@@ -11,13 +11,13 @@ defmodule Webapp.DocController do
   end
 
   def show(conn, %{"_format" => "json", "filename" => filename}) do
-    {:ok, app_home_path} = File.cwd
+    {:ok, _} = File.cwd
     doc_path = "#{@docs_path}/#{filename}"
     doc_data = File.read!(doc_path)
     json conn, %{data: doc_data}
   end
 
-  def show(conn, %{"filename" => filename}) do
+  def show(conn, %{"filename" => _}) do
     # TODO: create plug to set app_name in router.
     render conn, Webapp.PageView, "index.html", app_name: "core"
   end
