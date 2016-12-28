@@ -15,9 +15,6 @@ import Layout, {
   LayoutContent,
 } from 'react-to-mdl/layout';
 
-// import css required for rmdl components
-// import '!style!css!sass!material-design-lite/src/layout/_layout.scss';
-
 class AppLayout extends React.Component {
   render() {
     return (
@@ -28,10 +25,6 @@ class AppLayout extends React.Component {
             <LayoutTitle>Star Wars example</LayoutTitle>
             <LayoutSpacer />
             <Navigation>
-              {/*
-                TODO: Use <NavigationLink tag='a' href='star-wars'> after
-                upgrading react-to-mdl.
-              */}
               <NavigationLink to="/star_wars">Home</NavigationLink>
               <NavigationLink to="/star_wars/graphiql">GraphiQL</NavigationLink>
             </Navigation>
@@ -42,7 +35,7 @@ class AppLayout extends React.Component {
           <Navigation>
             <NavigationLink to="/star_wars">Home</NavigationLink>
             <NavigationLink to="/star_wars/graphiql">GraphiQL</NavigationLink>
-            <a className="mdl-navigation__link" href="/">Home (public)</a>
+            <NavigationLink href="/">Home (public)</NavigationLink>
             {/* <LogoutLink /> */}
           </Navigation>
         </LayoutDrawer>

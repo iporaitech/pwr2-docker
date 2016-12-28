@@ -26,11 +26,7 @@ export default class extends React.Component {
             <LayoutSpacer />
             <Navigation>
               <NavigationLink to="/">Home</NavigationLink>
-              {/*
-                TODO: Use <NavigationLink tag='a' href='star-wars'> after
-                upgrading react-to-mdl.
-              */}
-              <a className="mdl-navigation__link" href="/star_wars">Star Wars</a>
+              <NavigationLink href="/star_wars">Star Wars</NavigationLink>
               <NavigationLink to="/admin/graphiql">GraphiQL</NavigationLink>
             </Navigation>
           </LayoutHeaderRow>

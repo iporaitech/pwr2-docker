@@ -3193,9 +3193,9 @@ react-static-container@^1.0.1:
   version "1.0.1"
   resolved "http://registry.npmjs.org/react-static-container/-/react-static-container-1.0.1.tgz#694c0dd68a896b879519afb548399cc1989c9ab0"
 
-"react-to-mdl@https://github.com/iporaitech/react-to-mdl/tarball/v0.1.1":
-  version "0.1.1"
-  resolved "https://github.com/iporaitech/react-to-mdl/tarball/v0.1.1#6e3089aa87299697db158d5dae9113e706f95447"
+"react-to-mdl@https://github.com/iporaitech/react-to-mdl/tarball/v0.2.0":
+  version "0.2.0"
+  resolved "https://github.com/iporaitech/react-to-mdl/tarball/v0.2.0#43ab56aeacfc838c20c2e6e18e3c91ce0b955733"
 
 react@^15.4.1:
   version "15.4.1"
