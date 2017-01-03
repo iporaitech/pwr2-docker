@@ -11,6 +11,7 @@ import Queries, { NodeQueries } from './RelayQueryConfig';
 import Tabs, { TabsTabBar, TabsTab, TabsPanel } from 'react-to-mdl/tabs';
 import Grid, { Cell } from 'react-to-mdl/grid';
 import List from './List';
+import UserForm from './Form';
 
 // CSS
 import CSSModules from 'react-css-modules';
@@ -42,9 +43,13 @@ class Index extends React.Component {
       <Tabs>
         <TabsTabBar>
           <TabsTab id="1" href="#users" isActive={true}>Usuarios</TabsTab>
+          <TabsTab id="2" href="#create_user">Crear Usuario</TabsTab>
         </TabsTabBar>
         <TabsPanel id="users" isActive={true}>
           <List users={users}/>
+        </TabsPanel>
+        <TabsPanel id="create_user">
+          <UserForm user={this.props.user}/>
         </TabsPanel>
       </Tabs>
     )

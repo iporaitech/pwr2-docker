@@ -9,6 +9,7 @@ defmodule Core.User do
     field :role, :string
     field :password, :string, virtual: true
     field :password_hash, :string
+    field :password_confirmation, :string, virtual: true
 
     timestamps
   end
@@ -46,6 +47,7 @@ defmodule Core.User do
     |> validate_format(:email, @valid_email_format)
     |> unique_constraint(:email)
     |> validate_length(:password, @valid_password_length)
+    |> validate_confirmation(:password, message: "does not match password!")
     |> encrypt_passwd()
   end
 
