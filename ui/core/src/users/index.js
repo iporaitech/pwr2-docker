@@ -12,6 +12,7 @@ import Tabs, { TabsTabBar, TabsTab, TabsPanel } from 'react-to-mdl/tabs';
 import Grid, { Cell } from 'react-to-mdl/grid';
 import List from './List';
 import UserForm from './Form';
+import Edit from './Edit';
 
 // CSS
 import CSSModules from 'react-css-modules';
@@ -83,5 +84,7 @@ let Users = Relay.createContainer(
 );
 
 Users.Queries = Queries;
+Users.NodeQueries = NodeQueries;
+Users.Edit = Edit;
 
 export default Users;
