@@ -27,7 +27,13 @@ priv/static/js/phoenix.js*
 priv/static/js/app.bundle.js*
 priv/static/js/vendor.bundle.js*
 priv/static/js/commons.chunk.js*
+priv/static/js/*.chunk.js*
+priv/static/js/common.js*
+priv/static/js/core.js*
+priv/static/js/polyfill.js*
+priv/static/js/star_wars.js*
 priv/static/css/app.css*
+priv/static/css/core.css*
 
 # We have example files for dockercompose.yml so let's ignore it
 dockercompose.yml
