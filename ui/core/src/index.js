@@ -91,6 +91,15 @@ const routes = (
         }}
         queries={Users.Queries}
       />
+      <Route
+        path="users/:id/edit"
+        getComponent={(location, cb) => {
+          import('core/users/Edit').then(module => {
+            cb(null, module.default);
+          }).catch(importError)
+        }}
+        queries={Users.NodeQueries}
+        />
     </Route>
     <Route path="/docs" component={AppLayout}>
       <IndexRoute onEnter={redirectToDefaultDoc}/>
