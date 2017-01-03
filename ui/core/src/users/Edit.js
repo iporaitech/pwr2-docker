@@ -1,9 +1,9 @@
-// file: users/Form.js
+// file: users/Edit.js
 
 import React, { PropTypes } from 'react';
 import Relay from 'react-relay';
-import { withRouter, browserHistory, environment } from 'react-router';
-import AddUserMutation from './AddUserMutation';
+import { withRouter } from 'react-router';
+import EditUserMutation from './EditUserMutation';
 
 // Base components
 import Grid, { Cell } from 'react-to-mdl/grid';
@@ -19,7 +19,7 @@ import { mdlUpgrade } from 'react-to-mdl';
 import styles from './styles.scss';
 import 'react-select/dist/react-select.css';
 
-class Form extends React.Component {
+class Edit extends React.Component {
   static propTypes = {
     user: PropTypes.object,
     title: PropTypes.string
@@ -27,36 +27,38 @@ class Form extends React.Component {
 
   static defaultProps = {
     user: null,
-    title: 'Crear nuevo usuario'
+    title: 'Editar Usuario'
   }
 
   constructor(props) {
     super(props)
 
     this.state = {
-      user: Object.assign({}, props.user),
+      user: Object.assign({}, props.node),
       hasError: false,
-      isLoading: false,
-      errors: null
+      errors: [],
+      isLoading: false
     }
   }
 
   changeUser(attrs) {
     const user = Object.assign({}, this.state.user, attrs);
     this.setState(Object.assign({}, this.state, {user}));
+    console.log(user);
   }
 
   handleSubmit(event) {
     event.preventDefault();
     const user = this.state.user;
+    delete user["__dataID__"];
 
     this.props.relay.commitUpdate(
-      new AddUserMutation({
+      new EditUserMutation({
         user
       }),{
         onSuccess: response => {
-          console.log(response);
           this.setState({isLoading: false});
+
           // TODO: get rid of reload and use router.
           // TODO: Redirect to the updated list of users without reloading page and show errors in the form
           // Hint: Tabs js is interferring with React in members/index
@@ -76,23 +78,14 @@ class Form extends React.Component {
   }
 
   render() {
-    const { title } = this.props;
-    const { isLoading, user, hasError } = this.state;
-    console.log(this.state.user);
+    const { title , node} = this.props;
+    const { isLoading, user } = this.state;
+
     return (
       <main>
         <Grid>
           <Cell col={12}>
             <h1 styleName="form-title">{title}</h1>
-          </Cell>
-        </Grid>
-        <Grid>
-          <Cell col={12}>
-            { this.state.hasError && (
-              <span styleName="login-error">
-
-              </span>
-            )}
           </Cell>
         </Grid>
         <form id="user-form" onSubmit={e => this.handleSubmit(e)}>
@@ -104,6 +97,8 @@ class Form extends React.Component {
               <Textfield
                 id="first_name"
                 labelText="Nombre(s)"
+                floatingLabel={true}
+                defaultValue = {user.firstName || ''}
                 onChange={e => this.changeUser({
                   first_name: e.target.value
                 })}
@@ -113,6 +108,7 @@ class Form extends React.Component {
               <Textfield
                 id="last_name"
                 labelText="Apellido(s)"
+                defaultValue = {user.lastName || ''}
                 onChange={e => this.changeUser({
                   last_name: e.target.value
                 })}
@@ -124,6 +120,7 @@ class Form extends React.Component {
               <Textfield
                 id="email"
                 labelText="Email"
+                defaultValue = {user.email || ''}
                 onChange={e => this.changeUser({
                   email: e.target.value
                 })}
@@ -133,7 +130,7 @@ class Form extends React.Component {
               <Select instanceId='role'
                 name='role'
                 styleName="dropdown"
-                value={user.role}
+                value = {user.role || ''}
                 options={[
                   {value: 'superadmin', label: 'SuperAdmin'},
                   {value: 'admin', label: 'Admin'},
@@ -150,8 +147,9 @@ class Form extends React.Component {
           <Grid>
             <Cell offset={2} col={4}>
               <Textfield
-                id="telephone"
+                id="phone"
                 labelText="Telefono"
+                defaultValue = {user.phone || ''}
                 onChange={e => this.changeUser({
                   phone: e.target.value
                 })}
@@ -159,37 +157,8 @@ class Form extends React.Component {
             </Cell>
           </Grid>
           <Grid>
-            <Cell offset={2} col={8}>
-              <h5 styleName='form-section-heading'>
-                Ingresar contraseña
-              </h5>
-            </Cell>
-          </Grid>
-          <Grid>
             <Cell offset={2} col={4}>
-              <Textfield
-                id="password"
-                type="password"
-                labelText="Contraseña"
-                onChange={e => this.changeUser({
-                  password: e.target.value
-                })}
-              />
-            </Cell>
-            <Cell col={4}>
-              <Textfield
-                id="password_confirmation"
-                type="password"
-                labelText="Repetir contraseña"
-                onChange={e => this.changeUser({
-                  passwordConfirmation: e.target.value
-                })}
-              />
-            </Cell>
-          </Grid>
-          <Grid>
-            <Cell offset={2} col={4}>
-              <Button raised={true} primary={true} type="submit">Guardar</Button>
+              <Button raised={true} primary={true} type="submit">Actualizar</Button>
             </Cell>
           </Grid>
         </form>
@@ -201,9 +170,22 @@ class Form extends React.Component {
 export default Relay.createContainer(
   withRouter(
     mdlUpgrade(
-      CSSModules(Form, styles)
+      CSSModules(Edit, styles)
     )
   ),{
-    fragments: { }
+    fragments: {
+      node: () => Relay.QL`
+       fragment on Node {
+         ... on User{
+           id
+           firstName
+           lastName
+           role
+           email
+           phone
+         }
+       }
+     `
+    }
   }
 );

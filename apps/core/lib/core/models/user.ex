@@ -51,7 +51,16 @@ defmodule Core.User do
     |> encrypt_passwd()
   end
 
-
+  def update_changeset(model, params) do
+    model
+    |> __MODULE__.changeset(params)
+    |> cast(params, [:email, :password, :role])
+    |> validate_required([:email, :role])
+    |> validate_inclusion(:role, @valid_roles)
+    |> validate_format(:email, @valid_email_format)
+    |> unique_constraint(:email)
+  end
+  
   # Helper functions
   #
   defp encrypt_passwd(changeset) do
