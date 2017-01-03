@@ -13,6 +13,10 @@ defmodule Webapp.Admin.PageController do
     render_view(conn)
   end
 
+  def users(conn, _params) do
+    render_view(conn)
+  end
+
   defp render_view(conn) do
     render conn, Webapp.PageView, "index.html"
   end

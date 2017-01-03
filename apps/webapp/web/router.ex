@@ -20,7 +20,7 @@ defmodule Webapp.Router do
   scope "/admin", Webapp, as: :admin do
     pipe_through [:browser]
 
-    Enum.each ["/", "/graphiql"], fn path ->
+    Enum.each ["/", "/graphiql", "users"], fn path ->
       get path, PageController, :index
     end
   end
