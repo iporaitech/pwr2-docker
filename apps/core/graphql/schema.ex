@@ -6,6 +6,8 @@ defmodule Core.GraphQL.Schema do
   import_types Core.GraphQL.Types.AuthMutations
   import_types Core.GraphQL.Types.Viewer
 
+  import_types Core.GraphQL.Users.Types
+
   query do
     import_fields :viewer_field
 
@@ -22,6 +24,7 @@ defmodule Core.GraphQL.Schema do
 
   mutation do
     import_fields :auth_mutations
+    import_fields :user_mutations
 
   end # END mutation
 
