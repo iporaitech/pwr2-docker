@@ -17,6 +17,7 @@ import useRelay from 'react-router-relay';
 // App components
 import AppLayout from './AppLayout';
 import Login from './login';
+import Users from './users';
 
 // Auth singleton
 import Auth from 'core/lib/auth';
@@ -80,6 +81,15 @@ const routes = (
             cb(null, module.default);
           }).catch(importError)
         }}
+      />
+      <Route
+        path="users"
+        getComponent={(location, cb) => {
+          import('core/users').then(module => {
+            cb(null, module.default);
+          }).catch(importError)
+        }}
+        queries={Users.Queries}
       />
     </Route>
     <Route path="/docs" component={AppLayout}>
