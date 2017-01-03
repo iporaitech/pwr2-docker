@@ -1,8 +1,8 @@
 // file: layout/index.js
 import React from 'react';
-// import { Link } from 'react-router';
+
+// Base components
 import LogoutLink from 'core/shared/LogoutLink';
-import { mdlUpgrade } from 'react-to-mdl';
 import Layout, {
   LayoutHeader,
   LayoutIcon,
@@ -35,6 +35,7 @@ export default class extends React.Component {
         <LayoutDrawer>
           <Navigation>
             <NavigationLink to="/admin">Admin</NavigationLink>
+            <NavigationLink to="/admin/users">Users</NavigationLink>
             <NavigationLink to="/admin/graphiql">GraphiQL</NavigationLink>
             <NavigationLink to="/docs">Documentation</NavigationLink>
             <LogoutLink />
