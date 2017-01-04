@@ -1,4 +1,4 @@
-defmodule Core.GraphQL.Users.Types do
+defmodule Core.GraphQL.Types.User do
 
   use Absinthe.Schema.Notation
   use Absinthe.Relay.Schema.Notation
@@ -30,7 +30,7 @@ defmodule Core.GraphQL.Users.Types do
       end
       resolve fn
         args, %{context: %{current_user: current_user}} ->
-          IO.inspect(User)
+
           authorized = current_user |> can?(write User)
 
           create = fn args ->
