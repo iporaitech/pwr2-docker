@@ -25,27 +25,24 @@ defmodule Core.GraphQL.Types.Viewer do
   object :viewer do
     field :profile, :user
 
-    @desc "El Jurista users"
+    @desc "PWR2 users"
     connection field :users, node_type: :user do
 
       resolve fn
-        query_params, %{source: viewer} ->
+        query_params, %{source: viewer, context: %{current_user: current_user}} ->
+          authorized = current_user |> can?(write User)
           order = (Map.get(query_params, :order) == "asc") && :asc || :desc
           pagination_args =
-            Map.delete(query_params, :search)
-            |> Map.delete(:order)
-
-          query =
-            from m in User,
-              order_by: [{^order, m.inserted_at}]
-
-          conn =
-            query
-            |> Connection.from_query(&Repo.all/1, pagination_args)
-
+            Map.take(query_params, [:first, :after, :last, :before])
+          if authorized do
+            conn =
+              (from u in User, order_by: [{^order, u.inserted_at}])
+              |> Connection.from_query(&Repo.all/1, pagination_args)
+            else
+              Core.GraphQL.Resolver.unauthorized_error
+          end
           {:ok, conn}
       end
-
     end
   end
 
