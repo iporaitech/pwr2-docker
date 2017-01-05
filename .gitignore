@@ -9,3 +9,6 @@ erl_crash.dump
 
 # We have example files for docker-compose.yml so let's ignore it
 docker-compose.yml
+
+# Ignore yarn package
+node_modules
