@@ -5,14 +5,15 @@ import Relay from 'react-relay';
 import { withRouter } from 'react-router';
 
 // queries
-import Queries, { NodeQueries } from './RelayQueryConfig';
+import { NodeQueries } from './RelayQueryConfig';
+import ViewerQuery from '../shared/ViewerQuery'
+import NodeQuery from '../shared/NodeQuery'
 
 // Base components
 import Tabs, { TabsTabBar, TabsTab, TabsPanel } from 'react-to-mdl/tabs';
 import Grid, { Cell } from 'react-to-mdl/grid';
-import List from './List';
-import UserForm from './Form';
-import Edit from './Edit';
+import ListUser from './List';
+import NewUser from './New';
 
 // CSS
 import CSSModules from 'react-css-modules';
@@ -23,10 +24,6 @@ class Index extends React.Component {
 
   static defaultProps = {
     title: 'Lista de Usuarios',
-    user: {
-      first_name: '', last_name: '', email: '', role: '', phone: '',
-      password: '', passwordConfirmation: ''
-    }
   }
 
   constructor(props) {
@@ -34,7 +31,6 @@ class Index extends React.Component {
   }
 
   render() {
-
     const { title, viewer, children, ...otherProps } = this.props;
     const users = viewer.users.edges.map(user => {
       return { ...user.node }
@@ -43,14 +39,14 @@ class Index extends React.Component {
     return (
       <Tabs>
         <TabsTabBar>
-          <TabsTab id="1" href="#users" isActive={true}>Usuarios</TabsTab>
-          <TabsTab id="2" href="#create_user">Crear Usuario</TabsTab>
+          <TabsTab href="#list_users" isActive={true}>Usuarios</TabsTab>
+          <TabsTab href="#new_user">Crear Usuario</TabsTab>
         </TabsTabBar>
-        <TabsPanel id="users" isActive={true}>
-          <List users={users}/>
+        <TabsPanel id="list_users" isActive={true}>
+          <ListUser users={users}/>
         </TabsPanel>
-        <TabsPanel id="create_user">
-          <UserForm user={this.props.user}/>
+        <TabsPanel id="new_user">
+          <NewUser />
         </TabsPanel>
       </Tabs>
     )
@@ -83,8 +79,7 @@ let Users = Relay.createContainer(
   }
 );
 
-Users.Queries = Queries;
-Users.NodeQueries = NodeQueries;
-Users.Edit = Edit;
+Users.ViewerQuery = ViewerQuery;
+Users.NodeQuery = NodeQuery;
 
 export default Users;
