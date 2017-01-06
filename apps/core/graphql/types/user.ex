@@ -67,6 +67,8 @@ defmodule Core.GraphQL.Types.User do
         field :phone, :string
         field :email, non_null(:string)
         field :role, non_null(:string)
+        field :password, :string
+        field :password_confirmation, :string
       end
       output do
         field :user, :user
