@@ -1,14 +1,23 @@
+# Elixir/Phoenix default ignored files
 /_build
 /cover
 /deps
+
+# Generated on crash by the Erlang VM
 erl_crash.dump
 *.ez
 
 # Atom's RemoteSync plugin config file
 .remote-sync.json
 
-# We have example files for docker-compose.yml so let's ignore it
+# See docker-compose.*.example.yml to create your own docker-compose.yml
 docker-compose.yml
 
-# Ignore yarn package
-node_modules
+# Webapp
+apps/webapp/priv/static/*
+
+# ui
+ui/node_modules
+
+# Environment vars
+.env
