@@ -89,7 +89,7 @@ const routes = (
             cb(null, module.default);
           }).catch(importError)
         }}
-        queries={Users.Queries}
+        queries={Users.ViewerQuery}
       />
       <Route
         path="users/:id/edit"
@@ -98,7 +98,7 @@ const routes = (
             cb(null, module.default);
           }).catch(importError)
         }}
-        queries={Users.NodeQueries}
+        queries={Users.NodeQuery}
         />
     </Route>
     <Route path="/docs" component={AppLayout}>
