@@ -1,9 +1,9 @@
-// file: users/Edit.js
+// file: users/New.js
 
 import React, { PropTypes } from 'react';
 import Relay from 'react-relay';
-import { withRouter } from 'react-router';
-import EditUserMutation from './EditUserMutation';
+import { withRouter, } from 'react-router';
+import AddUserMutation from './AddUserMutation';
 
 // Base components
 import Form from './Form';
@@ -14,15 +14,18 @@ import { mdlUpgrade } from 'react-to-mdl';
 import styles from './styles.scss';
 import 'react-select/dist/react-select.css';
 
-class Edit extends React.Component {
+class New extends React.Component {
   static propTypes = {
     user: PropTypes.object,
     title: PropTypes.string
   }
 
   static defaultProps = {
-    user: null,
-    title: 'Editar Usuario'
+    title: 'Crear nuevo usuario',
+    user: {
+      first_name: '', last_name: '', email: '', role: '', phone: '',
+      password: '', passwordConfirmation: ''
+    }
   }
 
   constructor(props) {
@@ -30,29 +33,28 @@ class Edit extends React.Component {
     this.changeUser = this.changeUser.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
-      user: Object.assign({}, props.node),
+      user: Object.assign({}, props.user),
       hasError: false,
-      errors: [],
-      isLoading: false
+      isLoading: false,
+      errors: null,
     }
   }
 
   changeUser(attrs) {
     const user = Object.assign({}, this.state.user, attrs);
     this.setState(Object.assign({}, this.state, {user}));
-    console.log(user);
   }
 
   handleSubmit(event) {
     event.preventDefault();
     const user = this.state.user;
-    delete user["__dataID__"];
 
     this.props.relay.commitUpdate(
-      new EditUserMutation({
+      new AddUserMutation({
         user
       }),{
         onSuccess: response => {
+          console.log(response);
           this.setState({isLoading: false});
           // TODO: get rid of reload and use router.
           // TODO: Redirect to the updated list of users without reloading page and show errors in the form
@@ -77,7 +79,7 @@ class Edit extends React.Component {
 
     return (
       <Form title={title} state={this.state} changeUser={this.changeUser}
-        handleSubmit={this.handleSubmit.bind(this)} edit={true}/>
+        handleSubmit={this.handleSubmit.bind(this)} />
     )
   }
 }
@@ -85,22 +87,9 @@ class Edit extends React.Component {
 export default Relay.createContainer(
   withRouter(
     mdlUpgrade(
-      CSSModules(Edit, styles)
+      CSSModules(New, styles)
     )
   ),{
-    fragments: {
-      node: () => Relay.QL`
-       fragment on Node {
-         ... on User{
-           id
-           firstName
-           lastName
-           role
-           email
-           phone
-         }
-       }
-     `
-    }
+    fragments: { }
   }
 );

@@ -20,65 +20,11 @@ import styles from './styles.scss';
 import 'react-select/dist/react-select.css';
 
 class Form extends React.Component {
-  static propTypes = {
-    user: PropTypes.object,
-    title: PropTypes.string
-  }
-
-  static defaultProps = {
-    user: null,
-    title: 'Crear nuevo usuario'
-  }
-
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      user: Object.assign({}, props.user),
-      hasError: false,
-      isLoading: false,
-      errors: null
-    }
-  }
-
-  changeUser(attrs) {
-    const user = Object.assign({}, this.state.user, attrs);
-    this.setState(Object.assign({}, this.state, {user}));
-  }
-
-  handleSubmit(event) {
-    event.preventDefault();
-    const user = this.state.user;
-
-    this.props.relay.commitUpdate(
-      new AddUserMutation({
-        user
-      }),{
-        onSuccess: response => {
-          console.log(response);
-          this.setState({isLoading: false});
-          // TODO: get rid of reload and use router.
-          // TODO: Redirect to the updated list of users without reloading page and show errors in the form
-          // Hint: Tabs js is interferring with React in members/index
-          // window.location.reload();
-        },
-        onFailure: transaction => {
-          console.log(transaction.getError().source);
-          this.setState({
-            hasError: true,
-            isLoading: false
-          });
-        }
-      }
-    );
-
-    this.setState({isLoading: true});
-  }
 
   render() {
-    const { title } = this.props;
-    const { isLoading, user, hasError } = this.state;
-    console.log(this.state.user);
+    const { title, edit } = this.props;
+    const { user, isLoading, hasError} = this.props.state;
+
     return (
       <main>
         <Grid>
@@ -88,14 +34,13 @@ class Form extends React.Component {
         </Grid>
         <Grid>
           <Cell col={12}>
-            { this.state.hasError && (
+            { hasError && (
               <span styleName="login-error">
-
               </span>
             )}
           </Cell>
         </Grid>
-        <form id="user-form" onSubmit={e => this.handleSubmit(e)}>
+        <form id="user-form" onSubmit={e => this.props.handleSubmit(e)}>
           {isLoading && (<div styleName="loading">
             <Spinner />
           </div>)}
@@ -104,7 +49,8 @@ class Form extends React.Component {
               <Textfield
                 id="first_name"
                 labelText="Nombre(s)"
-                onChange={e => this.changeUser({
+                defaultValue = {user.firstName || ''}
+                onChange={e => this.props.changeUser({
                   first_name: e.target.value
                 })}
               />
@@ -113,7 +59,8 @@ class Form extends React.Component {
               <Textfield
                 id="last_name"
                 labelText="Apellido(s)"
-                onChange={e => this.changeUser({
+                defaultValue = {user.lastName || ''}
+                onChange={e => this.props.changeUser({
                   last_name: e.target.value
                 })}
               />
@@ -124,12 +71,14 @@ class Form extends React.Component {
               <Textfield
                 id="email"
                 labelText="Email"
-                onChange={e => this.changeUser({
+                defaultValue = {user.email || ''}
+                onChange={e => this.props.changeUser({
                   email: e.target.value
                 })}
               />
             </Cell>
             <Cell col={2}>
+              { /* TODO: Load options values to select from graphql */ }
               <Select instanceId='role'
                 name='role'
                 styleName="dropdown"
@@ -139,7 +88,7 @@ class Form extends React.Component {
                   {value: 'admin', label: 'Admin'},
                   {value: 'client', label: 'Cliente'}
                 ]}
-                onChange={opt => this.changeUser({
+                onChange={opt => this.props.changeUser({
                   role: opt && opt.value
                 })}
                 placeholder='Roles'
@@ -150,9 +99,10 @@ class Form extends React.Component {
           <Grid>
             <Cell offset={2} col={4}>
               <Textfield
-                id="telephone"
+                id="phone"
                 labelText="Telefono"
-                onChange={e => this.changeUser({
+                defaultValue = {user.phone || ''}
+                onChange={e => this.props.changeUser({
                   phone: e.target.value
                 })}
               />
@@ -162,6 +112,9 @@ class Form extends React.Component {
             <Cell offset={2} col={8}>
               <h5 styleName='form-section-heading'>
                 Ingresar contraseña
+                {edit && (<span>
+                    &nbsp;(dejar en blanco si no desea cambiarlo)
+                </span>)}
               </h5>
             </Cell>
           </Grid>
@@ -171,7 +124,7 @@ class Form extends React.Component {
                 id="password"
                 type="password"
                 labelText="Contraseña"
-                onChange={e => this.changeUser({
+                onChange={e => this.props.changeUser({
                   password: e.target.value
                 })}
               />
@@ -181,7 +134,7 @@ class Form extends React.Component {
                 id="password_confirmation"
                 type="password"
                 labelText="Repetir contraseña"
-                onChange={e => this.changeUser({
+                onChange={e => this.props.changeUser({
                   passwordConfirmation: e.target.value
                 })}
               />
@@ -198,12 +151,7 @@ class Form extends React.Component {
   }
 }
 
-export default Relay.createContainer(
-  withRouter(
-    mdlUpgrade(
-      CSSModules(Form, styles)
-    )
-  ),{
-    fragments: { }
-  }
+/*** exports ***/
+export default mdlUpgrade(
+  CSSModules(Form, styles)
 );

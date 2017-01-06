@@ -1,5 +1,4 @@
 @import '~material-design-lite/src/typography/typography';
-@import '~material-design-lite/src/typography/typography';
 @import '~material-design-lite/src/palette/palette';
 
 .form-title {
@@ -11,6 +10,10 @@
 .form-section-heading {
   @extend .mdl-color-text--grey-600;
   @extend .mdl-typography--text-center;
+  
+  span {
+    @extend .mdl-typography--caption;
+  }
 }
 
 .dropdown {
