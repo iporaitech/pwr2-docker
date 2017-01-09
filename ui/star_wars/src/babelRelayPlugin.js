@@ -13,10 +13,10 @@ const babelRelayPlugin = require('babel-relay-plugin');
  */
 const introspectionQuery = require('graphql/utilities').introspectionQuery;
 const request = require('sync-request');
-const server = 'http://localhost:4001/star_wars/graphql';
+const server = process.env.PWR2_STAR_WARS_GRAPHQL_URL;
 
 // Get the GraphQL schema from the server to be used later by Relay
-const response = request('GET', server, {
+const response = request('POST', server, {
   qs: {
     query: introspectionQuery
   }
