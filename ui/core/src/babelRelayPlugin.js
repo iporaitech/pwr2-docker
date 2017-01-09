@@ -13,8 +13,9 @@ const babelRelayPlugin = require('babel-relay-plugin');
  */
 const introspectionQuery = require('graphql/utilities').introspectionQuery;
 const request = require('sync-request');
+const server = process.env.PWR2_CORE_GRAPHQL_URL;
 // Get the GraphQL schema from the server to be used later by Relay
-const response = request('POST', process.env.GRAPHQL_URL, {
+const response = request('POST', server, {
   qs: {
     query: introspectionQuery
   }
