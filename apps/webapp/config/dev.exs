@@ -8,7 +8,7 @@ require System
 # watchers to your application. For example, we use it
 # with brunch.io to recompile .js and .css sources.
 config :webapp, Webapp.Endpoint,
-  http: [port: {:system, "HTTP_PORT"}],
+  http: [port: {:system, "PWR2_HTTP_PORT"}],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
