@@ -5,7 +5,6 @@ defmodule Core.GraphQL.Schema do
 
   import_types Core.GraphQL.Types.AuthMutations
   import_types Core.GraphQL.Types.Viewer
-
   import_types Core.GraphQL.Types.User
 
   query do
