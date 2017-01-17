@@ -1,10 +1,10 @@
-// file: src/users/AdduserMutation.js
+// file: src/users/UserMutation.js
 
 import Relay from 'react-relay';
 
-export default class AddUserMutation extends Relay.Mutation {
+export default class UserMutation extends Relay.Mutation {
   getMutation() {
-    return Relay.QL`mutation {addUser}`;
+    return Relay.QL`mutation {user}`;
   }
 
   getVariables() {
@@ -15,7 +15,7 @@ export default class AddUserMutation extends Relay.Mutation {
 
   getFatQuery() {
     return Relay.QL`
-      fragment on AddUserPayload {
+      fragment on UserPayload {
         user {
           id
         }
@@ -29,7 +29,7 @@ export default class AddUserMutation extends Relay.Mutation {
       type: 'REQUIRED_CHILDREN',
       children: [
         Relay.QL`
-          fragment on AddUserPayload {
+          fragment on UserPayload {
             user {
               id
             }
