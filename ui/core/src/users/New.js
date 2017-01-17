@@ -3,7 +3,7 @@
 import React, { PropTypes } from 'react';
 import Relay from 'react-relay';
 import { withRouter, } from 'react-router';
-import AddUserMutation from './AddUserMutation';
+import UserMutation from './UserMutation';
 
 // Base components
 import Form from './Form';
@@ -50,11 +50,10 @@ class New extends React.Component {
     const user = this.state.user;
 
     this.props.relay.commitUpdate(
-      new AddUserMutation({
+      new UserMutation({
         user
       }),{
         onSuccess: response => {
-          console.log(response);
           this.setState({isLoading: false});
           // TODO: get rid of reload and use router.
           // TODO: Redirect to the updated list of users without reloading page and show errors in the form
