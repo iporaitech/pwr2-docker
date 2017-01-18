@@ -21,7 +21,7 @@ class New extends React.Component {
   }
 
   static defaultProps = {
-    title: 'Crear nuevo usuario',
+    title: 'Create a New User',
     user: {
       first_name: '', last_name: '', email: '', role: '', phone: '',
       password: '', passwordConfirmation: ''
@@ -36,7 +36,7 @@ class New extends React.Component {
       user: Object.assign({}, props.user),
       hasError: false,
       isLoading: false,
-      errors: null,
+      errors: [],
     }
   }
 

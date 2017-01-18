@@ -2,8 +2,7 @@
 
 import React, { PropTypes } from 'react';
 import Relay from 'react-relay';
-import { withRouter, browserHistory, environment } from 'react-router';
-import AddUserMutation from './AddUserMutation';
+import { withRouter } from 'react-router';
 
 // Base components
 import Grid, { Cell } from 'react-to-mdl/grid';
@@ -23,7 +22,7 @@ class Form extends React.Component {
 
   render() {
     const { title, edit } = this.props;
-    const { user, isLoading, hasError} = this.props.state;
+    const { user, isLoading, hasError, errors} = this.props.state;
 
     return (
       <main>
@@ -48,7 +47,7 @@ class Form extends React.Component {
             <Cell offset={2} col={4}>
               <Textfield
                 id="first_name"
-                labelText="Nombre(s)"
+                labelText="First Name"
                 defaultValue = {user.firstName || ''}
                 onChange={e => this.props.changeUser({
                   first_name: e.target.value
@@ -58,7 +57,7 @@ class Form extends React.Component {
             <Cell col={4}>
               <Textfield
                 id="last_name"
-                labelText="Apellido(s)"
+                labelText="Last Name"
                 defaultValue = {user.lastName || ''}
                 onChange={e => this.props.changeUser({
                   last_name: e.target.value
@@ -86,12 +85,12 @@ class Form extends React.Component {
                 options={[
                   {value: 'superadmin', label: 'SuperAdmin'},
                   {value: 'admin', label: 'Admin'},
-                  {value: 'client', label: 'Cliente'}
+                  {value: 'client', label: 'Client'}
                 ]}
                 onChange={opt => this.props.changeUser({
                   role: opt && opt.value
                 })}
-                placeholder='Roles'
+                placeholder='Role'
                 autoBlur={true}
               />
             </Cell>
@@ -100,7 +99,7 @@ class Form extends React.Component {
             <Cell offset={2} col={4}>
               <Textfield
                 id="phone"
-                labelText="Telefono"
+                labelText="Phone"
                 defaultValue = {user.phone || ''}
                 onChange={e => this.props.changeUser({
                   phone: e.target.value
@@ -111,9 +110,9 @@ class Form extends React.Component {
           <Grid>
             <Cell offset={2} col={8}>
               <h5 styleName='form-section-heading'>
-                Ingresar contraseña
+                Enter Password
                 {edit && (<span>
-                    &nbsp;(dejar en blanco si no desea cambiarlo)
+                    &nbsp;(Leave blank if you do not change)
                 </span>)}
               </h5>
             </Cell>
@@ -123,7 +122,7 @@ class Form extends React.Component {
               <Textfield
                 id="password"
                 type="password"
-                labelText="Contraseña"
+                labelText="Password"
                 onChange={e => this.props.changeUser({
                   password: e.target.value
                 })}
@@ -133,7 +132,7 @@ class Form extends React.Component {
               <Textfield
                 id="password_confirmation"
                 type="password"
-                labelText="Repetir contraseña"
+                labelText="Confirm Password"
                 onChange={e => this.props.changeUser({
                   passwordConfirmation: e.target.value
                 })}
@@ -142,7 +141,7 @@ class Form extends React.Component {
           </Grid>
           <Grid>
             <Cell offset={2} col={4}>
-              <Button raised={true} primary={true} type="submit">Guardar</Button>
+              <Button raised={true} primary={true} type="submit">Save</Button>
             </Cell>
           </Grid>
         </form>

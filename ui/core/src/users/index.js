@@ -5,7 +5,6 @@ import Relay from 'react-relay';
 import { withRouter } from 'react-router';
 
 // queries
-import { NodeQueries } from './RelayQueryConfig';
 import ViewerQuery from '../shared/ViewerQuery'
 import NodeQuery from '../shared/NodeQuery'
 
@@ -22,10 +21,6 @@ import styles from './styles.scss';
 
 class Index extends React.Component {
 
-  static defaultProps = {
-    title: 'Lista de Usuarios',
-  }
-
   constructor(props) {
     super(props)
   }
@@ -39,8 +34,8 @@ class Index extends React.Component {
     return (
       <Tabs>
         <TabsTabBar>
-          <TabsTab href="#list_users" isActive={true}>Usuarios</TabsTab>
-          <TabsTab href="#new_user">Crear Usuario</TabsTab>
+          <TabsTab href="#list_users" isActive={true}>Users</TabsTab>
+          <TabsTab href="#new_user">New User</TabsTab>
         </TabsTabBar>
         <TabsPanel id="list_users" isActive={true}>
           <ListUser users={users}/>
