@@ -22,7 +22,7 @@ class Edit extends React.Component {
 
   static defaultProps = {
     user: null,
-    title: 'Editar Usuario'
+    title: 'Edit User'
   }
 
   constructor(props) {
@@ -40,7 +40,6 @@ class Edit extends React.Component {
   changeUser(attrs) {
     const user = Object.assign({}, this.state.user, attrs);
     this.setState(Object.assign({}, this.state, {user}));
-    console.log(user);
   }
 
   handleSubmit(event) {

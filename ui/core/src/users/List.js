@@ -24,7 +24,7 @@ import styles from './styles.scss';
 class List extends React.Component {
 
   static defaultProps = {
-    title: 'Lista de Usuarios'
+    title: 'List of Users'
   }
 
   constructor(props) {
@@ -45,10 +45,9 @@ class List extends React.Component {
           <Cell offset={3} col={6}>
             <DataTable shadow={'2dp'}>
               <DataTableHead>
-                <DataTableTH nonNumeric={true}> Usuario </DataTableTH>
+                <DataTableTH nonNumeric={true}> User </DataTableTH>
                 <DataTableTH nonNumeric={true}> Email </DataTableTH>
-                <DataTableTH nonNumeric={true}> Acceso </DataTableTH>
-                <DataTableTH nonNumeric={true}> Insertado </DataTableTH>
+                <DataTableTH nonNumeric={true}> Access </DataTableTH>
                 <DataTableTH nonNumeric={true}></DataTableTH>
               </DataTableHead>
               <tbody>
@@ -57,9 +56,8 @@ class List extends React.Component {
                     <DataTableTD nonNumeric={true}>{`${user.firstName} ${user.lastName}`}</DataTableTD>
                     <DataTableTD nonNumeric={true}>{user.email}</DataTableTD>
                     <DataTableTD nonNumeric={true}>{user.role}</DataTableTD>
-                    <DataTableTD nonNumeric={true}>{user.role}</DataTableTD>
                     <DataTableTD nonNumeric={true}>
-                      <Link to={`/admin/users/${user.id}/edit`}>editar </Link>
+                      <Link to={`/admin/users/${user.id}/edit`}>edit </Link>
                     </DataTableTD>
                   </tr>
                 })}
