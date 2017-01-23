@@ -3,7 +3,7 @@
 import React, { PropTypes } from 'react';
 import Relay from 'react-relay';
 import { withRouter } from 'react-router';
-import UserMutation from './UserMutation';
+import EditUserMutation from './EditUserMutation';
 
 // Base components
 import Form from './Form';
@@ -48,7 +48,7 @@ class Edit extends React.Component {
     delete user["__dataID__"];
 
     this.props.relay.commitUpdate(
-      new UserMutation({
+      new EditUserMutation({
         user
       }),{
         onSuccess: response => {
