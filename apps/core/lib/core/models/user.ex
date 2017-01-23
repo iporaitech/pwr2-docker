@@ -40,27 +40,20 @@ defmodule Core.User do
     # See https://github.com/antonmi/espec#limitations for info about why use __MODULE__
     model
     |> __MODULE__.changeset(params)
-    |> cast(params, [:email, :password, :role])
-    |> validate_required([:email, :password, :role])
-    |> validate_inclusion(:role, @valid_roles)
-    |> validate_format(:email, @valid_email_format)
-    |> unique_constraint(:email)
-    |> validate_length(:password, @valid_password_length)
-    |> validate_confirmation(:password, message: "does not match password!")
-    |> encrypt_passwd()
-  end
-
-  def update_changeset(model, params) do
-    model
-    |> __MODULE__.changeset(params)
-    |> cast(params, [:email, :password, :role])
+    |> cast(params, [:email, :role])
     |> validate_required([:email, :role])
     |> validate_inclusion(:role, @valid_roles)
     |> validate_format(:email, @valid_email_format)
-    |> validate_length(:password, @valid_password_length)
-    |> validate_confirmation(:password, message: "does not match password!")
     |> unique_constraint(:email)
     |> encrypt_passwd()
+  end
+
+  def password_changeset(model, params) do
+    model
+    |> cast(params, [:password])
+    |> validate_required([:password])
+    |> validate_length(:password, @valid_password_length)
+    |> validate_confirmation(:password, message: "does not match password!")
   end
 
   # Helper functions
