@@ -2,7 +2,7 @@ web:
   image: iporaitech/pwr2-docker:latest
   command: /sbin/my_init --enable-insecure-key #enable insecure key for dev
   # volumes:
-  #   - .:/home/app/webapp
+  #   - .:/home/app/pwr2
   links:
     - db
   ports:
